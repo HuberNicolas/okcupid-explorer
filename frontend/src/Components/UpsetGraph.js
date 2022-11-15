@@ -1,14 +1,13 @@
 import { extractCombinations, UpSetJS, VennDiagram, KarnaughMap } from '@upsetjs/react';
 import {useMemo} from 'react';
 import {Card, Col, Container, Row, Stack} from 'react-bootstrap'
-import cleansedData from '../df_cleansed.json'
+//import cleansedData from '../df_cleansed.json'
 
 function UpsetGraph(props) {
     console.log(props)
     console.log(props.graph)
     const elems = useMemo(
-        () => props.dataset,
-        []
+        () => props.dataset, []
     );
     const backgroundColor = "dark"
     const cardHeaderStyle = {

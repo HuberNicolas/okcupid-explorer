@@ -30,7 +30,7 @@ class FormCard extends Component {
                     <Card bg={this.backgroundColor}>
                         <Card.Header style={cardHeaderStyle}>{this.title}</Card.Header>
                         <Card.Body>
-                            <Form.Select aria-label="Default select example">
+                            <Form.Select style={dropDownStyle} aria-label="Default select example">
                                 <option>Open this select menu</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
