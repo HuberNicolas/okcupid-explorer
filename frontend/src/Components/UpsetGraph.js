@@ -1,7 +1,6 @@
 import { extractCombinations, UpSetJS, VennDiagram, KarnaughMap } from '@upsetjs/react';
 import {useMemo} from 'react';
 import {Card, Col, Container, Row, Stack} from 'react-bootstrap'
-//import cleansedData from '../df_cleansed.json'
 
 function UpsetGraph(props) {
     console.log(props)

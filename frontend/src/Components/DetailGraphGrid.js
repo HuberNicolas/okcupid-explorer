@@ -1,6 +1,7 @@
 import {Container, Row, Stack, Col} from 'react-bootstrap'
 import {useState} from "react";
 import UpsetGraph from "./UpsetGraph";
+//import cleansedData from '../df_cleansed.json'
 
 function DetailGraphGrid() {
     const [selection, setSelection] = useState(null);
