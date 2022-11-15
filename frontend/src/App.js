@@ -1,12 +1,13 @@
 import './App.css';
-import Grid from './Components/Grid'
+import ContentManager from "./Components/ContentManager";
 
 function App() {
-  return (
-    <div className="App">
-        <Grid />
-    </div>
-  );
+
+    return (
+        <div className="App">
+            <ContentManager />
+        </div>
+    );
 }
 
 export default App;

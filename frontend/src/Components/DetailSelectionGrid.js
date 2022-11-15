@@ -14,7 +14,7 @@ class Grid extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <FormCard/>
+                        <FormCard title={"Attribute definition"} />
                     </Row>
                 </Stack>
             </Container>

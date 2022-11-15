@@ -1,21 +1,20 @@
 import {Card, Button, Form} from 'react-bootstrap'
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
 import formJSON from './Form/fields.json';
 import Element from "./Form/Element";
 import { FormContext } from './Form/FormContext';
+import {InitialContext} from "./Form/InitialContext";
 
-function FormCard() {
+function FormCard({title}) {
     const backgroundColor = "dark"
-    const title = "Form"
+
 
     const [elements, setElements] = useState([]);
+    const { handleSubmit } = useContext(InitialContext)
+
     useEffect(()=>{
         setElements(formJSON)
     },[])
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-    }
 
     const handleChange = (f_id, event) => {
         const newElements =  [...elements]
@@ -49,7 +48,7 @@ function FormCard() {
                     <Card.Header style={cardHeaderStyle}>{title}</Card.Header>
                     <Card.Body value={{handleChange}}>
                         {elements.map((e) => {return (<Element key={e.id} field={e} />)})}
-                        <Button onClick={handleSubmit}>Submit something</Button>
+                        <Button onClick={event => handleSubmit(elements)}>Submit something</Button>
                     </Card.Body>
                 </Card>
             }

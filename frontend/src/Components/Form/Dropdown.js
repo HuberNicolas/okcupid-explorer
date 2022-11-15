@@ -6,6 +6,7 @@ const Dropdown = (fieldInputs) => {
     return (
         <div>
             <Form.Select id={fieldInputs.field_id} onChange={event => handleChange(fieldInputs.field_id, event)}>
+                <option key={"initial"}>Select a value</option>
                 {fieldInputs.field_options.map((option) => {
                     return (<option key={option} value={option}>{option}</option>)
                 })}
