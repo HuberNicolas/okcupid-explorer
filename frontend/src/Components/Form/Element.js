@@ -1,7 +1,7 @@
 import React from 'react'
 import Input from './Input';
 import Dropdown from './Dropdown';
-import Multiselect from './Multiselect';
+import Select from './Select';
 
 const Element = ({ field }) => {
     switch (field.type) {
@@ -20,7 +20,7 @@ const Element = ({ field }) => {
                 />
             )
         case 'checkbox':
-            return (<Multiselect
+            return (<Select
                 field_id={field.id}
                 field_label={field.label}
                 field_options={field.options}

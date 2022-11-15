@@ -5,6 +5,9 @@ import DetailGraphGrid from "./DetailGraphGrid";
 
 class Grid extends Component {
 
+    constructor(props) {
+        super(props);
+    }
 
     render() {
         return (
@@ -12,12 +15,12 @@ class Grid extends Component {
                 <Stack gap={3}>
                     <Row>
                         <Col>
-                            <DetailGraphGrid />
+                            <DetailGraphGrid filter={this.props.filter}/>
                         </Col>
                         <Col>
                             {/*insert the scatterplots here*/}
 
-                            <FormCard/>
+                            <FormCard title={"Attribute definition"} />
                         </Col>
                     </Row>
                 </Stack>

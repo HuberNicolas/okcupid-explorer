@@ -5,7 +5,7 @@ const Dropdown = (fieldInputs) => {
     const { handleChange } = useContext(FormContext)
     return (
         <div>
-            <Form.Select id={fieldInputs.field_id} onChange={event => handleChange(fieldInputs.field_id, event)}>
+            <Form.Select id={fieldInputs.field_id} onChange={event => handleChange(fieldInputs.field_id, event)} aria-label={fieldInputs.field_label}>
                 <option key={"initial"}>Select a value</option>
                 {fieldInputs.field_options.map((option) => {
                     return (<option key={option} value={option}>{option}</option>)

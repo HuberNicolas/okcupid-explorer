@@ -2,13 +2,36 @@ import {Container, Row, Stack, Col} from 'react-bootstrap'
 import {useState} from "react";
 import UpsetGraph from "./UpsetGraph";
 //import cleansedData from '../df_cleansed.json'
+import data from '../data/data_file.json'
 
-function DetailGraphGrid() {
+console.log(data)
+
+function DetailGraphGrid({filter}) {
     const [hover, setHover] = useState(null);
     const [selection, setSelection] = useState(null);
-    let e = [{ name : "Person0", age: 22, sex: "m", height: 75.0, sets: ["body_type - a little extra","diet - strictly anything","drinks - socially","drugs - never","orientation - straight","sex - m","smokes - sometimes"]},
-             { name : "Person1", age: 22, sex: "m", height: 75.0, sets: ["body_type - average","diet - mostly other","drinks - often","drugs - sometimes","orientation - straight","sex - m","smokes - no"]},
-             { name : "Person2", age: 22, sex: "m", height: 75.0, sets: ["body_type - average","diet - mostly anything","drinks - socially","drugs - never","orientation - straight","sex - f","smokes - no"]}]
+    const filteredData = filterdDataFromJson();
+
+    function filterdDataFromJson() {
+        let fD = []
+        data.forEach(e => {
+            let obj = {}
+            obj['name'] = e.name;
+            obj.age = e.age;
+            obj.height = e.height;
+            let arr = [];
+            e.sets.forEach(item => {
+                filter.forEach(f => {
+                    if (item.includes(f)){
+                        arr.push(item);
+                    }
+                });
+            });
+            obj.sets = arr;
+            fD.push(obj);
+        });
+        return fD;
+    }
+    //let e = [data]
     /*let e = [{ name : "Person0", sets: ["body_type - a little extra","diet - strictly anything","drinks - socially","drugs - never","orientation - straight","sex - m","smokes - sometimes","status - single","religion_type - agnosticism","job - transportation","sign_extracted - gemini","pets_cats - likes cats","pets_dogs - likes dogs","offspring_status - doesn't have kids","offspring_future - might want",]},
              { name : "Person1", sets: ["body_type - average","diet - mostly other","drinks - often","drugs - sometimes","orientation - straight","sex - m","smokes - no","status - single","religion_type - agnosticism","job - hospitality / travel","sign_extracted - cancer","pets_cats - likes cats","pets_dogs - likes dogs","offspring_status - doesn't have kids","offspring_future - might want",]},
              { name : "Person2", sets: ["body_type - average","diet - mostly anything","drinks - socially","drugs - never","orientation - straight","sex - f","smokes - no","status - single","religion_type - christianity","job - artistic / musical / writer","sign_extracted - sagittarius","pets_cats - likes cats","pets_dogs - likes dogs","offspring_status - doesn't have kids","offspring_future - wants",]}]
@@ -34,14 +57,14 @@ function DetailGraphGrid() {
             <Stack gap={3}>
                 <Row>
                     <Col>
-                        <UpsetGraph title={"Up Set"} dataset={e} setHover={setHover} hover={hover} selection={selection} setSelection={setSelection} graph={"upset"} />
+                        <UpsetGraph title={"Up Set"} dataset={filteredData} setHover={setHover} hover={hover} selection={selection} setSelection={setSelection} graph={"upset"} />
                     </Col>
                 </Row>
                 <Row>
-                    <UpsetGraph title={"Venn Diagram"} dataset={e} selection={selection} setSelection={setSelection} graph={"venn"} />
+                    <UpsetGraph title={"Venn Diagram"} dataset={filteredData} selection={selection} setSelection={setSelection} graph={"venn"} />
                 </Row>
                 <Row>
-                    <UpsetGraph title={"Karnaugh Map"} dataset={e} selection={selection} setSelection={setSelection} graph={"kar"} />
+                    <UpsetGraph title={"Karnaugh Map"} dataset={filteredData} selection={selection} setSelection={setSelection} graph={"kar"} />
                 </Row>
             </Stack>
         </Container>

@@ -1,6 +1,7 @@
 import {Card, Button, Form} from 'react-bootstrap'
 import {useState, useEffect, useContext} from "react";
 import formJSON from './Form/fields.json';
+import preSelectionJSON from './Form/preselection.json';
 import Element from "./Form/Element";
 import { FormContext } from './Form/FormContext';
 import {InitialContext} from "./Form/InitialContext";
@@ -13,7 +14,13 @@ function FormCard({title}) {
     const { handleSubmit } = useContext(InitialContext)
 
     useEffect(()=>{
-        setElements(formJSON)
+        if (title !== undefined){
+            if (title.includes("Preselection")){
+                setElements(preSelectionJSON)
+            } else {
+                setElements(formJSON)
+            }
+        }
     },[])
 
     const handleChange = (f_id, event) => {
@@ -46,7 +53,7 @@ function FormCard({title}) {
             {
                 <Card bg={backgroundColor}>
                     <Card.Header style={cardHeaderStyle}>{title}</Card.Header>
-                    <Card.Body value={{handleChange}}>
+                    <Card.Body value={{handleChange}} style={{"margin": "auto"}}>
                         {elements.map((e) => {return (<Element key={e.id} field={e} />)})}
                         <Button onClick={event => handleSubmit(elements)}>Submit something</Button>
                     </Card.Body>
