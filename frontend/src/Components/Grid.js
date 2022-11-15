@@ -1,7 +1,6 @@
 import {Container, Row, Stack, Col} from 'react-bootstrap'
 import {Component} from "react";
 import FormCard from "./FormCard";
-import UpsetGraph from "./UpsetGraph";
 import DetailGraphGrid from "./DetailGraphGrid";
 
 class Grid extends Component {

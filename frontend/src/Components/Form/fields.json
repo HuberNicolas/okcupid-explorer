@@ -1,0 +1,85 @@
+[
+  {
+    "id": "bodyType",
+    "label": "Body Type",
+    "type": "dropdown",
+    "options": [
+      "fat",
+      "average",
+      "fit"
+    ]
+  },
+  {
+    "id": "zodiac",
+    "label": "Zodiac Sign",
+    "type": "dropdown",
+    "options": [
+      "harry potter",
+      "ariel",
+      "arrow man",
+      "balance sheet",
+      "some other animal",
+      "leo"
+    ]
+  },
+  {
+    "id": "drugs",
+    "label": "Drug consumption",
+    "type": "dropdown",
+    "options": [
+      "yay",
+      "nay",
+      "sometimes"
+    ]
+  },
+  {
+    "id": "smokes",
+    "label": "Do you smoke?",
+    "type": "dropdown",
+    "options": [
+      "every single day mate",
+      "occasionally",
+      "heeell naaa"
+    ]
+  },
+  {
+    "id": "education",
+    "label": "What is your education?",
+    "type": "dropdown",
+    "options": [
+      "college / uni",
+      "phd",
+      "msc"
+    ]
+  },
+  {
+    "id": "current_edu",
+    "label": "What is your education?",
+    "type": "dropdown",
+    "options": [
+      "dropped out of",
+      "working on",
+      "graduated from"
+    ]
+  },
+  {
+    "id": "languages",
+    "label": "What languages do you speak?",
+    "type": "checkbox",
+    "options": [
+      "english",
+      "german",
+      "italian",
+      "spanish",
+      "c++",
+      "arab",
+      "other"
+    ]
+  },
+  {
+    "id": "age",
+    "label": "Enter your age",
+    "type": "input",
+    "options": []
+  }
+]

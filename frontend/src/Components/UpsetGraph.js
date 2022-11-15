@@ -3,8 +3,6 @@ import {useMemo} from 'react';
 import {Card, Col, Container, Row, Stack} from 'react-bootstrap'
 
 function UpsetGraph(props) {
-    console.log(props)
-    console.log(props.graph)
     const elems = useMemo(
         () => props.dataset, []
     );
@@ -29,7 +27,8 @@ function UpsetGraph(props) {
                                     combinations={combinations}
                                     width={780} height={400}
                                     selection={props.selection}
-                                    onHover={props.setSelection}
+                                    onHover={props.setHover}
+                                    onClick={props.setSelection}
                                     theme={backgroundColor}
                                 />}
                                 {props.graph === "venn" &&
@@ -38,15 +37,18 @@ function UpsetGraph(props) {
                                         combinations={combinations}
                                         width={780} height={400}
                                         selection={props.selection}
-                                        onHover={props.setSelection}
+                                        onHover={props.setHover}
+                                        onClick={props.setSelection}
                                         theme={backgroundColor}
                                     />}
                                 {props.graph === "kar" &&
                                     <KarnaughMap
                                         sets={sets}
+                                        combinations={combinations}
                                         width={780} height={400}
                                         selection={props.selection}
-                                        onHover={props.setSelection}
+                                        onHover={props.setHover}
+                                        onClick={props.setSelection}
                                         theme={backgroundColor}
                                     />}
                             </Card.Body>

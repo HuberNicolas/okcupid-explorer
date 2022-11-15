@@ -1,47 +1,59 @@
 import {Card, Button, Form} from 'react-bootstrap'
-import {Component} from "react";
+import {useState, useEffect} from "react";
+import formJSON from './Form/fields.json';
+import Element from "./Form/Element";
+import { FormContext } from './Form/FormContext';
 
-class FormCard extends Component {
-    constructor(props) {
-        super(props);
-        this.title="Form"
-        this.backgroundColor = "dark"
+function FormCard() {
+    const backgroundColor = "dark"
+    const title = "Form"
+
+    const [elements, setElements] = useState([]);
+    useEffect(()=>{
+        setElements(formJSON)
+    },[])
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
     }
 
-    itemSelected(){
-        console.log("item selected")
-    }
+    const handleChange = (f_id, event) => {
+        const newElements =  [...elements]
+        newElements.forEach(field => {
+            const { type, id } = field;
+            if (f_id === id) {
+                switch (type) {
+                    case 'checkbox':
+                        field['field_value'] = event.target.checked;
+                        break;
 
-    submit(){
-        console.log("submitted")
-    }
-
-    render(){
-        const cardHeaderStyle = {
-            color: "white"
-        }
-
-        const dropDownStyle = {
-            border: "0.1rem solid"
-        }
-        return (
-            <div>
-                {
-                    <Card bg={this.backgroundColor}>
-                        <Card.Header style={cardHeaderStyle}>{this.title}</Card.Header>
-                        <Card.Body>
-                            <Form.Select style={dropDownStyle} aria-label="Default select example">
-                                <option>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </Form.Select>
-                            <Button onClick={this.submit()}>Submit something</Button>
-                        </Card.Body>
-                    </Card>
+                    default:
+                        field['field_value'] = event.target.value;
+                        break;
                 }
-            </div>
-        )
+
+
+            }
+            setElements(newElements)
+        });
     }
+
+    const cardHeaderStyle = {
+        color: "white"
+    }
+
+    return (
+        <FormContext.Provider value={{ handleChange }}>
+            {
+                <Card bg={backgroundColor}>
+                    <Card.Header style={cardHeaderStyle}>{title}</Card.Header>
+                    <Card.Body value={{handleChange}}>
+                        {elements.map((e) => {return (<Element key={e.id} field={e} />)})}
+                        <Button onClick={handleSubmit}>Submit something</Button>
+                    </Card.Body>
+                </Card>
+            }
+        </FormContext.Provider>
+    )
 }
 export default FormCard;

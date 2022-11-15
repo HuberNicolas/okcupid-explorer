@@ -4,6 +4,7 @@ import UpsetGraph from "./UpsetGraph";
 //import cleansedData from '../df_cleansed.json'
 
 function DetailGraphGrid() {
+    const [hover, setHover] = useState(null);
     const [selection, setSelection] = useState(null);
         let e = [{ name: 'A', sets: ['S1', 'S2'] },
             { name: 'B', sets: ['S1'] },
@@ -14,7 +15,7 @@ function DetailGraphGrid() {
                 <Stack gap={3}>
                     <Row>
                         <Col>
-                            <UpsetGraph title={"Up Set"} dataset={e} selection={selection} setSelection={setSelection} graph={"upset"} />
+                            <UpsetGraph title={"Up Set"} dataset={e} setHover={setHover} hover={hover} selection={selection} setSelection={setSelection} graph={"upset"} />
                         </Col>
                     </Row>
                     <Row>
