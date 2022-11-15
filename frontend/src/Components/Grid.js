@@ -2,6 +2,7 @@ import {Container, Row, Stack, Col} from 'react-bootstrap'
 import {Component} from "react";
 import FormCard from "./FormCard";
 import UpsetGraph from "./UpsetGraph";
+import DetailGraphGrid from "./DetailGraphGrid";
 
 class Grid extends Component {
 
@@ -12,7 +13,7 @@ class Grid extends Component {
                 <Stack gap={3}>
                     <Row>
                         <Col>
-                            <UpsetGraph />
+                            <DetailGraphGrid />
                         </Col>
                         <Col>
                             {/*insert the scatterplots here*/}
