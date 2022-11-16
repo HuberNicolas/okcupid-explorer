@@ -17,9 +17,12 @@ class Grid extends Component {
                         <Col>
                             <DetailGraphGrid filter={this.props.filter}/>
                         </Col>
+                    </Row>
+                    <Row>
                         <Col>
                             {/*insert the scatterplots here*/}
-
+                        </Col>
+                        <Col>
                             <FormCard title={"Attribute definition"} />
                         </Col>
                     </Row>

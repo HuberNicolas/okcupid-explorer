@@ -26,7 +26,8 @@ function UpsetGraph(props) {
                                 <UpSetJS
                                     sets={sets}
                                     combinations={combinations}
-                                    width={780} height={400}
+                                    width={1000}
+                                    height={500}
                                     selection={props.selection}
                                     onHover={props.setHover}
                                     onClick={props.setSelection}
