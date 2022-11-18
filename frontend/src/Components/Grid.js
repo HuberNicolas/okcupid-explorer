@@ -5,10 +5,6 @@ import DetailGraphGrid from "./DetailGraphGrid";
 
 class Grid extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <Container>

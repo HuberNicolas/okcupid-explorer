@@ -36,12 +36,13 @@ function DetailGraphGrid({filter}) {
                         <UpsetGraph title={"Up Set"} dataset={filteredData} setHover={setHover} hover={hover} selection={selection} setSelection={setSelection} graph={"upset"} />
                     </Col>
                 </Row>
+                {/*}
                 <Row>
                     <UpsetGraph title={"Venn Diagram"} dataset={filteredData} selection={selection} setSelection={setSelection} graph={"venn"} />
                 </Row>
                 <Row>
                     <UpsetGraph title={"Karnaugh Map"} dataset={filteredData} selection={selection} setSelection={setSelection} graph={"kar"} />
-                </Row>
+                </Row>*/}
             </Stack>
         </Container>
     )
