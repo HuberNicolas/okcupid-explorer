@@ -3,6 +3,8 @@ import {Col, Row} from "react-bootstrap";
 import ScatterComponent from "./ScatterVis/ScatterComponent";
 import scatterData2 from "./ScatterVis/test5.json";
 import ProfileComponent from "./DetailVis/Profile/ProfileComponent";
+import GroupComparisonComponent from "./DetailVis/GroupComparison/GroupComparisonComponent";
+import GroupComponent from "./DetailVis/GroupComparison/GroupComponent";
 
 class PlotComponent extends Component{
     constructor(props) {
@@ -31,7 +33,6 @@ class PlotComponent extends Component{
             scatterFilter: '',
             scatterProfile: ''
         }
-        console.log(this.state)
     }
 
     filter(element){
@@ -51,11 +52,10 @@ class PlotComponent extends Component{
                     {/*scatter plot with questionaire filter -> supply data from here, filter in function */}
 
                         <ScatterComponent data={this.state.data} filter={this.filter.bind(this)} />
-                    }
                 </Col>
                 <Col xs lg="3">
                     {this.state.scatterFilter &&
-                        <p >Filter</p>
+                        <GroupComponent you={this.state.you[0]} selected={this.state.scatterFilter} filter={this.props.filter}/>
                     }
                     {this.state.scatterProfile &&
                         <ProfileComponent you={this.state.you[0]} selected={this.state.scatterProfile} filter={this.props.filter}/>

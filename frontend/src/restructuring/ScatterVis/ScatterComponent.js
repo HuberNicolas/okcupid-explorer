@@ -18,7 +18,8 @@ class ScatterComponent extends Component {
                     type: 'scatter',
                     zoom: {
                         enabled: true,
-                        type: 'xy'
+                        type: 'xy',
+                        autoScaleYaxis: true,
                     },
                     selection: {
                         enabled: true,
@@ -35,15 +36,10 @@ class ScatterComponent extends Component {
                     mode: "dark"
                 },
                 xaxis: {
-                    tickAmount: 10,
-                    labels: {
-                        formatter: function(val) {
-                            return parseFloat(val).toFixed(1)
-                        }
-                    }
+                    tickAmount: 10
                 },
                 yaxis: {
-                    tickAmount: 7
+                    tickAmount: 10
                 },
             },
 
@@ -68,6 +64,7 @@ class ScatterComponent extends Component {
         this.props.filter({data: categories, filerType: 'detail'})
     }
     onZoom (e, chartContext){
+        /*
         let categories = undefined
         if (chartContext.xaxis.max !== undefined){
             const min = [chartContext.xaxis.min, chartContext.yaxis[0].min]
@@ -80,7 +77,7 @@ class ScatterComponent extends Component {
                 }).filter(obj => {if (obj) {return true;}return false;})
             })
         }
-        this.props.filter({data: categories, filerType: 'detail'})
+        this.props.filter({data: categories, filerType: 'detail'})*/
     }
 
     render() {

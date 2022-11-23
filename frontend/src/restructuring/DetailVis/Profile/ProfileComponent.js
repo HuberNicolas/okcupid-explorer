@@ -22,17 +22,16 @@ class ProfileComponent extends Component{
 
                     </Card.Header>
                     <Card.Body >
-                        {this.filter.map(filteredItem => {
+                        {this.props.filter.map(filteredItem => {
                             this.data = [
                                 {
                                     name: 'You',
-                                    data: [this.you[filteredItem]]
+                                    data: [this.props.you[2][filteredItem]]
                                 },{
                                     name: 'Comparison',
-                                    data: [this.selected[filteredItem]]
+                                    data: [this.props.selected.point[2][filteredItem]]
                                 },
                             ]
-                            console.log(this.data)
                             return(
                                 <div key={filteredItem}>
                                     <ComparisonComponent data={this.data} type={"bar"} />

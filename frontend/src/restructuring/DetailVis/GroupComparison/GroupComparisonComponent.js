@@ -2,7 +2,7 @@ import {Component, React} from "react";
 import {Card,} from "react-bootstrap";
 import Chart from "react-apexcharts";
 
-class ComparisonComponent extends Component{
+class GroupComparisonComponent extends Component{
 
     constructor(props) {
         super(props);
@@ -18,13 +18,22 @@ class ComparisonComponent extends Component{
                 chart: {
                     height: 350,
                     type: this.props.type,
-                    background: 'transparent'
+                    background: 'transparent',
+                    zoom: {
+                        enabled: true,
+                        type: 'xy'
+                    },
                 },
                 theme: {
                     mode: "dark"
                 },
                 xaxis: {
-                    categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'], //this should be the likert scale
+                    tickAmount: 10,
+                    labels: {
+                        formatter: function(val) {
+                            return parseFloat(val).toFixed(1)
+                        }
+                    }
                 },
                 yaxis: {
                     title: {
@@ -47,4 +56,4 @@ class ComparisonComponent extends Component{
         )
     }
 
-}export default ComparisonComponent
+}export default GroupComparisonComponent
