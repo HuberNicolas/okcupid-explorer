@@ -52,13 +52,10 @@ class ScatterComponent extends Component {
     }
 
     onClick (e, chartContext, config){
-        console.log(config)
         const dataPoint = this.props.data[config.seriesIndex].data[config.dataPointIndex]
         this.props.filter({series: config.seriesIndex, point: dataPoint, filerType: 'profile'});
     }
     onSelect (chartContext, { xaxis, yaxis }){
-        console.log(xaxis.min)
-
         const min = [xaxis.min, yaxis.min]
         const max = [xaxis.max, yaxis.max]
         const categories = this.props.data.map(category => {

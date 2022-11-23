@@ -7,13 +7,14 @@ import ProfileComponent from "./DetailVis/Profile/ProfileComponent";
 class PlotComponent extends Component{
     constructor(props) {
         super(props);
+        console.log(props)
         const first = scatterData2.map(e => {if (e.Segment === 'first') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
         const second = scatterData2.map(e => {if (e.Segment === 'second') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
         const third = scatterData2.map(e => {if (e.Segment === 'third') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
         const u = scatterData2.map(e => {if (e.Segment === null || e.Segment === undefined) return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
         const scat = [{
-            name: 'You',
-            data: [u],
+            name: 'Fourth Group',
+            data: u,
         },{
             name: 'First Group',
             data: first,
@@ -26,18 +27,18 @@ class PlotComponent extends Component{
         }];
         this.state = {
             data: scat,
+            you: u,
             scatterFilter: '',
             scatterProfile: ''
         }
+        console.log(this.state)
     }
 
     filter(element){
         if (element.filerType === "profile"){
-            console.log(element)
             this.setState({scatterProfile : element})
             this.setState({scatterFilter : ''})
         } else {
-            console.log(element)
             this.setState({scatterFilter : element})
             this.setState({scatterProfile : ''})
         }
@@ -57,7 +58,7 @@ class PlotComponent extends Component{
                         <p >Filter</p>
                     }
                     {this.state.scatterProfile &&
-                        <ProfileComponent />
+                        <ProfileComponent you={this.state.you[0]} selected={this.state.scatterProfile} filter={this.props.filter}/>
                     }
                 </Col>
             </Row>

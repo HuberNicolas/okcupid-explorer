@@ -60,7 +60,7 @@ function ContentManager() {
                     </Col>
                     <Col xs lg="10">
                     {preQuestionaire &&
-                        <PlotComponent/>
+                        <PlotComponent filter={preQuestionaire} />
                     }</Col>
                 </Row>
             </Container>
