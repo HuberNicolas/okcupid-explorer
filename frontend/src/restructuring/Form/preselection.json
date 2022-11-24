@@ -1,0 +1,72 @@
+[
+  {
+    "id": "bodyType",
+    "label": "Body Type",
+    "type": "checkbox"
+  },
+  {
+    "id": "diet",
+    "label": "Diet",
+    "type": "checkbox"
+  },
+  {
+    "id": "drinks",
+    "label": "Drinks",
+    "type": "checkbox"
+  },
+  {
+    "id": "drugs",
+    "label": "Drug consumption",
+    "type": "checkbox"
+  },
+  {
+    "id": "orientation",
+    "label": "Orientation",
+    "type": "checkbox"
+  },
+  {
+    "id": "smokes",
+    "label": "Do you smoke?",
+    "type": "checkbox"
+  },
+  {
+    "id": "status",
+    "label": "Status",
+    "type": "checkbox"
+  },
+  {
+    "id": "religion_type",
+    "label": "Religion Type",
+    "type": "checkbox"
+  },
+  {
+    "id": "job",
+    "label": "Job",
+    "type": "checkbox"
+  },
+  {
+    "id": "zodiac",
+    "label": "Sign",
+    "type": "checkbox"
+  },
+  {
+    "id": "cats",
+    "label": "Likes Cats",
+    "type": "checkbox"
+  },
+  {
+    "id": "dogs",
+    "label": "Likes Dogs",
+    "type": "checkbox"
+  },
+  {
+    "id": "offspring_status",
+    "label": "Offspring Status",
+    "type": "checkbox"
+  },
+  {
+    "id": "offspring_future",
+    "label": "Offspring Future",
+    "type": "checkbox"
+  }
+]

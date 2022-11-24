@@ -7,10 +7,6 @@ import Element from "./Form/Element";
 
 class Grid extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <Container>
@@ -30,9 +26,12 @@ class Grid extends Component {
                         <Col>
                             <DetailGraphGrid filter={this.props.filter}/>
                         </Col>
+                    </Row>
+                    <Row>
                         <Col>
                             {/*insert the scatterplots here*/}
-
+                        </Col>
+                        <Col>
                             <FormCard title={"Attribute definition"} />
                         </Col>
                     </Row>

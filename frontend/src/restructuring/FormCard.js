@@ -6,7 +6,7 @@ import Element from "./Form/Element";
 import { FormContext } from './Form/FormContext';
 import {InitialContext} from "./Form/InitialContext";
 
-function FormCard({title}) {
+function FormCard({title, filter}) {
     const backgroundColor = "dark"
 
 
@@ -18,7 +18,9 @@ function FormCard({title}) {
             if (title.includes("Preselection")){
                 setElements(preSelectionJSON)
             } else {
-                setElements(formJSON)
+                if (filter){
+                    setElements(formJSON.map(e => {if (filter.includes(e.id)) return e;}).filter(obj => {if (obj) {return true;}return false;}))
+                }
             }
         }
     },[])
