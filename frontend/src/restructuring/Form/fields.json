@@ -1,12 +1,19 @@
 [
   {
-    "id": "bodyType",
+    "id": "body_type_options",
     "label": "Body Type",
     "type": "dropdown",
     "options": [
-      "fat",
+      "a little extra",
       "average",
-      "fit"
+      "thin",
+      "athletic",
+      "fit",
+      "skinny",
+      "full figured",
+      "used up",
+      "overweight",
+      "rather not say"
     ]
   },
   {
@@ -14,46 +21,64 @@
     "label": "Zodiac Sign",
     "type": "dropdown",
     "options": [
-      "harry potter",
-      "ariel",
-      "arrow man",
-      "balance sheet",
-      "some other animal",
-      "leo"
+      "Aries",
+      "Taurus",
+      "Gemini",
+      "Cancer",
+      "Leo",
+      "Virgo",
+      "Libra",
+      "Scorpio,",
+      "Sagittarius",
+      "Capricorn",
+      "Aquarius",
+      "Pisces"
     ]
   },
   {
-    "id": "drugs",
-    "label": "Drug consumption",
+    "id": "drugs_type_options",
+    "label": "How do you specify your drug consumption",
     "type": "dropdown",
     "options": [
-      "yay",
-      "nay",
-      "sometimes"
+      "never",
+      "sometimes",
+      "often"
     ]
   },
   {
-    "id": "diet",
-    "label": "Do you have a diet?",
+    "id": "diet_type_options",
+    "label": "What kind of diet do you follow?",
     "type": "dropdown",
     "options": [
-      "hardcore",
-      "veganism",
-      "eat mostly anything",
+      "anything",
       "vegetarian",
-      "glutenfree",
-      "organics only",
-      "light weight baby aka 12k calories a day"
+      "vegan",
+      "halal",
+      "kosher",
+      "other"
     ]
   },
   {
-    "id": "drinks",
-    "label": "Do you drink?",
+    "id": "diet_modifier_options",
+    "label": "How do you follow this diet?",
     "type": "dropdown",
     "options": [
-      "yay",
-      "nay",
-      "sometimes"
+      "strictly",
+      "mostly",
+      "no specified diet modifier"
+    ]
+  },
+  {
+    "id": "drinks_type_options",
+    "label": "What is your drinking behaviour?",
+    "type": "dropdown",
+    "options": [
+      "socially",
+      "often",
+      "not at all",
+      "rarely",
+      "very often",
+      "desperately"
     ]
   },
   {
@@ -67,30 +92,81 @@
     ]
   },
   {
-    "id": "education",
+    "id": "education_institution_type_options",
     "label": "What is your education?",
     "type": "dropdown",
     "options": [
-      "college / uni",
-      "phd",
-      "msc"
+      "college/university",
+      "space camp",
+      "masters program",
+      "two-year college",
+      "high school",
+      "ph.d program",
+      "law school",
+      "college",
+      "med school"
     ]
   },
   {
-    "id": "current_edu",
-    "label": "What is your education?",
+    "id": "education_status_type_options",
+    "label": "In your education what happened?",
     "type": "dropdown",
     "options": [
       "dropped out of",
-      "working on",
-      "graduated from"
+      "graduated from",
+      "working on"
+    ]
+  },
+  {
+    "id": "ethnicities_type_options",
+    "label": "Whats your ethnicity?",
+    "type": "dropdown",
+    "options": [
+      "pacific islander",
+      "asian",
+      "native american",
+      "middle eastern",
+      "hispanic / latin",
+      "white",
+      "black",
+      "indian",
+      "other"
+    ]
+  },
+  {
+    "id": "job_type_options",
+    "label": "In what field is your profession?",
+    "type": "dropdown",
+    "options": [
+      "artistic / musical / writer",
+      "transportation",
+      "hospitality",
+      "student",
+      "computer / hardware / software",
+      "banking / financial / real estate",
+      "entertainment / media",
+      "sales / marketing / biz dev",
+      "medicine / health",
+      "science / tech / engineering",
+      "executive / management",
+      "education / academia",
+      "clerical / administrative",
+      "construction / craftsmanship",
+      "political / government",
+      "law / legal services",
+      "unemployed",
+      "military",
+      "retired",
+      "other",
+      "rather not say"
     ]
   },
   {
     "id": "languages",
-    "label": "What languages do you speak?",
+    "label": "What language do you speak?",
     "type": "checkbox",
     "options": [
+      "english, but in canadian",
       "english",
       "german",
       "italian",
@@ -98,6 +174,56 @@
       "c++",
       "arab",
       "other"
+    ]
+  },
+
+  {
+    "id": "income_type_options",
+    "label": "Where is your salary?",
+    "type": "dropdown",
+    "options": [
+      "20000",
+      "30000",
+      "40000",
+      "50000",
+      "60000",
+      "70000",
+      "80000",
+      "100000",
+      "150000",
+      "250000",
+      "500000",
+      "1000000"
+    ]
+  },
+  {
+    "id": "offspring_future_type",
+    "label": "What is your stance on kids?",
+    "type": "dropdown",
+    "options": [
+      "doesn't want",
+      "might want",
+      "wants"
+    ]
+  },
+  {
+    "id": "offspring_status_type",
+    "label": "Do you have kids?",
+    "type": "dropdown",
+    "options": [
+      "doesn't have kids",
+      "has a kid",
+      "has kids"
+    ]
+  },
+  {
+    "id": "orientation_type_options",
+    "label": "What's your orientation?",
+    "type": "dropdown",
+    "options": [
+      "bisexual",
+      "gay",
+      "straight"
     ]
   },
   {
