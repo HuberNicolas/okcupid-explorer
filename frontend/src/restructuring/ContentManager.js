@@ -25,7 +25,13 @@ function ContentManager() {
                 setQuestionaire(event.map(e => {if (e.field_value !== undefined && e.field_value !== 'Select a value'){return e.id}}).filter(obj => {if (obj) return obj}));
                 console.log(preQuestionaire)
                 //send axios call to backend -> currently cors issue
-                axios.get('http://localhost:5000/index', { "Access-Control-Allow-Origin": true}).then(e => {
+                const config = {
+                    headers: {'Access-Control-Allow-Origin': '*'}
+                };
+                axios.get('http://127.0.0.1:5000/api/std/index', config).then((e) => {
+                    console.log(e.data)
+                })
+                axios.post('http://127.0.0.1:5000/preselection', {preQuestionaire} ,config).then(e => {
                     console.log(e)
                 })
             }

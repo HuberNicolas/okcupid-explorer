@@ -1,10 +1,16 @@
 import {Component, React} from "react";
 import {Col, Row} from "react-bootstrap";
 import ScatterComponent from "./ScatterVis/ScatterComponent";
-import scatterData2 from "./ScatterVis/test5.json";
+import scatterData2 from "./ScatterVis/test6.json";
 import ProfileComponent from "./DetailVis/Profile/ProfileComponent";
-import GroupComparisonComponent from "./DetailVis/GroupComparison/GroupComparisonComponent";
 import GroupComponent from "./DetailVis/GroupComparison/GroupComponent";
+
+/**
+ * how was a vis prooblem reframed as an ml problem:
+ * what separation measures could be used other than centroid
+ * what do we mean by finding the good views
+ * what personal experiences have you had with ml4vis
+ */
 
 class PlotComponent extends Component{
     constructor(props) {

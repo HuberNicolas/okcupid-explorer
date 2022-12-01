@@ -68,5 +68,10 @@
     "id": "offspring_future",
     "label": "Offspring Future",
     "type": "checkbox"
+  },
+  {
+    "id": "age",
+    "label": "Age",
+    "type": "checkbox"
   }
 ]
