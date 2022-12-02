@@ -1,7 +1,6 @@
 import {Component, React} from "react";
 import {Col, Row} from "react-bootstrap";
 import ScatterComponent from "./ScatterVis/ScatterComponent";
-import scatterData2 from "./ScatterVis/test6.json";
 import ProfileComponent from "./DetailVis/Profile/ProfileComponent";
 import GroupComponent from "./DetailVis/GroupComparison/GroupComponent";
 
@@ -15,10 +14,12 @@ import GroupComponent from "./DetailVis/GroupComparison/GroupComponent";
 class PlotComponent extends Component{
     constructor(props) {
         super(props);
-        const first = scatterData2.map(e => {if (e.Segment === 'first') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
-        const second = scatterData2.map(e => {if (e.Segment === 'second') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
-        const third = scatterData2.map(e => {if (e.Segment === 'third') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
-        const fourth = scatterData2.map(e => {if (e.Segment === null || e.Segment === undefined) return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
+        let f = this.props.data.filter(e => e.Segment === 'first').map(e => {return [e['PComp 1'], e['PComp 2'], e]})
+
+        const first = this.props.data.map(e => {if (e.Segment === 'first') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
+        const second = this.props.data.map(e => {if (e.Segment === 'second') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
+        const third = this.props.data.map(e => {if (e.Segment === 'third') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
+        const fourth = this.props.data.map(e => {if (e.Segment === 'fourth') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
         const scat = [{
             name: 'First Group',
             data: first,

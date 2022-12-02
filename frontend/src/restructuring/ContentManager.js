@@ -24,7 +24,7 @@ function ContentManager() {
                         e.field_value = parseFloat(e.field_value)
                     overall[e.id] =e.field_value;
                 })
-                //setQuestionaire(event.map(e => {return {id: e.id, value: e.field_value}}));
+
                 setYou(event.map(e => {return {id: e.id, value: e.field_value}}));
                 console.log(overall)
                 const config = {
@@ -33,25 +33,19 @@ function ContentManager() {
                 axios.post('http://127.0.0.1:5000/api/dev/std/db', overall, config).then((e) => {
                     setData(e.data)
                     console.log(e.data)
+                    setQuestionaire(event.map(e => {return {id: e.id, value: e.field_value}}));
                 });
-                axios.get('http://127.0.0.1:5000/api/std/index', config).then((e) => {
-                    console.log(e.data)
-                })
             }
         } else if (question.question === "FILTER"){
-            let selected = event.filter(e => e.field_value)
-            selected = selected.map(e => e.name)
-            setFilter(selected)
-            setPreSelection(true)
-            /*
-            const config = {
-                headers: {'Access-Control-Allow-Origin': '*'}
-            };
-            axios.get('http://127.0.0.1:5000/api/std/index', config).then((e) => {
-                //console.log(e.data)
-            })*/
+            let selected = event.filter(e => e.field_value);
+            selected = selected.map(e => e.name);
+            setFilter(selected);
+            setPreSelection(true);
         }
     }
+
+
+
 
     return (
         <InitialContext.Provider value={{ handleSubmit }}>
