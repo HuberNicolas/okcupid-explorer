@@ -13,16 +13,23 @@ function ContentManager() {
     const [filter, setFilter] = useState([]);
 
     const handleSubmit = (event) => {
-        if (preSelection === false){
-            const selectedElements = event.map(e => {if (e.field_value !== undefined && e.field_value !== 'Select a value')
-            {
-                return true;
-            }}).filter(obj => {if (obj) {return true;}return false;}).length;
-            setPreSelection(selectedElements <= 5 && selectedElements >= 2 ? true : false);
-            setFilter(event.map(e => {if (e.field_value !== undefined && e.field_value !== 'Select a value'){return e.id}}).filter(obj => {if (obj) return obj}));
+
+        if (preQuestionaire === false){
+            if (!(event.filter(e => {return e.field_value === undefined}).length > 0)){
+                setQuestionaire(event.map(e => {return {id: e.id, value: e.field_value}}));
+                console.log(event)
+                const config = {
+                    headers: {'Access-Control-Allow-Origin': '*'}
+                };
+                axios.get('http://127.0.0.1:5000/api/std/index', config).then((e) => {
+                    console.log(e.data)
+                })
+                //TODO: send backend request
+                //setFilter(event.map(e => {if (e.field_value !== undefined && e.field_value !== 'Select a value'){return e.id}}).filter(obj => {if (obj) return obj}));
+            }
         } else {
-            if (filter){
-                setQuestionaire(event.map(e => {if (e.field_value !== undefined && e.field_value !== 'Select a value'){return e.id}}).filter(obj => {if (obj) return obj}));
+            /*if (filter){
+                //setQuestionaire(event.map(e => {if (e.field_value !== undefined && e.field_value !== 'Select a value'){return e.id}}).filter(obj => {if (obj) return obj}));
                 console.log(preQuestionaire)
                 //send axios call to backend -> currently cors issue
                 const config = {
@@ -34,7 +41,7 @@ function ContentManager() {
                 axios.post('http://127.0.0.1:5000/preselection', {preQuestionaire} ,config).then(e => {
                     console.log(e)
                 })
-            }
+            }*/
             // submit in attribute selection
             //TODO: console.log(event)
         }
@@ -50,22 +57,22 @@ function ContentManager() {
                 <Row>
                     <Col xs lg="2">
                         <Row>
+
                             <Col style={{marginBottom: "1rem"}}>
-                                <FormCard title={"Preselection - Select maximum 5"} value={{handleSubmit}} />
+                                <FormCard title={"Questionaire"} value={{handleSubmit}} filter={filter}/>
                             </Col>
                         </Row>
-
+                        <Col>
+                            {preQuestionaire &&
+                                <FormCard title={"Preselection - Select maximum 9"} value={{handleSubmit}}/>
+                            }
+                        </Col>
                         <Row>
-                            <Col>
-                                {preSelection &&
-                                    <FormCard title={"Questionaire"} value={{handleSubmit}} filter={filter}/>
-                                }
-                            </Col>
                         </Row>
                         {/* Questions */}
                     </Col>
                     <Col xs lg="10">
-                    {preQuestionaire &&
+                    {preSelection &&
                         <PlotComponent filter={preQuestionaire} />
                     }</Col>
                 </Row>

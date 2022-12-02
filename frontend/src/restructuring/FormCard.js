@@ -18,10 +18,8 @@ function FormCard({title, filter}) {
             if (title.includes("Preselection")){
                 setElements(preSelectionJSON)
             } else {
-                if (filter){
-                    setElements(formJSON.map(e => {if (filter.includes(e.id)) return e;}).filter(obj => {if (obj) {return true;}return false;}))
-                }
-            }
+                setElements(formJSON)
+             }
         }
     },[])
 
@@ -35,12 +33,15 @@ function FormCard({title, filter}) {
                         field['field_value'] = event.target.checked;
                         break;
 
+                    case 'multiselect':
+                        let selected = field.options.filter((option, enumerator) => {return event.target[enumerator].selected})
+                        field['field_value'] = selected;
+                        break;
+
                     default:
                         field['field_value'] = event.target.value;
                         break;
                 }
-
-
             }
             setElements(newElements)
         });

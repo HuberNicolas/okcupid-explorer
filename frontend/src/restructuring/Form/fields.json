@@ -164,7 +164,7 @@
   {
     "id": "languages",
     "label": "What language do you speak?",
-    "type": "checkbox",
+    "type": "multiselect",
     "options": [
       "english, but in canadian",
       "english",
