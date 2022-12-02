@@ -58,7 +58,7 @@ function FormCard({title, filter, question}) {
                     <Card.Header style={cardHeaderStyle}>{title}</Card.Header>
                     <Card.Body value={{handleChange}} style={{"margin": "auto"}}>
                         {elements.map((e) => {return (<Element key={e.id} field={e} />)})}
-                        <Button onClick={event => handleSubmit(elements, {question})}>Submit something</Button>
+                        <Button onClick={event => handleSubmit(elements, {question})}>Submit</Button>
                     </Card.Body>
                 </Card>
             }

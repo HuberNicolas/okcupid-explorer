@@ -30,8 +30,8 @@
     "type": "checkbox"
   },
   {
-    "id": "diet",
-    "name": "pre_diet",
+    "id": "pre_diet",
+    "name": "diet",
     "label": "Diet",
     "type": "checkbox"
   },

@@ -18,11 +18,8 @@ class PlotComponent extends Component{
         const first = scatterData2.map(e => {if (e.Segment === 'first') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
         const second = scatterData2.map(e => {if (e.Segment === 'second') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
         const third = scatterData2.map(e => {if (e.Segment === 'third') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
-        const u = scatterData2.map(e => {if (e.Segment === null || e.Segment === undefined) return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
+        const fourth = scatterData2.map(e => {if (e.Segment === null || e.Segment === undefined) return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
         const scat = [{
-            name: 'Fourth Group',
-            data: u,
-        },{
             name: 'First Group',
             data: first,
         },{
@@ -31,10 +28,13 @@ class PlotComponent extends Component{
         },{
             name: 'Third Group',
             data: third,
+        },{
+            name: 'Fourth Group',
+            data: fourth,
         }];
         this.state = {
             data: scat,
-            you: u,
+            you: fourth,
             scatterFilter: '',
             scatterProfile: ''
         }

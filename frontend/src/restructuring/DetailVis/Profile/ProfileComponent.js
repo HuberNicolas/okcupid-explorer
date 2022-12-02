@@ -11,10 +11,18 @@ class ProfileComponent extends Component{
         this.selected = this.props.selected.point[2];
         this.you = this.props.you[2];
         this.filter = this.props.filter;
-        console.log(this.props)
     }
 
     render(){
+        this.data = [
+            {
+                name: 'You',
+                data: Object.entries(this.props.you[2]).filter(e => this.props.filter.includes(e[0])).map(e => e[1])
+            },{
+                name: 'Comparison',
+                data: Object.entries(this.props.selected.point[2]).filter(e => this.props.filter.includes(e[0])).map(e => e[1])
+            },
+        ]
         return (
             <div id="profile" style={{"color": "white"}}>
                 <Card bg={this.backgroundColor}>
@@ -23,7 +31,7 @@ class ProfileComponent extends Component{
 
                     </Card.Header>
                     <Card.Body >
-                        {this.props.filter.map(filteredItem => {
+                        {/*this.props.filter.map(filteredItem => {
                             this.data = [
                                 {
                                     name: 'You',
@@ -35,10 +43,12 @@ class ProfileComponent extends Component{
                             ]
                             return(
                                 <div key={filteredItem}>
-                                    <ComparisonComponent data={this.data} type={"bar"} />
+                                    <span>Comparison of {filteredItem}</span>
+                                    <ComparisonComponent data={this.data} type={"bar"} label={filteredItem} />
                                 </div>
                                 )
-                        })}
+                        })*/}
+                        <ComparisonComponent data={this.data} type={"radar"} label={this.props.filter} />
                     </Card.Body>
                 </Card>
 

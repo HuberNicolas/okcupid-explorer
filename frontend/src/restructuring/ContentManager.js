@@ -9,6 +9,7 @@ import PlotComponent from "./PlotComponent";
 function ContentManager() {
 
     const [preSelection, setPreSelection] = useState(false);
+    const [you, setYou] = useState(false);
     const [preQuestionaire, setQuestionaire] = useState(false);
     const [data, setData] = useState([]);
     const [filter, setFilter] = useState([]);
@@ -22,6 +23,7 @@ function ContentManager() {
                     overall[e.id] =e.field_value;
                 })
                 setQuestionaire(event.map(e => {return {id: e.id, value: e.field_value}}));
+                setYou(event.map(e => {return {id: e.id, value: e.field_value}}));
                 const config = {
                     headers: {'Access-Control-Allow-Origin': '*'}
                 };
@@ -52,24 +54,17 @@ function ContentManager() {
             <Container fluid={true}>
                 <Row>
                     <Col xs lg="2">
-                        <Row>
-
-                            <Col style={{marginBottom: "1rem"}}>
-                                <FormCard title={"Questionaire"} value={{handleSubmit}} filter={filter} question={"QUESTIONARY"}/>
-                            </Col>
-                        </Row>
-                        <Col>
-                            {preQuestionaire &&
-                                <FormCard title={"Preselection - Select maximum 9"} value={{handleSubmit}} question={"FILTER"}/>
-                            }
-                        </Col>
-                        <Row>
-                        </Row>
+                        <FormCard title={"Questionaire"} value={{handleSubmit}} filter={filter} question={"QUESTIONARY"}/>
                         {/* Questions */}
                     </Col>
-                    <Col xs lg="10">
+                    <Col xs lg="2">
+                        {preQuestionaire &&
+                            <FormCard title={"Preselection - Select maximum 9"} value={{handleSubmit}} question={"FILTER"}/>
+                        }
+                    </Col>
+                    <Col xs lg="8">
                     {preSelection &&
-                        <PlotComponent filter={filter} questionary={preQuestionaire} data={data} />
+                        <PlotComponent filter={filter} questionary={preQuestionaire} you={you} data={data} />
                     }</Col>
                 </Row>
             </Container>
