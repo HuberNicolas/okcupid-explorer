@@ -6,7 +6,6 @@ class ComparisonComponent extends Component{
 
     constructor(props) {
         super(props);
-
         this.state = {
             /**
              * {name: 'You',

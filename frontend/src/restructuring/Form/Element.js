@@ -24,6 +24,7 @@ const Element = ({ field }) => {
             return (<Select
                 field_id={field.id}
                 field_label={field.label}
+                field_name={field.name}
                 field_options={field.options}
             />)
         case 'multiselect':

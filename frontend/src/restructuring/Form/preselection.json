@@ -1,77 +1,152 @@
 [
   {
-    "id": "pre_body_type",
-    "label": "Body Type",
+    "id": "pre_age",
+    "name": "age",
+    "label": "Age",
     "type": "checkbox"
   },
   {
-    "id": "pre_diet",
-    "label": "Diet",
+    "id": "pre_sex",
+    "name": "sex",
+    "label": "Sex",
     "type": "checkbox"
   },
   {
-    "id": "pre_drinks",
-    "label": "Drinks",
-    "type": "checkbox"
-  },
-  {
-    "id": "pre_drugs",
-    "label": "Drug consumption",
+    "id": "pre_height",
+    "name": "height",
+    "label": "Height",
     "type": "checkbox"
   },
   {
     "id": "pre_orientation",
-    "label": "Orientation",
+    "name": "orientation",
+    "label": "Sexual Orientation",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_body_type",
+    "name": "body_type",
+    "label": "Body Type",
+    "type": "checkbox"
+  },
+  {
+    "id": "diet",
+    "name": "pre_diet",
+    "label": "Diet",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_diet_modifier",
+    "name": "diet_modifier",
+    "label": "Diet importance",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_drinks",
+    "name": "drinks",
+    "label": "Drinks",
     "type": "checkbox"
   },
   {
     "id": "pre_smokes",
-    "label": "Do you smoke?",
+    "name": "smokes",
+    "label": "Smokes",
     "type": "checkbox"
   },
   {
-    "id": "pre_status",
-    "label": "Status",
+    "id": "pre_drugs",
+    "name": "drugs",
+    "label": "Drugs",
     "type": "checkbox"
   },
   {
-    "id": "pre_religion_type",
-    "label": "Religion Type",
+    "id": "pre_sign",
+    "name": "sign",
+    "label": "Zodiac Sign",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_education_institution",
+    "name": "education_institution",
+    "label": "Education",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_education_status",
+    "name": "education_status",
+    "label": "Eudcation status",
     "type": "checkbox"
   },
   {
     "id": "pre_job",
-    "label": "Job",
+    "name": "job",
+    "label": "Job field",
     "type": "checkbox"
   },
   {
-    "id": "pre_zodiac",
-    "label": "Sign",
+    "id": "pre_income",
+    "name": "income",
+    "label": "salary",
     "type": "checkbox"
   },
   {
-    "id": "pre_cats",
-    "label": "Likes Cats",
+    "id": "pre_speaks",
+    "name": "speaks",
+    "label": "Languages",
     "type": "checkbox"
   },
   {
-    "id": "pre_dogs",
-    "label": "Likes Dogs",
+    "id": "pre_sign_modifier",
+    "name": "sign_modifier",
+    "label": "Astrology modifier",
     "type": "checkbox"
   },
   {
-    "id": "pre_offspring_status",
-    "label": "Offspring Status",
+    "id": "pre_ethnicities",
+    "name": "ethnicities",
+    "label": "Ethnicity",
     "type": "checkbox"
   },
   {
     "id": "pre_offspring_future",
-    "label": "Offspring Future",
+    "name": "offspring_future",
+    "label": "Future kids",
     "type": "checkbox"
   },
   {
-    "id": "pre_age",
-    "label": "Age",
+    "id": "pre_offspring_status",
+    "name": "offspring_status",
+    "label": "Currently kids",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_status",
+    "name": "status",
+    "label": "Relationship status",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_pets_cats",
+    "name": "pets_cats",
+    "label": "Cats",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_pets_dogs",
+    "name": "pets_dogs",
+    "label": "Dogs",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_religion_type",
+    "name": "religion_type",
+    "label": "Religion",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_religion_modifier",
+    "name": "religion_modifier",
+    "label": "Religion importance",
     "type": "checkbox"
   }
 ]

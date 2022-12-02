@@ -34,7 +34,7 @@ function ContentManager() {
             }
         } else if (question.question === "FILTER"){
             let selected = event.filter(e => e.field_value)
-            selected = selected.map(e => e.id)
+            selected = selected.map(e => e.name)
             setFilter(selected)
             setPreSelection(true)
             /*
@@ -69,7 +69,7 @@ function ContentManager() {
                     </Col>
                     <Col xs lg="10">
                     {preSelection &&
-                        <PlotComponent filter={preQuestionaire} questionary={preQuestionaire} data={data} />
+                        <PlotComponent filter={filter} questionary={preQuestionaire} data={data} />
                     }</Col>
                 </Row>
             </Container>

@@ -11,6 +11,7 @@ class ProfileComponent extends Component{
         this.selected = this.props.selected.point[2];
         this.you = this.props.you[2];
         this.filter = this.props.filter;
+        console.log(this.props)
     }
 
     render(){

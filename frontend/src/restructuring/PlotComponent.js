@@ -15,7 +15,6 @@ import GroupComponent from "./DetailVis/GroupComparison/GroupComponent";
 class PlotComponent extends Component{
     constructor(props) {
         super(props);
-        console.log(props)
         const first = scatterData2.map(e => {if (e.Segment === 'first') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
         const second = scatterData2.map(e => {if (e.Segment === 'second') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
         const third = scatterData2.map(e => {if (e.Segment === 'third') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
@@ -61,10 +60,10 @@ class PlotComponent extends Component{
                 </Col>
                 <Col xs lg="3">
                     {this.state.scatterFilter &&
-                        <GroupComponent you={this.state.you[0]} selected={this.state.scatterFilter} filter={this.props.filter}/>
+                        <GroupComponent you={this.state.you[0]} selected={this.state.scatterFilter} filter={this.props.filter} questionary={this.props.questionary} />
                     }
                     {this.state.scatterProfile &&
-                        <ProfileComponent you={this.state.you[0]} selected={this.state.scatterProfile} filter={this.props.filter}/>
+                        <ProfileComponent you={this.state.you[0]} selected={this.state.scatterProfile} filter={this.props.filter} questionary={this.props.questionary}/>
                     }
                 </Col>
             </Row>
