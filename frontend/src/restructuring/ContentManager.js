@@ -10,11 +10,12 @@ function ContentManager() {
 
     const [preSelection, setPreSelection] = useState(false);
     const [preQuestionaire, setQuestionaire] = useState(false);
+    const [data, setData] = useState([]);
     const [filter, setFilter] = useState([]);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (event, question) => {
 
-        if (preQuestionaire === false){
+        if (preQuestionaire === false){ //if we want to recalculate every time the user changes his / her values we would have to change this here.
             if (!(event.filter(e => {return e.field_value === undefined}).length > 0)){
                 let overall = {}
                 event.forEach(e => {
@@ -25,33 +26,25 @@ function ContentManager() {
                     headers: {'Access-Control-Allow-Origin': '*'}
                 };
                 axios.post('http://127.0.0.1:5000/api/dev/std/db', overall, config).then((e) => {
-                    console.log(e.data)
-                })
-                //TODO: send backend request
-                //setFilter(event.map(e => {if (e.field_value !== undefined && e.field_value !== 'Select a value'){return e.id}}).filter(obj => {if (obj) return obj}));
-            }
-        } else {
-            /*if (filter){
-                //setQuestionaire(event.map(e => {if (e.field_value !== undefined && e.field_value !== 'Select a value'){return e.id}}).filter(obj => {if (obj) return obj}));
-                console.log(preQuestionaire)
-                //send axios call to backend -> currently cors issue
-                const config = {
-                    headers: {'Access-Control-Allow-Origin': '*'}
-                };
+                    setData(e.data)
+                });
                 axios.get('http://127.0.0.1:5000/api/std/index', config).then((e) => {
                     console.log(e.data)
                 })
-                axios.post('http://127.0.0.1:5000/preselection', {preQuestionaire} ,config).then(e => {
-                    console.log(e)
-                })
-            }*/
-            // submit in attribute selection
-            //TODO: console.log(event)
+            }
+        } else if (question.question === "FILTER"){
+            let selected = event.filter(e => e.field_value)
+            selected = selected.map(e => e.id)
+            setFilter(selected)
+            setPreSelection(true)
+            /*
+            const config = {
+                headers: {'Access-Control-Allow-Origin': '*'}
+            };
+            axios.get('http://127.0.0.1:5000/api/std/index', config).then((e) => {
+                //console.log(e.data)
+            })*/
         }
-    }
-
-    const handleDataFilterFromScatterPlot = (event) => {
-
     }
 
     return (
@@ -62,12 +55,12 @@ function ContentManager() {
                         <Row>
 
                             <Col style={{marginBottom: "1rem"}}>
-                                <FormCard title={"Questionaire"} value={{handleSubmit}} filter={filter}/>
+                                <FormCard title={"Questionaire"} value={{handleSubmit}} filter={filter} question={"QUESTIONARY"}/>
                             </Col>
                         </Row>
                         <Col>
                             {preQuestionaire &&
-                                <FormCard title={"Preselection - Select maximum 9"} value={{handleSubmit}}/>
+                                <FormCard title={"Preselection - Select maximum 9"} value={{handleSubmit}} question={"FILTER"}/>
                             }
                         </Col>
                         <Row>
@@ -76,14 +69,10 @@ function ContentManager() {
                     </Col>
                     <Col xs lg="10">
                     {preSelection &&
-                        <PlotComponent filter={preQuestionaire} />
+                        <PlotComponent filter={preQuestionaire} questionary={preQuestionaire} data={data} />
                     }</Col>
                 </Row>
             </Container>
-
-            {/*preSelection &&
-                <Grid filter={filter} />
-            */}
         </InitialContext.Provider>
     )
 

@@ -6,7 +6,7 @@ import Element from "./Form/Element";
 import { FormContext } from './Form/FormContext';
 import {InitialContext} from "./Form/InitialContext";
 
-function FormCard({title, filter}) {
+function FormCard({title, filter, question}) {
     const backgroundColor = "dark"
 
 
@@ -58,7 +58,7 @@ function FormCard({title, filter}) {
                     <Card.Header style={cardHeaderStyle}>{title}</Card.Header>
                     <Card.Body value={{handleChange}} style={{"margin": "auto"}}>
                         {elements.map((e) => {return (<Element key={e.id} field={e} />)})}
-                        <Button onClick={event => handleSubmit(elements)}>Submit something</Button>
+                        <Button onClick={event => handleSubmit(elements, {question})}>Submit something</Button>
                     </Card.Body>
                 </Card>
             }

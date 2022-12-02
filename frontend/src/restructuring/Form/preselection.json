@@ -1,76 +1,76 @@
 [
   {
-    "id": "bodyType",
+    "id": "pre_body_type",
     "label": "Body Type",
     "type": "checkbox"
   },
   {
-    "id": "diet",
+    "id": "pre_diet",
     "label": "Diet",
     "type": "checkbox"
   },
   {
-    "id": "drinks",
+    "id": "pre_drinks",
     "label": "Drinks",
     "type": "checkbox"
   },
   {
-    "id": "drugs",
+    "id": "pre_drugs",
     "label": "Drug consumption",
     "type": "checkbox"
   },
   {
-    "id": "orientation",
+    "id": "pre_orientation",
     "label": "Orientation",
     "type": "checkbox"
   },
   {
-    "id": "smokes",
+    "id": "pre_smokes",
     "label": "Do you smoke?",
     "type": "checkbox"
   },
   {
-    "id": "status",
+    "id": "pre_status",
     "label": "Status",
     "type": "checkbox"
   },
   {
-    "id": "religion_type",
+    "id": "pre_religion_type",
     "label": "Religion Type",
     "type": "checkbox"
   },
   {
-    "id": "job",
+    "id": "pre_job",
     "label": "Job",
     "type": "checkbox"
   },
   {
-    "id": "zodiac",
+    "id": "pre_zodiac",
     "label": "Sign",
     "type": "checkbox"
   },
   {
-    "id": "cats",
+    "id": "pre_cats",
     "label": "Likes Cats",
     "type": "checkbox"
   },
   {
-    "id": "dogs",
+    "id": "pre_dogs",
     "label": "Likes Dogs",
     "type": "checkbox"
   },
   {
-    "id": "offspring_status",
+    "id": "pre_offspring_status",
     "label": "Offspring Status",
     "type": "checkbox"
   },
   {
-    "id": "offspring_future",
+    "id": "pre_offspring_future",
     "label": "Offspring Future",
     "type": "checkbox"
   },
   {
-    "id": "age",
+    "id": "pre_age",
     "label": "Age",
     "type": "checkbox"
   }

@@ -1,5 +1,36 @@
 [
   {
+    "id": "age",
+    "label": "Enter your age",
+    "type": "input",
+    "options": []
+  },
+  {
+    "id": "sex",
+    "label": "What's your gender?",
+    "type": "dropdown",
+    "options": [
+      "m",
+      "f"
+    ]
+  },
+  {
+    "id": "height",
+    "label": "How tall are you?",
+    "type": "input",
+    "options": []
+  },
+  {
+    "id": "orientation",
+    "label": "What's your orientation?",
+    "type": "dropdown",
+    "options": [
+      "bisexual",
+      "gay",
+      "straight"
+    ]
+  },
+  {
     "id": "body_type",
     "label": "Body Type",
     "type": "dropdown",
@@ -17,36 +48,7 @@
     ]
   },
   {
-    "id": "zodiac",
-    "label": "Zodiac Sign",
-    "type": "dropdown",
-    "options": [
-      "Aries",
-      "Taurus",
-      "Gemini",
-      "Cancer",
-      "Leo",
-      "Virgo",
-      "Libra",
-      "Scorpio,",
-      "Sagittarius",
-      "Capricorn",
-      "Aquarius",
-      "Pisces"
-    ]
-  },
-  {
-    "id": "drugs_type",
-    "label": "How do you specify your drug consumption",
-    "type": "dropdown",
-    "options": [
-      "never",
-      "sometimes",
-      "often"
-    ]
-  },
-  {
-    "id": "diet_type_options",
+    "id": "diet",
     "label": "What kind of diet do you follow?",
     "type": "dropdown",
     "options": [
@@ -69,7 +71,7 @@
     ]
   },
   {
-    "id": "drinks_type",
+    "id": "drinks",
     "label": "What is your drinking behaviour?",
     "type": "dropdown",
     "options": [
@@ -92,7 +94,36 @@
     ]
   },
   {
-    "id": "education_institution_type",
+    "id": "drugs",
+    "label": "How do you specify your drug consumption",
+    "type": "dropdown",
+    "options": [
+      "never",
+      "sometimes",
+      "often"
+    ]
+  },
+  {
+    "id": "sign",
+    "label": "Zodiac Sign",
+    "type": "dropdown",
+    "options": [
+      "Aries",
+      "Taurus",
+      "Gemini",
+      "Cancer",
+      "Leo",
+      "Virgo",
+      "Libra",
+      "Scorpio,",
+      "Sagittarius",
+      "Capricorn",
+      "Aquarius",
+      "Pisces"
+    ]
+  },
+  {
+    "id": "education_institution",
     "label": "What is your education?",
     "type": "dropdown",
     "options": [
@@ -108,7 +139,7 @@
     ]
   },
   {
-    "id": "education_status_type",
+    "id": "education_status",
     "label": "In your education what happened?",
     "type": "dropdown",
     "options": [
@@ -118,23 +149,7 @@
     ]
   },
   {
-    "id": "ethnicities_type",
-    "label": "Whats your ethnicity?",
-    "type": "dropdown",
-    "options": [
-      "pacific islander",
-      "asian",
-      "native american",
-      "middle eastern",
-      "hispanic / latin",
-      "white",
-      "black",
-      "indian",
-      "other"
-    ]
-  },
-  {
-    "id": "job_type",
+    "id": "job",
     "label": "In what field is your profession?",
     "type": "dropdown",
     "options": [
@@ -162,23 +177,7 @@
     ]
   },
   {
-    "id": "languages",
-    "label": "What language do you speak?",
-    "type": "multiselect",
-    "options": [
-      "english, but in canadian",
-      "english",
-      "german",
-      "italian",
-      "spanish",
-      "c++",
-      "arab",
-      "other"
-    ]
-  },
-
-  {
-    "id": "income_type",
+    "id": "income",
     "label": "Where is your salary?",
     "type": "dropdown",
     "options": [
@@ -197,7 +196,49 @@
     ]
   },
   {
-    "id": "offspring_future_type",
+    "id": "speaks",
+    "label": "What language do you speak?",
+    "type": "multiselect",
+    "options": [
+      "english, but in canadian",
+      "english",
+      "german",
+      "italian",
+      "spanish",
+      "c++",
+      "arab",
+      "other"
+    ]
+  },
+  {
+    "id": "sign_modifier",
+    "label": "How strong do you believe in astrology?",
+    "type": "dropdown",
+    "options": [
+      "not specified",
+      "and it's fun to think about",
+      "but it does not matter",
+      "and it matters a lot"
+    ]
+  },
+  {
+    "id": "ethnicities",
+    "label": "Whats your ethnicity?",
+    "type": "multiselect",
+    "options": [
+      "pacific islander",
+      "asian",
+      "native american",
+      "middle eastern",
+      "hispanic / latin",
+      "white",
+      "black",
+      "indian",
+      "other"
+    ]
+  },
+  {
+    "id": "offspring_future",
     "label": "What is your stance on kids?",
     "type": "dropdown",
     "options": [
@@ -207,7 +248,7 @@
     ]
   },
   {
-    "id": "offspring_status_type",
+    "id": "offspring_status",
     "label": "Do you have kids?",
     "type": "dropdown",
     "options": [
@@ -217,19 +258,61 @@
     ]
   },
   {
-    "id": "orientation_type_options",
-    "label": "What's your orientation?",
+    "id": "status",
+    "label": "What's your relationship status?",
     "type": "dropdown",
     "options": [
-      "bisexual",
-      "gay",
-      "straight"
+      "single",
+      "available",
+      "seeing someone",
+      "married"
     ]
   },
   {
-    "id": "age",
-    "label": "Enter your age",
-    "type": "input",
-    "options": []
+    "id": "pets_cats",
+    "label": "What's your opinion on cats?",
+    "type": "dropdown",
+    "options": [
+      "likes cats",
+      "has cats",
+      "does not like cats"
+    ]
+  },
+  {
+    "id": "pets_dogs",
+    "label": "What's your opinion on dogs?",
+    "type": "dropdown",
+    "options": [
+      "likes dogs",
+      "has dogs",
+      "does not like dogs"
+    ]
+  },
+  {
+    "id": "religion_type",
+    "label": "What's your religion?",
+    "type": "dropdown",
+    "options": [
+      "agnosticism",
+      "catholicicsm",
+      "christianity",
+      "atheism",
+      "buddhism",
+      "hinduism",
+      "judaism",
+      "islam",
+      "other"
+    ]
+  },
+  {
+    "id": "religion_modifier",
+    "label": "How strong is your believe into religion?",
+    "type": "dropdown",
+    "options": [
+      "not too serious about it",
+      "very serious about it",
+      "laughing about it",
+      "somewhat serious about it"
+    ]
   }
 ]
