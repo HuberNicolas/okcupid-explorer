@@ -16,12 +16,15 @@ function ContentManager() {
 
         if (preQuestionaire === false){
             if (!(event.filter(e => {return e.field_value === undefined}).length > 0)){
+                let overall = {}
+                event.forEach(e => {
+                    overall[e.id] =e.field_value;
+                })
                 setQuestionaire(event.map(e => {return {id: e.id, value: e.field_value}}));
-                console.log(event)
                 const config = {
                     headers: {'Access-Control-Allow-Origin': '*'}
                 };
-                axios.get('http://127.0.0.1:5000/api/std/index', config).then((e) => {
+                axios.post('http://127.0.0.1:5000/api/dev/std/db', overall, config).then((e) => {
                     console.log(e.data)
                 })
                 //TODO: send backend request
