@@ -19,11 +19,37 @@ class ScatterComponent extends Component {
                     zoom: {
                         enabled: true,
                         type: 'xy',
-                        autoScaleYaxis: true,
+                        zoomedArea: {
+                            fill: {
+                                color: '#90CAF9',
+                                opacity: 0.4
+                            },
+                            stroke: {
+                                color: '#0D47A1',
+                                opacity: 0.4,
+                                width: 1
+                            }
+                        }
                     },
+                    /*
+                    zoom: {
+                        enabled: true,
+                        type: 'xy',
+                        autoScaleYaxis: true,
+                    },*/
                     selection: {
                         enabled: true,
-                        type: 'xy'
+                        type: 'xy',
+                        fill: {
+                            color: '#fff',
+                            opacity: 0.1
+                        },
+                        stroke: {
+                            width: 1,
+                            dashArray: 3,
+                            color: '#fff',
+                            opacity: 0.4
+                        },
                     },
                     events: {
                         zoomed: this.onZoom,

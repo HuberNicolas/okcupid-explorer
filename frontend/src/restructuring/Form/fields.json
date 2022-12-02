@@ -1,6 +1,6 @@
 [
   {
-    "id": "body_type_options",
+    "id": "body_type",
     "label": "Body Type",
     "type": "dropdown",
     "options": [
@@ -36,7 +36,7 @@
     ]
   },
   {
-    "id": "drugs_type_options",
+    "id": "drugs_type",
     "label": "How do you specify your drug consumption",
     "type": "dropdown",
     "options": [
@@ -59,7 +59,7 @@
     ]
   },
   {
-    "id": "diet_modifier_options",
+    "id": "diet_modifier",
     "label": "How do you follow this diet?",
     "type": "dropdown",
     "options": [
@@ -69,7 +69,7 @@
     ]
   },
   {
-    "id": "drinks_type_options",
+    "id": "drinks_type",
     "label": "What is your drinking behaviour?",
     "type": "dropdown",
     "options": [
@@ -92,7 +92,7 @@
     ]
   },
   {
-    "id": "education_institution_type_options",
+    "id": "education_institution_type",
     "label": "What is your education?",
     "type": "dropdown",
     "options": [
@@ -108,7 +108,7 @@
     ]
   },
   {
-    "id": "education_status_type_options",
+    "id": "education_status_type",
     "label": "In your education what happened?",
     "type": "dropdown",
     "options": [
@@ -118,7 +118,7 @@
     ]
   },
   {
-    "id": "ethnicities_type_options",
+    "id": "ethnicities_type",
     "label": "Whats your ethnicity?",
     "type": "dropdown",
     "options": [
@@ -134,7 +134,7 @@
     ]
   },
   {
-    "id": "job_type_options",
+    "id": "job_type",
     "label": "In what field is your profession?",
     "type": "dropdown",
     "options": [
@@ -178,7 +178,7 @@
   },
 
   {
-    "id": "income_type_options",
+    "id": "income_type",
     "label": "Where is your salary?",
     "type": "dropdown",
     "options": [
