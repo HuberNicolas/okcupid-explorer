@@ -20,15 +20,19 @@ function ContentManager() {
             if (!(event.filter(e => {return e.field_value === undefined}).length > 0)){
                 let overall = {}
                 event.forEach(e => {
+                    if(e.id === "income")
+                        e.field_value = parseFloat(e.field_value)
                     overall[e.id] =e.field_value;
                 })
-                setQuestionaire(event.map(e => {return {id: e.id, value: e.field_value}}));
+                //setQuestionaire(event.map(e => {return {id: e.id, value: e.field_value}}));
                 setYou(event.map(e => {return {id: e.id, value: e.field_value}}));
+                console.log(overall)
                 const config = {
                     headers: {'Access-Control-Allow-Origin': '*'}
                 };
                 axios.post('http://127.0.0.1:5000/api/dev/std/db', overall, config).then((e) => {
                     setData(e.data)
+                    console.log(e.data)
                 });
                 axios.get('http://127.0.0.1:5000/api/std/index', config).then((e) => {
                     console.log(e.data)

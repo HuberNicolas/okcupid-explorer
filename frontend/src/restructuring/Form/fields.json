@@ -88,9 +88,11 @@
     "label": "Do you smoke?",
     "type": "dropdown",
     "options": [
-      "every single day mate",
-      "occasionally",
-      "heeell naaa"
+      "no",
+      "when drinking",
+      "trying to quit",
+      "sometimes",
+      "yes"
     ]
   },
   {
@@ -108,18 +110,29 @@
     "label": "Zodiac Sign",
     "type": "dropdown",
     "options": [
-      "Aries",
-      "Taurus",
-      "Gemini",
-      "Cancer",
-      "Leo",
-      "Virgo",
-      "Libra",
-      "Scorpio,",
-      "Sagittarius",
-      "Capricorn",
-      "Aquarius",
-      "Pisces"
+      "aries",
+      "taurus",
+      "gemini",
+      "cancer",
+      "leo",
+      "virgo",
+      "libra",
+      "scorpio,",
+      "sagittarius",
+      "capricorn",
+      "aquarius",
+      "pisces"
+    ]
+  },
+  {
+    "id": "sign_modifier",
+    "label": "How strong do you believe in astrology?",
+    "type": "dropdown",
+    "options": [
+      "no specified sign modifier",
+      "and it's fun to think about",
+      "but it does not matter",
+      "and it matters a lot"
     ]
   },
   {
@@ -153,26 +166,26 @@
     "label": "In what field is your profession?",
     "type": "dropdown",
     "options": [
+      "hospitality / travel",
       "artistic / musical / writer",
-      "transportation",
-      "hospitality",
-      "student",
-      "computer / hardware / software",
-      "banking / financial / real estate",
-      "entertainment / media",
       "sales / marketing / biz dev",
+      "entertainment / media",
       "medicine / health",
-      "science / tech / engineering",
-      "executive / management",
-      "education / academia",
-      "clerical / administrative",
-      "construction / craftsmanship",
-      "political / government",
-      "law / legal services",
-      "unemployed",
-      "military",
-      "retired",
       "other",
+      "science / tech / engineering",
+      "construction / craftsmanship",
+      "retired",
+      "student",
+      "education / academia",
+      "transportation",
+      "unemployed",
+      "computer / hardware / software",
+      "executive / management",
+      "military",
+"political / government",
+      "banking / financial / real estate",
+      "clerical / administrative",
+      "law / legal services",
       "rather not say"
     ]
   },
@@ -207,18 +220,8 @@
       "spanish",
       "c++",
       "arab",
-      "other"
-    ]
-  },
-  {
-    "id": "sign_modifier",
-    "label": "How strong do you believe in astrology?",
-    "type": "dropdown",
-    "options": [
-      "not specified",
-      "and it's fun to think about",
-      "but it does not matter",
-      "and it matters a lot"
+      "japanese",
+      "french"
     ]
   },
   {
@@ -294,7 +297,7 @@
     "type": "dropdown",
     "options": [
       "agnosticism",
-      "catholicicsm",
+      "catholicism",
       "christianity",
       "atheism",
       "buddhism",
