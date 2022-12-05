@@ -52,6 +52,15 @@ class ScatterComponent extends Component {
                         },
                     },
                     events: {
+                        /*beforeZoom: (e, data) => {
+                            console.log(data,'**')
+                            return {
+                                xaxis: {
+                                    min: -15,
+                                    max: 15
+                                }
+                            }
+                        },*/
                         zoomed: this.onZoom,
                         dataPointSelection: this.onClick,
                         selection: this.onSelect
@@ -60,6 +69,23 @@ class ScatterComponent extends Component {
                 },
                 theme: {
                     mode: "dark"
+                },
+                tooltip: {
+                    custom: function({series, seriesIndex, dataPointIndex, w, ctx}) {
+                        const {data}=ctx;
+                        const {threeDSeries}=data;
+                        console.log(threeDSeries[seriesIndex], '==')
+                        return '<div class="arrow_box">' +
+                            '<span>Age: ' + threeDSeries[seriesIndex].age + '</span><br />' +
+                            '<span>Height: ' + threeDSeries[seriesIndex].height + '</span><br />' +
+                            '<span>Income: ' + threeDSeries[seriesIndex].income + '</span><br />' +
+                            '<span>Job: ' + threeDSeries[seriesIndex].job + '</span><br />' +
+                            '<span>Body Type: ' + threeDSeries[seriesIndex].body_type + '</span><br />' +
+                            '<span>:Education ' + threeDSeries[seriesIndex].education_institution + '</span><br />' +
+                            '<span>Sign: ' + threeDSeries[seriesIndex].sign + '</span><br />' +
+                            '<span>Status: ' + threeDSeries[seriesIndex].status + '</span><br />' +
+                            '</div>'
+                    }
                 },
                 xaxis: {
                     tickAmount: 10
