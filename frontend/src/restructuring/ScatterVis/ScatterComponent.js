@@ -75,15 +75,16 @@ class ScatterComponent extends Component {
                         const {data}=ctx;
                         const {threeDSeries}=data;
                         console.log(threeDSeries[seriesIndex], '==')
+                        console.log(ctx)
                         return '<div class="arrow_box">' +
-                            '<span>Age: ' + threeDSeries[seriesIndex].age + '</span><br />' +
-                            '<span>Height: ' + threeDSeries[seriesIndex].height + '</span><br />' +
-                            '<span>Income: ' + threeDSeries[seriesIndex].income + '</span><br />' +
-                            '<span>Job: ' + threeDSeries[seriesIndex].job + '</span><br />' +
-                            '<span>Body Type: ' + threeDSeries[seriesIndex].body_type + '</span><br />' +
-                            '<span>:Education ' + threeDSeries[seriesIndex].education_institution + '</span><br />' +
-                            '<span>Sign: ' + threeDSeries[seriesIndex].sign + '</span><br />' +
-                            '<span>Status: ' + threeDSeries[seriesIndex].status + '</span><br />' +
+                            '<span>Age: ' + threeDSeries[dataPointIndex].age + '</span><br />' +
+                            '<span>Height: ' + threeDSeries[dataPointIndex].height + '</span><br />' +
+                            '<span>Income: ' + threeDSeries[dataPointIndex].income + '</span><br />' +
+                            '<span>Job: ' + threeDSeries[dataPointIndex].job + '</span><br />' +
+                            '<span>Body Type: ' + threeDSeries[dataPointIndex].body_type + '</span><br />' +
+                            '<span>:Education ' + threeDSeries[dataPointIndex].education_institution + '</span><br />' +
+                            '<span>Sign: ' + threeDSeries[dataPointIndex].sign + '</span><br />' +
+                            '<span>Status: ' + threeDSeries[dataPointIndex].status + '</span><br />' +
                             '</div>'
                     }
                 },

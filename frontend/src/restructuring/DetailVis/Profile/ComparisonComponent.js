@@ -25,9 +25,7 @@ class ComparisonComponent extends Component{
                     categories: this.props.label, //this should be the likert scale
                 },
                 yaxis: {
-                    title: {
-                        text: 'Normalized Value'
-                    }
+                    categories: this.props.label,
                 },
             }
         }
