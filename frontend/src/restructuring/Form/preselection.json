@@ -120,12 +120,6 @@
     "type": "checkbox"
   },
   {
-    "id": "pre_status",
-    "name": "status",
-    "label": "Relationship status",
-    "type": "checkbox"
-  },
-  {
     "id": "pre_pets_cats",
     "name": "pets_cats",
     "label": "Cats",

@@ -261,17 +261,6 @@
     ]
   },
   {
-    "id": "status",
-    "label": "What's your relationship status?",
-    "type": "dropdown",
-    "options": [
-      "single",
-      "available",
-      "seeing someone",
-      "married"
-    ]
-  },
-  {
     "id": "pets_cats",
     "label": "What's your opinion on cats?",
     "type": "dropdown",
