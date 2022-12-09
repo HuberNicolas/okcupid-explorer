@@ -1,20 +1,8 @@
 [
   {
-    "id": "pre_age",
-    "name": "age",
-    "label": "Age",
-    "type": "checkbox"
-  },
-  {
     "id": "pre_sex",
     "name": "sex",
     "label": "Sex",
-    "type": "checkbox"
-  },
-  {
-    "id": "pre_height",
-    "name": "height",
-    "label": "Height",
     "type": "checkbox"
   },
   {
@@ -84,27 +72,9 @@
     "type": "checkbox"
   },
   {
-    "id": "pre_income",
-    "name": "income",
-    "label": "salary",
-    "type": "checkbox"
-  },
-  {
-    "id": "pre_speaks",
-    "name": "speaks",
-    "label": "Languages",
-    "type": "checkbox"
-  },
-  {
     "id": "pre_sign_modifier",
     "name": "sign_modifier",
     "label": "Astrology modifier",
-    "type": "checkbox"
-  },
-  {
-    "id": "pre_ethnicities",
-    "name": "ethnicities",
-    "label": "Ethnicity",
     "type": "checkbox"
   },
   {

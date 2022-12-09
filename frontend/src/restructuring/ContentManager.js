@@ -12,6 +12,8 @@ function ContentManager() {
     const [you, setYou] = useState(false);
     const [preQuestionaire, setQuestionaire] = useState(false);
     const [data, setData] = useState([]);
+    const [standardDeviationData, setStandardDeviationData] = useState([]);
+    const [youData, setYouData] = useState([]);
     const [filter, setFilter] = useState([]);
 
     const handleSubmit = (event, question) => {
@@ -24,16 +26,33 @@ function ContentManager() {
                         e.field_value = parseFloat(e.field_value)
                     overall[e.id] =e.field_value;
                 })
+                overall = {
+                    "threshold": 0.8,
+                    "mode": 1,
+                    "data": overall
+                }
+
 
                 setYou(event.map(e => {return {id: e.id, value: e.field_value}}));
-                console.log(overall)
                 const config = {
                     headers: {'Access-Control-Allow-Origin': '*'}
                 };
-                axios.post('http://127.0.0.1:5000/api/dev/std/db', overall, config).then((e) => {
+                // /api/post/users/nonstd ->  alle users in nicht std. form (der eingegebene user ist NICHT angefügt)
+                // append threshold + mode
+                axios.post('http://127.0.0.1:5000/api/post/users/nonstd', overall, config).then((e) => {
                     setData(e.data)
                     console.log(e.data)
                     setQuestionaire(event.map(e => {return {id: e.id, value: e.field_value}}));
+                });
+                //  alle users in std. form
+                axios.post('http://127.0.0.1:5000/api/post/users/std', overall, config).then((e) => {
+                    setStandardDeviationData(e.data)
+                    console.log(e.data)
+                });
+                // aktueller user in std form
+                axios.post('http://127.0.0.1:5000/api/post/user/std', overall, config).then((e) => {
+                    setYouData(e.data)
+                    console.log(e.data)
                 });
             }
         } else if (question.question === "FILTER"){
@@ -62,7 +81,7 @@ function ContentManager() {
                     </Col>
                     <Col xs lg="8">
                     {preSelection &&
-                        <PlotComponent filter={filter} questionary={preQuestionaire} you={you} data={data} />
+                        <PlotComponent filter={filter} questionary={preQuestionaire} you={you} data={data} standardDeviationData={standardDeviationData} standardizedYou={youData} />
                     }</Col>
                 </Row>
             </Container>

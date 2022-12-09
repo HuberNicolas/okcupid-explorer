@@ -2,42 +2,48 @@ import {Component, React} from "react";
 import {Card,} from "react-bootstrap";
 import { ReactComponent as Profile } from './profile.svg'
 import ComparisonComponent from "./ComparisonComponent";
-import axios from "axios";
 
 class ProfileComponent extends Component{
 
     constructor(props) {
         super(props);
         this.backgroundColor = "dark"
-        this.selected = this.props.selected.point[2];
+        this.selected = this.props.selected;
         this.you = this.props.you[2];
         this.filter = this.props.filter;
     }
 
+
+    /**
+     * route: normalisierter  user input => für den vergleich im radar
+     * route: get_one from std => für den vergelich im radar
+     *
+     * questionary requirement:
+     * modus: 0,1 => similarity / dissimilariy
+     * similarity_score: 0-1 => threshold
+     * {
+     *     modus: 0,
+     *     similarity_score: 0.75
+     *     data: {}
+     * }
+     *
+     */
+
+
     render(){
-        const config = {
-            headers: {'Access-Control-Allow-Origin': '*'}
-        };
-
-        axios.get(`http://127.0.0.1:5000/api/dev/list?id=${this.props.selected.point[2].index}`, config).then((e) => {
-            this.comparisonData = Object.entries(e.data[0]).filter(q => this.props.filter.includes(q[0])).map(q => q[1])
-        });
-
-        console.log(this.comparisonData)
         this.data = [
             {
                 name: 'You',
-                data: Object.entries(this.props.you[2]).filter(e => this.props.filter.includes(e[0])).map(e => e[1])
+                data: Object.entries(this.props.you).filter(e => this.props.filter.includes(e[0])).map(e => e[1])
             },{
                 name: 'Comparison',
-                data: this.comparisonData
+                data: Object.entries(this.props.selected[0]).filter(e => this.props.filter.includes(e[0])).map(e => e[1])
             },
         ]
         /**
          * backend call => get numerical values for this guy
          */
 
-        console.log(this.props.you[2])
         return (
             <div id="profile" style={{"color": "white"}}>
                 <Card bg={this.backgroundColor}>

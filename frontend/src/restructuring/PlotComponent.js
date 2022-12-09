@@ -3,6 +3,7 @@ import {Col, Row} from "react-bootstrap";
 import ScatterComponent from "./ScatterVis/ScatterComponent";
 import ProfileComponent from "./DetailVis/Profile/ProfileComponent";
 import GroupComponent from "./DetailVis/GroupComparison/GroupComponent";
+import axios from "axios";
 
 /**
  * how was a vis prooblem reframed as an ml problem:
@@ -14,7 +15,6 @@ import GroupComponent from "./DetailVis/GroupComparison/GroupComponent";
 class PlotComponent extends Component{
     constructor(props) {
         super(props);
-        let f = this.props.data.filter(e => e.Segment === 'first').map(e => {return [e['PComp 1'], e['PComp 2'], e]})
 
         const first = this.props.data.map(e => {if (e.Segment === 'first') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
         const second = this.props.data.map(e => {if (e.Segment === 'second') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
@@ -35,7 +35,8 @@ class PlotComponent extends Component{
         }];
         this.state = {
             data: scat,
-            you: fourth,
+            standardizedUsers: this.props.standardDeviationData,
+            you: this.props.standardizedYou,
             scatterFilter: '',
             scatterProfile: ''
         }
@@ -43,7 +44,14 @@ class PlotComponent extends Component{
 
     filter(element){
         if (element.filerType === "profile"){
-            this.setState({scatterProfile : element})
+            const config = {
+                headers: {'Access-Control-Allow-Origin': '*'}
+            };
+
+            axios.post('http://127.0.0.1:5000/api/post/user/std/radar', {"data": element.point[2]}, config).then((e) => {
+                this.setState({scatterProfile : e.data})
+            });
+
             this.setState({scatterFilter : ''})
         } else {
             this.setState({scatterFilter : element})
@@ -64,7 +72,7 @@ class PlotComponent extends Component{
                         <GroupComponent you={this.state.you[0]} selected={this.state.scatterFilter} filter={this.props.filter} questionary={this.props.questionary} />
                     }
                     {this.state.scatterProfile &&
-                        <ProfileComponent you={this.state.you[0]} selected={this.state.scatterProfile} filter={this.props.filter} questionary={this.props.questionary}/>
+                        <ProfileComponent you={this.state.you[0]} selected={this.state.scatterProfile} filter={this.props.filter} questionary={this.props.questionary} />
                     }
                 </Col>
             </Row>
