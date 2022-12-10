@@ -3,6 +3,7 @@ import {Col, Row} from "react-bootstrap";
 import ScatterComponent from "./ScatterVis/ScatterComponent";
 import ProfileComponent from "./DetailVis/Profile/ProfileComponent";
 import GroupComponent from "./DetailVis/GroupComparison/GroupComponent";
+import GeneralInformationComponent from "./ScatterVis/GeneralInformationComponent";
 import axios from "axios";
 
 /**
@@ -90,8 +91,8 @@ class PlotComponent extends Component{
             <Row>
                 <Col xs lg={this.state.frameSize.scatter}>
                     {/*scatter plot with questionaire filter -> supply data from here, filter in function */}
-
                         <ScatterComponent data={this.state.data} filter={this.filter.bind(this)} frameSize={this.frameResize.bind(this)} />
+                        <GeneralInformationComponent filter={this.props.filter} you={this.props.you} data={this.props.data} />
                 </Col>
                 <Col xs lg={this.state.frameSize.detail}>
                     {this.state.scatterFilter &&
