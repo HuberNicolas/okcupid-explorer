@@ -134,6 +134,9 @@ class ScatterComponent extends Component {
     render() {
         return (
             <Card id="chart" bg={this.backgroundColor} style={{"color": "white", "padding": "1.5rem"}}>
+                <Card.Header>
+                    Scatter plot mapping the similarities / dissimilarities to your entered data
+                </Card.Header>
                 <Card.Body>
                     <Chart
                         options={this.state.options}

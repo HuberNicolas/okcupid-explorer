@@ -24,7 +24,7 @@ class GroupComparisonComponent extends Component{
                 },
                 yaxis: {
                     title: {
-                        text: 'Value Distribution'
+                        text: this.props.yaxis
                     }
                 },
             },

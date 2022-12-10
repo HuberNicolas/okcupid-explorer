@@ -70,7 +70,7 @@ class ProfileComponent extends Component{
                                 </div>
                                 )
                         })*/}
-                        <ComparisonComponent data={this.data} type={"radar"} label={filter} />
+                        <ComparisonComponent data={this.data} type={"radar"} label={filter} yaxis={'Absolute Value Distribution'} />
                     </Card.Body>
                 </Card>
 
