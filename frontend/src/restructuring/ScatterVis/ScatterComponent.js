@@ -72,8 +72,6 @@ class ScatterComponent extends Component {
                     custom: function({series, seriesIndex, dataPointIndex, w, ctx}) {
                         const {data}=ctx;
                         const {threeDSeries}=data;
-                        console.log(threeDSeries[seriesIndex], '==')
-                        console.log(ctx)
                         return '<div class="arrow_box">' +
                             '<span>Age: ' + threeDSeries[dataPointIndex].age + '</span><br />' +
                             '<span>Height: ' + threeDSeries[dataPointIndex].height + '</span><br />' +
@@ -101,6 +99,7 @@ class ScatterComponent extends Component {
     onClick (e, chartContext, config){
         const dataPoint = this.props.data[config.seriesIndex].data[config.dataPointIndex]
         this.props.filter({series: config.seriesIndex, point: dataPoint, filerType: 'profile'});
+        this.props.frameSize({filerType: 'detail'})
     }
     onSelect (chartContext, { xaxis, yaxis }){
         const min = [xaxis.min, yaxis.min]
@@ -113,6 +112,7 @@ class ScatterComponent extends Component {
             }).filter(obj => {if (obj) {return true;}return false;})
         })
         this.props.filter({data: categories, filerType: 'detail'})
+        this.props.frameSize({filerType: 'detail'})
     }
     onZoom (e, chartContext){
         /*

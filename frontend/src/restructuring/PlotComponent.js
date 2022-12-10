@@ -34,15 +34,14 @@ class PlotComponent extends Component{
             standardizedUsers: this.props.standardDeviationData,
             you: this.props.standardizedYou,
             scatterFilter: '',
-            scatterProfile: ''
+            scatterProfile: '',
+            frameSize: {scatter: "9", detail: "3"}
         }
     }
 
 
     componentDidUpdate(prevProps, prevState, snapshot){
-        if (prevProps.data === this.props.data){
-            console.log("same")
-        } else {
+        if (prevProps.data !== this.props.data){
             const scat = [{
                 name: 'First Group',
                 data: this.props.data.map(e => {if (e.Segment === 'first') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj}),
@@ -57,8 +56,16 @@ class PlotComponent extends Component{
                 data: this.props.data.map(e => {if (e.Segment === 'fourth') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj}),
             }];
             this.setState({data: scat})
-            console.log("change")
         }
+    }
+
+    frameResize(element){
+        let {filerType} = element
+        if(filerType === "detail")
+            this.setState({frameSize: {scatter: "4", detail: "8"}})
+        else
+            this.setState({frameSize: {scatter: "9", detail: "3"}})
+
     }
 
     filter(element){
@@ -81,17 +88,17 @@ class PlotComponent extends Component{
     render(){
         return (
             <Row>
-                <Col xs lg="9">
+                <Col xs lg={this.state.frameSize.scatter}>
                     {/*scatter plot with questionaire filter -> supply data from here, filter in function */}
 
-                        <ScatterComponent data={this.state.data} filter={this.filter.bind(this)} />
+                        <ScatterComponent data={this.state.data} filter={this.filter.bind(this)} frameSize={this.frameResize.bind(this)} />
                 </Col>
-                <Col xs lg="3">
+                <Col xs lg={this.state.frameSize.detail}>
                     {this.state.scatterFilter &&
-                        <GroupComponent you={this.state.you[0]} selected={this.state.scatterFilter} filter={this.props.filter} questionary={this.props.questionary} />
+                        <GroupComponent you={this.state.you[0]} selected={this.state.scatterFilter} filter={this.props.filter} questionary={this.props.questionary} frameSize={this.frameResize.bind(this)} />
                     }
                     {this.state.scatterProfile &&
-                        <ProfileComponent you={this.state.you[0]} selected={this.state.scatterProfile} filter={this.props.filter} questionary={this.props.questionary} />
+                        <ProfileComponent you={this.state.you[0]} selected={this.state.scatterProfile} filter={this.props.filter} questionary={this.props.questionary} frameSize={this.frameResize.bind(this)} />
                     }
                 </Col>
             </Row>

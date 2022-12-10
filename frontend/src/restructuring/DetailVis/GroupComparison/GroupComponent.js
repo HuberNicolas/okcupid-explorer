@@ -14,18 +14,16 @@ class GroupComponent extends Component{
 
     render(){
         //segment // element // object entry
-        console.log(this.props.selected.data[1].map(e => e[2]['age']));
         return (
             <div id="profile" style={{"color": "white"}}>
                 <Card bg={this.backgroundColor}>
                     <Card.Header>
                         <Profile className="profilePic"  />
-
+                        <span style={{float: "right"}} onClick={e => this.props.frameSize({filerType: 'close'})}>X</span>
                     </Card.Header>
                     <Card.Body >
                         {this.props.filter.map(filteredItem => {
                             const category = categories.filter(e => e.id==filteredItem)[0]
-                            console.log(category)
 
                             const first = this.props.selected.data[0].map(e => e[2][filteredItem])
                             const second = this.props.selected.data[1].map(e => e[2][filteredItem])
@@ -43,10 +41,6 @@ class GroupComponent extends Component{
                             category.options.forEach(cat => f3.push(third.filter(e => e === cat).length))
                             category.options.forEach(cat => f4.push(fourth.filter(e => e === cat).length))
 
-                            console.log(f1)
-                            console.log(f2)
-                            console.log(f3)
-                            console.log(f4)
 
                             const scat = [{
                                 name: 'First Group',

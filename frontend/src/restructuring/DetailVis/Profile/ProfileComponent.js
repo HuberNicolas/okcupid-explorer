@@ -40,6 +40,7 @@ class ProfileComponent extends Component{
                 data: Object.entries(this.props.selected[0]).filter(e => this.props.filter.includes(e[0])).map(e => e[1])
             },
         ]
+        let filter = Object.entries(this.props.selected[0]).filter(e => this.props.filter.includes(e[0])).map(e => e[0])
         /**
          * backend call => get numerical values for this guy
          */
@@ -49,7 +50,7 @@ class ProfileComponent extends Component{
                 <Card bg={this.backgroundColor}>
                     <Card.Header>
                         <Profile className="profilePic"  />
-
+                        <span style={{float: "right"}} onClick={this.props.frameSize}>X</span>
                     </Card.Header>
                     <Card.Body >
                         {/*this.props.filter.map(filteredItem => {
@@ -69,7 +70,7 @@ class ProfileComponent extends Component{
                                 </div>
                                 )
                         })*/}
-                        <ComparisonComponent data={this.data} type={"radar"} label={this.props.filter} />
+                        <ComparisonComponent data={this.data} type={"radar"} label={filter} />
                     </Card.Body>
                 </Card>
 

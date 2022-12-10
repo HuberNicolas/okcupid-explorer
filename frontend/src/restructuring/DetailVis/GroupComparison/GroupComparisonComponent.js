@@ -5,7 +5,6 @@ class GroupComparisonComponent extends Component{
 
 
     render(){
-        console.log(this.props.labels)
         const chartOptions = {
             options: {
                 chart: {
