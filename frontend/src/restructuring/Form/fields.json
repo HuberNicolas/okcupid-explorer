@@ -320,8 +320,8 @@
     "label": "Which algorithm would you like to choose?",
     "type": "toggle",
     "options": [
-      { "name": "Dissimilarity", "value": "0" },
-      { "name": "Similarity", "value": "1" }
+      { "name": "Dissimilarity", "value": 0 },
+      { "name": "Similarity", "value": 1 }
     ]
   }
 ]

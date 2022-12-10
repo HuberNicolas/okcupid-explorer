@@ -10,8 +10,6 @@ class ScatterComponent extends Component {
         this.onSelect = this.onSelect.bind(this);
         this.backgroundColor = "dark"
         this.state = {
-
-            series: this.props.data,
             options: {
                 chart: {
                     height: 350,
@@ -139,7 +137,7 @@ class ScatterComponent extends Component {
                 <Card.Body>
                     <Chart
                         options={this.state.options}
-                        series={this.state.series}
+                        series={this.props.data}
                         type="scatter"
                     />
                 </Card.Body>

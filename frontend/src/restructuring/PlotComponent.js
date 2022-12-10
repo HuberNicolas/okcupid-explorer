@@ -16,22 +16,18 @@ class PlotComponent extends Component{
     constructor(props) {
         super(props);
 
-        const first = this.props.data.map(e => {if (e.Segment === 'first') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
-        const second = this.props.data.map(e => {if (e.Segment === 'second') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
-        const third = this.props.data.map(e => {if (e.Segment === 'third') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
-        const fourth = this.props.data.map(e => {if (e.Segment === 'fourth') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj})
         const scat = [{
             name: 'First Group',
-            data: first,
+            data: this.props.data.map(e => {if (e.Segment === 'first') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj}),
         },{
             name: 'Second Group',
-            data: second,
+            data: this.props.data.map(e => {if (e.Segment === 'second') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj}),
         },{
             name: 'Third Group',
-            data: third,
+            data: this.props.data.map(e => {if (e.Segment === 'third') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj}),
         },{
             name: 'Fourth Group',
-            data: fourth,
+            data: this.props.data.map(e => {if (e.Segment === 'fourth') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj}),
         }];
         this.state = {
             data: scat,
@@ -39,6 +35,29 @@ class PlotComponent extends Component{
             you: this.props.standardizedYou,
             scatterFilter: '',
             scatterProfile: ''
+        }
+    }
+
+
+    componentDidUpdate(prevProps, prevState, snapshot){
+        if (prevProps.data === this.props.data){
+            console.log("same")
+        } else {
+            const scat = [{
+                name: 'First Group',
+                data: this.props.data.map(e => {if (e.Segment === 'first') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj}),
+            },{
+                name: 'Second Group',
+                data: this.props.data.map(e => {if (e.Segment === 'second') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj}),
+            },{
+                name: 'Third Group',
+                data: this.props.data.map(e => {if (e.Segment === 'third') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj}),
+            },{
+                name: 'Fourth Group',
+                data: this.props.data.map(e => {if (e.Segment === 'fourth') return [e['PComp 1'], e['PComp 2'], e];}).filter(obj => {if (obj) return obj}),
+            }];
+            this.setState({data: scat})
+            console.log("change")
         }
     }
 

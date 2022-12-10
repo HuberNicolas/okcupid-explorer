@@ -18,7 +18,7 @@ function ContentManager() {
 
     const handleSubmit = (event, question) => {
 
-        if (preQuestionaire === false){ //if we want to recalculate every time the user changes his / her values we would have to change this here.
+        if (question.question !== "FILTER"){ //if we want to recalculate every time the user changes his / her values we would have to change this here.
             if (!(event.filter(e => {return e.field_value === undefined}).length > 0)){
                 let overall = {}
                 event.forEach(e => {
@@ -27,14 +27,12 @@ function ContentManager() {
                     overall[e.id] =e.field_value;
                 })
                 overall = {
-                    "threshold": overall['threshold'],
+                    "threshold": parseFloat(overall['threshold']),
                     "mode": overall['mode'],
                     "data": overall
                 }
                 delete overall.data.threshold;
                 delete overall.data.mode;
-                console.log(overall)
-
 
                 setYou(event.map(e => {return {id: e.id, value: e.field_value}}));
                 const config = {
@@ -44,8 +42,8 @@ function ContentManager() {
                 // append threshold + mode
                 axios.post('http://127.0.0.1:5000/api/post/users/nonstd', overall, config).then((e) => {
                     setData(e.data)
-                    console.log(e.data)
                     setQuestionaire(event.map(e => {return {id: e.id, value: e.field_value}}));
+                    console.log(e.data)
                 });
                 //  alle users in std. form
                 axios.post('http://127.0.0.1:5000/api/post/users/std', overall, config).then((e) => {
