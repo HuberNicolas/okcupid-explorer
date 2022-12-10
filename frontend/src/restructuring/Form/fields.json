@@ -306,5 +306,22 @@
       "laughing about it",
       "somewhat serious about it"
     ]
+  },
+  {
+    "id": "threshold",
+    "label": "What is the similarity threshold you would like?",
+    "type": "slide",
+    "options": [],
+    "min": 0,
+    "max": 1
+  },
+  {
+    "id": "mode",
+    "label": "Which algorithm would you like to choose?",
+    "type": "toggle",
+    "options": [
+      { "name": "Dissimilarity", "value": "0" },
+      { "name": "Similarity", "value": "1" }
+    ]
   }
 ]

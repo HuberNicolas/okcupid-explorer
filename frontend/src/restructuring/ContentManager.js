@@ -27,10 +27,13 @@ function ContentManager() {
                     overall[e.id] =e.field_value;
                 })
                 overall = {
-                    "threshold": 0.8,
-                    "mode": 1,
+                    "threshold": overall['threshold'],
+                    "mode": overall['mode'],
                     "data": overall
                 }
+                delete overall.data.threshold;
+                delete overall.data.mode;
+                console.log(overall)
 
 
                 setYou(event.map(e => {return {id: e.id, value: e.field_value}}));
