@@ -8,7 +8,7 @@ class ScatterComponent extends Component {
         this.onClick = this.onClick.bind(this);
         this.onZoom = this.onZoom.bind(this);
         this.onSelect = this.onSelect.bind(this);
-        this.backgroundColor = "danger"
+        this.backgroundColor = "dark"
         this.state = {
             options: {
                 chart: {
@@ -63,8 +63,7 @@ class ScatterComponent extends Component {
                         dataPointSelection: this.onClick,
                         selection: this.onSelect
                     },
-                    background: '#DC3545FF',
-                    foreColor: '#ffffff'
+                    background: 'transparent'
                 },
                 theme: {
                     mode: "dark"
@@ -136,7 +135,7 @@ class ScatterComponent extends Component {
     render() {
         return (
             <Card id="chart" bg={this.backgroundColor} style={{"color": "white", "padding": "1.5rem"}}>
-                <Card.Header>
+                <Card.Header className={"bg-danger"}>
                     Scatter plot mapping the similarities / dissimilarities to your entered data
                 </Card.Header>
                 <Card.Body>

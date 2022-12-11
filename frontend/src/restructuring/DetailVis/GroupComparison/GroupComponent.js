@@ -21,7 +21,7 @@ class GroupComponent extends Component{
         return (
             <div id="profile" style={{"color": "white"}}>
                 <Card bg={this.backgroundColor}>
-                    <Card.Header>
+                    <Card.Header className={"bg-danger"}>
                         <Profile className="profilePic"  />
                         <span style={{float: "right"}} onClick={e => this.props.frameSize({filerType: 'close'})}>X</span>
                     </Card.Header>

@@ -8,17 +8,17 @@ const LandingPage = ({setRenderItem}) => {
     return (
         <Fragment>
             <h1>
-                PROJECT AMOR
+                PROJECT EROS
             </h1>
             <body>
                 <p class='ex1'>
-                    Welcome to Project Amor!
+                    Welcome to Project Eros!
                 </p>
                 <p class='ex2'>
                     Have you ever wondered, how many people alike you there are? <br/>
                     It is time to find out!<br/>
                     <br/>
-                    With Project Amor you can browse and explore users of OkCupid<br/>
+                    With Project Eros you can browse and explore users of OkCupid<br/>
                     and select and filter according to your preferences. <br/>
                     We first ask you to fill out a questionnaire to get to know you.<br/>
                     After that you can interact with the visualization and filter for<br/>

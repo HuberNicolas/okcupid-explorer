@@ -14,7 +14,7 @@ const Toggle = (fieldInputs) => {
                         key={idx}
                         id={`radio-${idx}`}
                         type="radio"
-                        variant={idx % 2 ? 'outline-success' : 'outline-danger'}
+                        variant={idx % 2 ? 'info' : 'warning'}
                         name="radio"
                         checked={fieldInputs.field_value === radio.value}
                         value={radio.value}

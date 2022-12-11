@@ -165,8 +165,8 @@ class GeneralInformationAgeComponent extends Component {
 
         //segment // element // object entry
         return (
-            <Card id="chart" bg={this.backgroundColor} style={{"color": "white", "padding": "1.5rem"}}>
-                <Card.Header>
+            <Card id="chart" bg={this.backgroundColor} style={{"color": "white", "padding": "1.5rem", "marginTop": "1rem"}}>
+                <Card.Header className={"bg-danger"}>
                     Age distribution across the all the entries compared by men and women
                 </Card.Header>
                 <Card.Body>

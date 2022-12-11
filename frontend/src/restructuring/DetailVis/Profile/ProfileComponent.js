@@ -48,7 +48,7 @@ class ProfileComponent extends Component{
         return (
             <div id="profile" style={{"color": "white"}}>
                 <Card bg={this.backgroundColor}>
-                    <Card.Header>
+                    <Card.Header className={"bg-danger"}>
                         <Profile className="profilePic"  />
                         <span style={{float: "right"}} onClick={this.props.frameSize}>X</span>
                     </Card.Header>

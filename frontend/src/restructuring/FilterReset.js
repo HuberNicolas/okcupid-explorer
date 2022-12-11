@@ -22,8 +22,8 @@ class FilterResetComponent extends Component{
     render(){
         return (
 
-            <Card id="chart" bg={this.backgroundColor} style={{"color": "white", "padding": "1.5rem"}}>
-                <Card.Header>
+            <Card id="chart" bg={this.backgroundColor} style={{"color": "white", "padding": "1.5rem", "marginTop": "1rem"}}>
+                <Card.Header className={"bg-danger"}>
                     Reset your chart filters
                 </Card.Header>
                 <Card.Body>
