@@ -16,7 +16,7 @@ class ScatterComponent extends Component {
                     type: 'scatter',
                     zoom: {
                         enabled: true,
-                        type: 'xy',
+                        type: 'y',
                         zoomedArea: {
                             fill: {
                                 color: '#90CAF9',
