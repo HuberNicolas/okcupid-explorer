@@ -7,7 +7,26 @@ class GeneralInformationAgeComponent extends Component {
     constructor(props) {
         super(props);
         this.backgroundColor = "dark"
+        this.superCrazyFilter = this.superCrazyFilter.bind(this)
     }
+
+    async superCrazyFilter(event, chartContext, config, key) {
+        const {data} = chartContext
+        const {dataPointIndex} = config
+        const {twoDSeriesX} = data
+        const f = twoDSeriesX[dataPointIndex]
+        this.props.superCrazyFilter(f, 'age');
+        let sex = ''
+        if (config.seriesIndex === 0) {
+            //m
+            sex = 'm'
+        } else {
+            sex = 'f'
+        }
+        await new Promise(r => setTimeout(r, 1000));
+        this.props.superCrazyFilter(sex, 'sex');
+    }
+
 
     render() {
         this.male = this.props.data.filter(e => e.sex === 'm')
@@ -82,6 +101,9 @@ class GeneralInformationAgeComponent extends Component {
                     height: 350,
                     stacked: true,
                     background: 'transparent',
+                    events: {
+                        dataPointSelection: this.superCrazyFilter
+                    }
                 },
                 colors: ['#008FFB', '#FF4560'],
                 plotOptions: {
