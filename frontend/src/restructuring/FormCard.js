@@ -54,7 +54,8 @@ function FormCard({title, filter, question}) {
     return (
         <FormContext.Provider value={{ handleChange }}>
             {
-                <Card bg={backgroundColor}>
+                <Card bg={backgroundColor} style={{
+                    padding: "1.5rem"}}>
                     <Card.Header style={cardHeaderStyle} className={"bg-danger"}>{title}</Card.Header>
                     <Card.Body value={{handleChange}} style={{"margin": "auto"}}>
                         {elements.map((e) => {return (<Element key={e.id} field={e} />)})}

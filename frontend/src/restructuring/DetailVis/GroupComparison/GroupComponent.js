@@ -20,7 +20,8 @@ class GroupComponent extends Component{
         //segment // element // object entry
         return (
             <div id="profile" style={{"color": "white"}}>
-                <Card bg={this.backgroundColor}>
+                <Card bg={this.backgroundColor} style={{
+                    padding: "1.5rem"}}>
                     <Card.Header className={"bg-danger"}>
                         <Profile className="profilePic"  />
                         <span style={{float: "right"}} onClick={e => this.props.frameSize({filerType: 'close'})}>X</span>

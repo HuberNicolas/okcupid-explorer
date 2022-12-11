@@ -65,9 +65,9 @@
     "label": "How do you follow this diet?",
     "type": "dropdown",
     "options": [
+      "no specified diet modifier",
       "strictly",
-      "mostly",
-      "no specified diet modifier"
+      "mostly"
     ]
   },
   {
@@ -88,8 +88,8 @@
     "label": "Do you smoke?",
     "type": "dropdown",
     "options": [
-      "no",
       "when drinking",
+      "no",
       "trying to quit",
       "sometimes",
       "yes"
@@ -100,8 +100,8 @@
     "label": "How do you specify your drug consumption",
     "type": "dropdown",
     "options": [
-      "never",
       "sometimes",
+      "never",
       "often"
     ]
   },
@@ -129,10 +129,10 @@
     "label": "How strong do you believe in astrology?",
     "type": "dropdown",
     "options": [
+      "and it matters a lot",
       "no specified sign modifier",
       "and it's fun to think about",
-      "but it does not matter",
-      "and it matters a lot"
+      "but it does not matter"
     ]
   },
   {
@@ -255,9 +255,9 @@
     "label": "Do you have kids?",
     "type": "dropdown",
     "options": [
+      "has kids",
       "doesn't have kids",
-      "has a kid",
-      "has kids"
+      "has a kid"
     ]
   },
   {
@@ -301,8 +301,8 @@
     "label": "How strong is your believe into religion?",
     "type": "dropdown",
     "options": [
-      "not too serious about it",
       "very serious about it",
+      "not too serious about it",
       "laughing about it",
       "somewhat serious about it"
     ]
