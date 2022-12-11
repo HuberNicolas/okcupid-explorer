@@ -8,7 +8,7 @@ class ScatterComponent extends Component {
         this.onClick = this.onClick.bind(this);
         this.onZoom = this.onZoom.bind(this);
         this.onSelect = this.onSelect.bind(this);
-        this.backgroundColor = "dark"
+        this.backgroundColor = "danger"
         this.state = {
             options: {
                 chart: {
@@ -63,11 +63,13 @@ class ScatterComponent extends Component {
                         dataPointSelection: this.onClick,
                         selection: this.onSelect
                     },
-                    background: 'transparent'
+                    background: '#DC3545FF',
+                    foreColor: '#ffffff'
                 },
                 theme: {
                     mode: "dark"
                 },
+
                 tooltip: {
                     custom: function({series, seriesIndex, dataPointIndex, w, ctx}) {
                         const {data}=ctx;
