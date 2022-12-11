@@ -97,9 +97,12 @@ class GroupComponent extends Component{
 
                                         const cumulativeSum = (sum => value => sum += value)(0);
                                         const f1_cum = f1.map(cumulativeSum)
-                                        const f2_cum = f2.map(cumulativeSum)
-                                        const f3_cum = f3.map(cumulativeSum)
-                                        const f4_cum = f4.map(cumulativeSum)
+                                        const cumulativeSum2 = (sum => value => sum += value)(0);
+                                        const f2_cum = f2.map(cumulativeSum2)
+                                        const cumulativeSum3 = (sum => value => sum += value)(0);
+                                        const f3_cum = f3.map(cumulativeSum3)
+                                        const cumulativeSum4 = (sum => value => sum += value)(0);
+                                        const f4_cum = f4.map(cumulativeSum4)
                                         f1 = f1.map((e,i) => e/f1_cum[f1_cum.length-1]*100)
                                         f2 = f2.map((e,i) => e/f2_cum[f2_cum.length-1]*100)
                                         f3 = f3.map((e,i) => e/f3_cum[f3_cum.length-1]*100)
