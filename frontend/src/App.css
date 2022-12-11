@@ -1,13 +1,33 @@
 html{
-  background-color: black;
+  background-color: #dae6ff;
   color: white;
 }
 
+h1 {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #000000;
+  color: pink;
+}
+
+body {
+  background-color: #dae6ff !important;
+}
 
 .App {
   text-align: center;
-  background-color: black;
+  background-color: #dae6ff;
   color: white;
+}
+
+p.ex1 {
+  padding-top: 5%;
+  font-family: "Arial Nova";
+}
+
+p.ex2{
+  padding-top: 5%;
+  margin-bottom: 5%;
+  font-family: "Arial Nova";
 }
 
 .App-logo {
