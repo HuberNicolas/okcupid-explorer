@@ -5,6 +5,7 @@ import {Col, Container, Row} from "react-bootstrap";
 //import Service from '../Service'
 import axios from "axios"
 import PlotComponent from "./PlotComponent";
+import FilterResetComponent from "./FilterReset";
 
 function ContentManager() {
 
@@ -65,9 +66,12 @@ function ContentManager() {
 
 
     const superCrazyFilter = (filterForData, columnToFilter) => {
-        setData(data.filter(e => e[columnToFilter] === filterForData))
+        setData(data.filter(e => e[columnToFilter] == filterForData))
     }
 
+    const resetSuperCrazyFilter = () => {
+        setData(dataPlaceholder)
+    }
 
     return (
         <InitialContext.Provider value={{ handleSubmit }}>
@@ -79,7 +83,11 @@ function ContentManager() {
                     </Col>
                     <Col xs lg="2">
                         {preQuestionaire &&
-                            <FormCard title={"Preselection - Select maximum 9"} value={{handleSubmit}} question={"FILTER"}/>
+                            <div>
+                                <FormCard title={"Preselection - Select maximum 9"} value={{handleSubmit}} question={"FILTER"}/>
+                                <FilterResetComponent superCrazyFilter={resetSuperCrazyFilter}/>
+                            </div>
+
                         }
                     </Col>
                     <Col xs lg="8">

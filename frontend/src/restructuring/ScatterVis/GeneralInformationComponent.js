@@ -7,8 +7,20 @@ class GeneralInformationComponent extends Component {
     constructor(props) {
         super(props);
         this.backgroundColor = "dark"
+        this.superCrazyFilter = this.superCrazyFilter.bind(this)
+    }
 
+    superCrazyFilter(event, chartContext, config, key){
+        const {data} = chartContext
+        const {dataPointIndex} = config
+        const {w} = config;
+        const {globals} = w
+        const {twoDSeriesX} = data
+        const f = twoDSeriesX[dataPointIndex]
+        this.props.superCrazyFilter(f, globals.chartID);
+    }
 
+    render() {
         this.first = this.props.data.map(e => e.age)
 
         this.first = this.first.reduce((acc, curr) => {
@@ -31,15 +43,16 @@ class GeneralInformationComponent extends Component {
             name: 'Number of people with this age',
             data: this.skeet,
         }];
-    }
-
-    render() {
         const chartOptions = {
             options: {
                 chart: {
+                    id: 'age',
                     height: 350,
                     type: 'treemap',
                     background: 'transparent',
+                    events: {
+                        dataPointSelection: this.superCrazyFilter
+                    }
                 },
                 theme: {
                     mode: "dark"

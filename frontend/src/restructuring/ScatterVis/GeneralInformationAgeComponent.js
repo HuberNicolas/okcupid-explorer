@@ -7,7 +7,9 @@ class GeneralInformationAgeComponent extends Component {
     constructor(props) {
         super(props);
         this.backgroundColor = "dark"
+    }
 
+    render() {
         this.male = this.props.data.filter(e => e.sex === 'm')
         this.female = this.props.data.filter(e => e.sex === 'f')
 
@@ -72,9 +74,7 @@ class GeneralInformationAgeComponent extends Component {
             name: '% distribution of females with this age',
             data: this.yeet,
         }];
-    }
 
-    render() {
         const chartOptions = {
             options: {
                 chart: {
@@ -121,7 +121,7 @@ class GeneralInformationAgeComponent extends Component {
                     },
                     y: {
                         formatter: function (val) {
-                            return Math.abs(val) + "%"
+                            return Math.abs(val).toFixed(2) + "%"
                         }
                     }
                 },

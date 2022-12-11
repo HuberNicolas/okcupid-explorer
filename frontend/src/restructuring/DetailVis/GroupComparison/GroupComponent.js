@@ -103,10 +103,10 @@ class GroupComponent extends Component{
                                         const f3_cum = f3.map(cumulativeSum3)
                                         const cumulativeSum4 = (sum => value => sum += value)(0);
                                         const f4_cum = f4.map(cumulativeSum4)
-                                        f1 = f1.map((e,i) => e/f1_cum[f1_cum.length-1]*100)
-                                        f2 = f2.map((e,i) => e/f2_cum[f2_cum.length-1]*100)
-                                        f3 = f3.map((e,i) => e/f3_cum[f3_cum.length-1]*100)
-                                        f4 = f4.map((e,i) => e/f4_cum[f4_cum.length-1]*100)
+                                        f1 = f1.map((e,i) => (e/f1_cum[f1_cum.length-1]*100).toFixed(2))
+                                        f2 = f2.map((e,i) => (e/f2_cum[f2_cum.length-1]*100).toFixed(2))
+                                        f3 = f3.map((e,i) => (e/f3_cum[f3_cum.length-1]*100).toFixed(2))
+                                        f4 = f4.map((e,i) => (e/f4_cum[f4_cum.length-1]*100).toFixed(2))
                                         const scat = [{
                                             name: 'First Group',
                                             data: f1,
@@ -124,7 +124,7 @@ class GroupComponent extends Component{
                                             <div key={filteredItem}>
                                                 <div><h3>In-depth comparison on your selected group: {filteredItem}</h3></div>
                                                 <ComparisonComponent data={scat} type={"bar"} labels={category.options}
-                                                                     yaxis={'Relative Value Distribution'}/>
+                                                                     yaxis={'Relative Value Distribution in %'}/>
                                             </div>
                                         )
                                     })
