@@ -5,6 +5,8 @@ import ProfileComponent from "./DetailVis/Profile/ProfileComponent";
 import GroupComponent from "./DetailVis/GroupComparison/GroupComponent";
 import GeneralInformationComponent from "./ScatterVis/GeneralInformationComponent";
 import axios from "axios";
+import GeneralInformationFilterComponent from "./ScatterVis/GeneralInformationFilterComponent";
+import GeneralInformationAgeComponent from "./ScatterVis/GeneralInformationAgeComponent";
 
 /**
  * how was a vis prooblem reframed as an ml problem:
@@ -93,6 +95,8 @@ class PlotComponent extends Component{
                     {/*scatter plot with questionaire filter -> supply data from here, filter in function */}
                         <ScatterComponent data={this.state.data} filter={this.filter.bind(this)} frameSize={this.frameResize.bind(this)} />
                         <GeneralInformationComponent filter={this.props.filter} you={this.props.you} data={this.props.data} />
+                        <GeneralInformationFilterComponent filter={this.props.filter} you={this.props.you} data={this.props.data} />
+                        <GeneralInformationAgeComponent filter={this.props.filter} you={this.props.you} data={this.props.data} />
                 </Col>
                 <Col xs lg={this.state.frameSize.detail}>
                     {this.state.scatterFilter &&

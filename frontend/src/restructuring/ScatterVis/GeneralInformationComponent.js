@@ -7,15 +7,9 @@ class GeneralInformationComponent extends Component {
     constructor(props) {
         super(props);
         this.backgroundColor = "dark"
-        this.first = this.props.data.filter(e => e.Segment === "first")
-        this.second = this.props.data.filter(e => e.Segment === "second")
-        this.third = this.props.data.filter(e => e.Segment === "third")
-        this.fourth = this.props.data.filter(e => e.Segment === "fourth")
 
-        this.first = this.first.map(e => e.age)
-        this.second = this.second.age
-        this.third = this.third.age
-        this.fourth = this.fourth.age
+
+        this.first = this.props.data.map(e => e.age)
 
         this.first = this.first.reduce((acc, curr) => {
             acc[curr] ? acc[curr]++ : (acc[curr] = 1);
@@ -24,21 +18,21 @@ class GeneralInformationComponent extends Component {
 
         this.skeet = Object.entries(this.first).map(e => {
             if (e[0] == this.props.you[0].value){
-                console.log("here")
                 return {x: e[0], y:e[1],
                     strokeColor: '#775DD0',
                     fillColor: '#775DD0',
                 }
             }
             else {
-                console.log("not here")
                 return {x: e[0], y:e[1]}
             }
         })
         this.scat = [{
-            name: 'First Group',
+            name: 'Number of people with this age',
             data: this.skeet,
         }];
+
+        console.log(this.scat)
     }
 
     render() {
@@ -46,11 +40,15 @@ class GeneralInformationComponent extends Component {
             options: {
                 chart: {
                     height: 350,
-                    type: 'bar',
+                    type: 'treemap',
                     background: 'transparent',
                 },
                 theme: {
                     mode: "dark"
+                },
+                zoom: {
+                    enabled: true,
+                    type: 'xy',
                 },
             }
         }

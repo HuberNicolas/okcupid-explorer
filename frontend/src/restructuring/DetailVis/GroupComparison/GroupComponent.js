@@ -3,7 +3,6 @@ import {Card, Tab, Tabs,} from "react-bootstrap";
 import { ReactComponent as Profile } from './groupProfile.svg'
 import ComparisonComponent from "./GroupComparisonComponent";
 import categories from "../../Form/fields.json"
-import AbsoluteComponent from "./AbsoluteComponent";
 
 class GroupComponent extends Component{
 
