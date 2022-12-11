@@ -64,8 +64,8 @@ function ContentManager() {
     }
 
 
-    const superCrazyFilter = (filterForData) => {
-        console.log(filterForData)
+    const superCrazyFilter = (filterForData, columnToFilter) => {
+        setData(data.filter(e => e[columnToFilter] === filterForData))
     }
 
 

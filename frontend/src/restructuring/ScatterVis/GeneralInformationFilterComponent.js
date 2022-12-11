@@ -20,8 +20,7 @@ class GeneralInformationFilterComponent extends Component {
         const {globals} = w
         const {twoDSeriesX} = data
         const f = twoDSeriesX[dataPointIndex]
-        console.log(globals.chartID);
-        this.props.superCrazyFilter(f);
+        this.props.superCrazyFilter(f, globals.chartID);
     }
 
 

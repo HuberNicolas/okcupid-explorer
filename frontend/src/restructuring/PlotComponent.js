@@ -88,9 +88,10 @@ class PlotComponent extends Component{
         }
     }
 
-    superCrazyFilter(f){
-        console.log(f);
-        this.props.superCrazyFilter(f);
+    superCrazyFilter(filter, chardID){
+        console.log(filter);
+        console.log(chardID);
+        this.props.superCrazyFilter(filter, chardID);
     }
 
     render(){
