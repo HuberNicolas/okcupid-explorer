@@ -1,35 +1,86 @@
 [
   {
-    "id": "bodyType",
+    "id": "age",
+    "label": "Enter your age",
+    "type": "input",
+    "options": []
+  },
+  {
+    "id": "sex",
+    "label": "What's your gender?",
+    "type": "dropdown",
+    "options": [
+      "m",
+      "f"
+    ]
+  },
+  {
+    "id": "height",
+    "label": "How tall are you?",
+    "type": "input",
+    "options": []
+  },
+  {
+    "id": "orientation",
+    "label": "What's your orientation?",
+    "type": "dropdown",
+    "options": [
+      "bisexual",
+      "gay",
+      "straight"
+    ]
+  },
+  {
+    "id": "body_type",
     "label": "Body Type",
     "type": "dropdown",
     "options": [
-      "fat",
+      "a little extra",
       "average",
-      "fit"
+      "thin",
+      "athletic",
+      "fit",
+      "skinny",
+      "full figured",
+      "used up",
+      "overweight",
+      "rather not say"
     ]
   },
   {
-    "id": "zodiac",
-    "label": "Zodiac Sign",
+    "id": "diet",
+    "label": "What kind of diet do you follow?",
     "type": "dropdown",
     "options": [
-      "harry potter",
-      "ariel",
-      "arrow man",
-      "balance sheet",
-      "some other animal",
-      "leo"
+      "anything",
+      "vegetarian",
+      "vegan",
+      "halal",
+      "kosher",
+      "other"
     ]
   },
   {
-    "id": "drugs",
-    "label": "Drug consumption",
+    "id": "diet_modifier",
+    "label": "How do you follow this diet?",
     "type": "dropdown",
     "options": [
-      "yay",
-      "nay",
-      "sometimes"
+      "no specified diet modifier",
+      "strictly",
+      "mostly"
+    ]
+  },
+  {
+    "id": "drinks",
+    "label": "What is your drinking behaviour?",
+    "type": "dropdown",
+    "options": [
+      "socially",
+      "often",
+      "not at all",
+      "rarely",
+      "very often",
+      "desperately"
     ]
   },
   {
@@ -37,49 +88,240 @@
     "label": "Do you smoke?",
     "type": "dropdown",
     "options": [
-      "every single day mate",
-      "occasionally",
-      "heeell naaa"
+      "when drinking",
+      "no",
+      "trying to quit",
+      "sometimes",
+      "yes"
     ]
   },
   {
-    "id": "education",
+    "id": "drugs",
+    "label": "How do you specify your drug consumption",
+    "type": "dropdown",
+    "options": [
+      "sometimes",
+      "never",
+      "often"
+    ]
+  },
+  {
+    "id": "sign",
+    "label": "Zodiac Sign",
+    "type": "dropdown",
+    "options": [
+      "aries",
+      "taurus",
+      "gemini",
+      "cancer",
+      "leo",
+      "virgo",
+      "libra",
+      "scorpio,",
+      "sagittarius",
+      "capricorn",
+      "aquarius",
+      "pisces"
+    ]
+  },
+  {
+    "id": "sign_modifier",
+    "label": "How strong do you believe in astrology?",
+    "type": "dropdown",
+    "options": [
+      "and it matters a lot",
+      "no specified sign modifier",
+      "and it's fun to think about",
+      "but it does not matter"
+    ]
+  },
+  {
+    "id": "education_institution",
     "label": "What is your education?",
     "type": "dropdown",
     "options": [
-      "college / uni",
-      "phd",
-      "msc"
+      "college/university",
+      "space camp",
+      "masters program",
+      "two-year college",
+      "high school",
+      "ph.d program",
+      "law school",
+      "college",
+      "med school"
     ]
   },
   {
-    "id": "current_edu",
-    "label": "What is your education?",
+    "id": "education_status",
+    "label": "In your education what happened?",
     "type": "dropdown",
     "options": [
       "dropped out of",
-      "working on",
-      "graduated from"
+      "graduated from",
+      "working on"
     ]
   },
   {
-    "id": "languages",
-    "label": "What languages do you speak?",
-    "type": "checkbox",
+    "id": "job",
+    "label": "In what field is your profession?",
+    "type": "dropdown",
     "options": [
+      "hospitality / travel",
+      "artistic / musical / writer",
+      "sales / marketing / biz dev",
+      "entertainment / media",
+      "medicine / health",
+      "other",
+      "science / tech / engineering",
+      "construction / craftsmanship",
+      "retired",
+      "student",
+      "education / academia",
+      "transportation",
+      "unemployed",
+      "computer / hardware / software",
+      "executive / management",
+      "military",
+"political / government",
+      "banking / financial / real estate",
+      "clerical / administrative",
+      "law / legal services",
+      "rather not say"
+    ]
+  },
+  {
+    "id": "income",
+    "label": "Where is your salary?",
+    "type": "dropdown",
+    "options": [
+      "20000",
+      "30000",
+      "40000",
+      "50000",
+      "60000",
+      "70000",
+      "80000",
+      "100000",
+      "150000",
+      "250000",
+      "500000",
+      "1000000"
+    ]
+  },
+  {
+    "id": "speaks",
+    "label": "What language do you speak?",
+    "type": "multiselect",
+    "options": [
+      "english, but in canadian",
       "english",
       "german",
       "italian",
       "spanish",
       "c++",
-      "arab",
+      "chinese",
+      "japanese",
+      "french"
+    ]
+  },
+  {
+    "id": "ethnicities",
+    "label": "Whats your ethnicity?",
+    "type": "multiselect",
+    "options": [
+      "pacific islander",
+      "asian",
+      "native american",
+      "middle eastern",
+      "hispanic / latin",
+      "white",
+      "black",
+      "indian",
       "other"
     ]
   },
   {
-    "id": "age",
-    "label": "Enter your age",
-    "type": "input",
-    "options": []
+    "id": "offspring_future",
+    "label": "What is your stance on kids?",
+    "type": "dropdown",
+    "options": [
+      "doesn't want",
+      "might want",
+      "wants"
+    ]
+  },
+  {
+    "id": "offspring_status",
+    "label": "Do you have kids?",
+    "type": "dropdown",
+    "options": [
+      "has kids",
+      "doesn't have kids",
+      "has a kid"
+    ]
+  },
+  {
+    "id": "pets_cats",
+    "label": "What's your opinion on cats?",
+    "type": "dropdown",
+    "options": [
+      "likes cats",
+      "has cats",
+      "does not like cats"
+    ]
+  },
+  {
+    "id": "pets_dogs",
+    "label": "What's your opinion on dogs?",
+    "type": "dropdown",
+    "options": [
+      "likes dogs",
+      "has dogs",
+      "does not like dogs"
+    ]
+  },
+  {
+    "id": "religion_type",
+    "label": "What's your religion?",
+    "type": "dropdown",
+    "options": [
+      "agnosticism",
+      "catholicism",
+      "christianity",
+      "atheism",
+      "buddhism",
+      "hinduism",
+      "judaism",
+      "islam",
+      "other"
+    ]
+  },
+  {
+    "id": "religion_modifier",
+    "label": "How strong is your believe into religion?",
+    "type": "dropdown",
+    "options": [
+      "very serious about it",
+      "not too serious about it",
+      "laughing about it",
+      "somewhat serious about it"
+    ]
+  },
+  {
+    "id": "threshold",
+    "label": "What is the similarity threshold you would like?",
+    "type": "slide",
+    "options": [],
+    "min": 0,
+    "max": 1
+  },
+  {
+    "id": "mode",
+    "label": "Which algorithm would you like to choose?",
+    "type": "toggle",
+    "options": [
+      { "name": "Dissimilarity", "value": 0 },
+      { "name": "Similarity", "value": 1 }
+    ]
   }
 ]

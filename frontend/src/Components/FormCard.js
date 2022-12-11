@@ -6,7 +6,7 @@ import Element from "./Form/Element";
 import { FormContext } from './Form/FormContext';
 import {InitialContext} from "./Form/InitialContext";
 
-function FormCard({title}) {
+function FormCard({title, filter, question}) {
     const backgroundColor = "dark"
 
 
@@ -19,7 +19,7 @@ function FormCard({title}) {
                 setElements(preSelectionJSON)
             } else {
                 setElements(formJSON)
-            }
+             }
         }
     },[])
 
@@ -33,12 +33,15 @@ function FormCard({title}) {
                         field['field_value'] = event.target.checked;
                         break;
 
+                    case 'multiselect':
+                        let selected = field.options.filter((option, enumerator) => {return event.target[enumerator].selected})
+                        field['field_value'] = selected;
+                        break;
+
                     default:
                         field['field_value'] = event.target.value;
                         break;
                 }
-
-
             }
             setElements(newElements)
         });
@@ -51,11 +54,12 @@ function FormCard({title}) {
     return (
         <FormContext.Provider value={{ handleChange }}>
             {
-                <Card bg={backgroundColor}>
-                    <Card.Header style={cardHeaderStyle}>{title}</Card.Header>
+                <Card bg={backgroundColor} style={{
+                    padding: "1.5rem"}}>
+                    <Card.Header style={cardHeaderStyle} className={"bg-danger"}>{title}</Card.Header>
                     <Card.Body value={{handleChange}} style={{"margin": "auto"}}>
                         {elements.map((e) => {return (<Element key={e.id} field={e} />)})}
-                        <Button onClick={event => handleSubmit(elements)}>Submit something</Button>
+                        <Button class='btn btn-dark' onClick={event => handleSubmit(elements, {question})}>Submit</Button>
                     </Card.Body>
                 </Card>
             }

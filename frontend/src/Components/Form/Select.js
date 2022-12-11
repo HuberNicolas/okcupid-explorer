@@ -10,6 +10,7 @@ const Select = (fieldInputs) => {
                         type={"checkbox"}
                         id={`${fieldInputs.field_id}`}
                         label={`${fieldInputs.field_label}`}
+                        name={`${fieldInputs.field_name}`}
                         onChange={event => handleChange(fieldInputs.field_id, event)}
                     />
 

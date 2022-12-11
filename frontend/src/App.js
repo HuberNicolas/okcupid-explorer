@@ -1,7 +1,7 @@
 import './App.css';
 //import ContentManager from "./Components/ContentManager";
-import ContentManager from "./restructuring/ContentManager";
-import LandingPage from "./restructuring/LandingPage";
+import ContentManager from "./Components/ContentManager";
+import LandingPage from "./Components/LandingPage";
 import {useState} from "react";
 
 function App() {
