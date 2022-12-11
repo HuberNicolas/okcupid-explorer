@@ -1,18 +1,19 @@
 import {React, useState} from "react";
 import FormCard from "./FormCard";
 import {InitialContext} from "./Form/InitialContext";
-import {Col, Container, Row} from "react-bootstrap";
+import {Button, Col, Container, Row} from "react-bootstrap";
 //import Service from '../Service'
 import axios from "axios"
 import PlotComponent from "./PlotComponent";
 
-function ContentManager() {
+function ContentManager({setRenderItem}) {
 
     const [preSelection, setPreSelection] = useState(false);
     const [you, setYou] = useState(false);
     const [preQuestionaire, setQuestionaire] = useState(false);
     const [data, setData] = useState([]);
     const [filter, setFilter] = useState([]);
+
 
     const handleSubmit = (event, question) => {
 
