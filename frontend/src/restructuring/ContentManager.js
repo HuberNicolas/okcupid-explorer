@@ -12,6 +12,7 @@ function ContentManager() {
     const [you, setYou] = useState(false);
     const [preQuestionaire, setQuestionaire] = useState(false);
     const [data, setData] = useState([]);
+    const [dataPlaceholder, setDataPlaceholder] = useState([]);
     const [standardDeviationData, setStandardDeviationData] = useState([]);
     const [youData, setYouData] = useState([]);
     const [filter, setFilter] = useState([]);
@@ -42,18 +43,16 @@ function ContentManager() {
                 // append threshold + mode
                 axios.post('http://127.0.0.1:5000/api/post/users/nonstd', overall, config).then((e) => {
                     setData(e.data)
+                    setDataPlaceholder(e.data)
                     setQuestionaire(event.map(e => {return {id: e.id, value: e.field_value}}));
-                    console.log(e.data)
                 });
                 //  alle users in std. form
                 axios.post('http://127.0.0.1:5000/api/post/users/std', overall, config).then((e) => {
                     setStandardDeviationData(e.data)
-                    console.log(e.data)
                 });
                 // aktueller user in std form
                 axios.post('http://127.0.0.1:5000/api/post/user/std', overall, config).then((e) => {
                     setYouData(e.data)
-                    console.log(e.data)
                 });
             }
         } else if (question.question === "FILTER"){
@@ -65,6 +64,9 @@ function ContentManager() {
     }
 
 
+    const superCrazyFilter = (filterForData) => {
+        console.log(filterForData)
+    }
 
 
     return (
@@ -82,7 +84,7 @@ function ContentManager() {
                     </Col>
                     <Col xs lg="8">
                     {preSelection &&
-                        <PlotComponent filter={filter} questionary={preQuestionaire} you={you} data={data} standardDeviationData={standardDeviationData} standardizedYou={youData} />
+                        <PlotComponent filter={filter} questionary={preQuestionaire} you={you} data={data} standardDeviationData={standardDeviationData} standardizedYou={youData} superCrazyFilter={superCrazyFilter} />
                     }</Col>
                 </Row>
             </Container>

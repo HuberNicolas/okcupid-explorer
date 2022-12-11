@@ -31,8 +31,6 @@ class GeneralInformationComponent extends Component {
             name: 'Number of people with this age',
             data: this.skeet,
         }];
-
-        console.log(this.scat)
     }
 
     render() {

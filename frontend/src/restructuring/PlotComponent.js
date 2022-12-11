@@ -88,15 +88,20 @@ class PlotComponent extends Component{
         }
     }
 
+    superCrazyFilter(f){
+        console.log(f);
+        this.props.superCrazyFilter(f);
+    }
+
     render(){
         return (
             <Row>
                 <Col xs lg={this.state.frameSize.scatter}>
                     {/*scatter plot with questionaire filter -> supply data from here, filter in function */}
                         <ScatterComponent data={this.state.data} filter={this.filter.bind(this)} frameSize={this.frameResize.bind(this)} />
-                        <GeneralInformationComponent filter={this.props.filter} you={this.props.you} data={this.props.data} />
-                        <GeneralInformationAgeComponent filter={this.props.filter} you={this.props.you} data={this.props.data} />
-                        <GeneralInformationFilterComponent filter={this.props.filter} you={this.props.you} data={this.props.data} />
+                        <GeneralInformationComponent filter={this.props.filter} you={this.props.you} data={this.props.data} superCrazyFilter={this.superCrazyFilter.bind(this)}/>
+                        <GeneralInformationAgeComponent filter={this.props.filter} you={this.props.you} data={this.props.data} superCrazyFilter={this.superCrazyFilter.bind(this)} />
+                        <GeneralInformationFilterComponent filter={this.props.filter} you={this.props.you} data={this.props.data} superCrazyFilter={this.superCrazyFilter.bind(this)} />
                 </Col>
                 <Col xs lg={this.state.frameSize.detail}>
                     {this.state.scatterFilter &&

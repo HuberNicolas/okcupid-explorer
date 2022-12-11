@@ -8,7 +8,22 @@ class GeneralInformationFilterComponent extends Component {
         super(props);
         this.backgroundColor = "dark"
         this.data = {}
+        this.chartOptions = {}
+        this.superCrazyFilter = this.superCrazyFilter.bind(this)
     }
+
+
+    superCrazyFilter(event, chartContext, config, key){
+        const {data} = chartContext
+        const {dataPointIndex} = config
+        const {w} = config;
+        const {globals} = w
+        const {twoDSeriesX} = data
+        const f = twoDSeriesX[dataPointIndex]
+        console.log(globals.chartID);
+        this.props.superCrazyFilter(f);
+    }
+
 
     render() {
         this.props.filter.forEach(f => this.data[f] = this.props.data.map(e => e[f]))
@@ -21,40 +36,43 @@ class GeneralInformationFilterComponent extends Component {
                 acc[curr] ? acc[curr]++ : (acc[curr] = 1);
                 return acc;
             }, {});
-            
+
             this.skeet = Object.entries(this.data[element[0]]).map(e => {
-                if (e[0] == this.props.you.filter(x => x.id === element[0])[0].value){
-                    return {x: e[0], y:e[1],
+                if (e[0] == this.props.you.filter(x => x.id === element[0])[0].value) {
+                    return {
+                        x: e[0], y: e[1],
                         strokeColor: '#775DD0',
                         fillColor: '#775DD0',
                     }
-                }
-                else {
-                    return {x: e[0], y:e[1]}
+                } else {
+                    return {x: e[0], y: e[1]}
                 }
             })
             this.scat[element[0]] = [{
                 name: 'Distribution of ' + element[0] + 'across all the people',
                 data: this.skeet,
             }];
-        })
 
-        const chartOptions = {
-            options: {
-                chart: {
-                    height: 350,
-                    type: 'treemap',
-                    background: 'transparent',
-                },
-                theme: {
-                    mode: "dark"
-                },
-                zoom: {
-                    enabled: true,
-                    type: 'xy',
-                },
+            this.chartOptions[element[0]] = {
+                options: {
+                    chart: {
+                        id: element[0],
+                        height: 350,
+                        background: 'transparent',
+                        events: {
+                            dataPointSelection: this.superCrazyFilter
+                        }
+                    },
+                    theme: {
+                        mode: "dark"
+                    },
+                    zoom: {
+                        enabled: true,
+                        type: 'xy',
+                    },
+                }
             }
-        }
+        })
 
         //segment // element // object entry
         return (
@@ -67,9 +85,11 @@ class GeneralInformationFilterComponent extends Component {
                            </Card.Header>
                            <Card.Body>
                             <Chart
-                                options={chartOptions.options}
+                                options={this.chartOptions[entry[0]].options}
+                                key={entry[0]}
                                 series={entry[1]}
                                 type={"bar"}
+                                id={"mio charto"}
                             />
                            </Card.Body>
                        </Card>
