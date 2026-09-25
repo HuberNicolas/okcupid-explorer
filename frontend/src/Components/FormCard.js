@@ -1,0 +1,69 @@
+import {Card, Button} from 'react-bootstrap'
+import {useState, useEffect, useContext} from "react";
+import formJSON from './Form/fields.json';
+import preSelectionJSON from './Form/preselection.json';
+import Element from "./Form/Element";
+import { FormContext } from './Form/FormContext';
+import {InitialContext} from "./Form/InitialContext";
+
+function FormCard({title, filter, question}) {
+    const backgroundColor = "dark"
+
+
+    const [elements, setElements] = useState([]);
+    const { handleSubmit } = useContext(InitialContext)
+
+    useEffect(()=>{
+        if (title !== undefined){
+            if (title.includes("Preselection")){
+                setElements(preSelectionJSON)
+            } else {
+                setElements(formJSON)
+             }
+        }
+    },[])
+
+    const handleChange = (f_id, event) => {
+        const newElements =  [...elements]
+        newElements.forEach(field => {
+            const { type, id } = field;
+            if (f_id === id) {
+                switch (type) {
+                    case 'checkbox':
+                        field['field_value'] = event.target.checked;
+                        break;
+
+                    case 'multiselect':
+                        let selected = field.options.filter((option, enumerator) => {return event.target[enumerator].selected})
+                        field['field_value'] = selected;
+                        break;
+
+                    default:
+                        field['field_value'] = event.target.value;
+                        break;
+                }
+            }
+            setElements(newElements)
+        });
+    }
+
+    const cardHeaderStyle = {
+        color: "white"
+    }
+
+    return (
+        <FormContext.Provider value={{ handleChange }}>
+            {
+                <Card bg={backgroundColor} style={{
+                    padding: "1.5rem"}}>
+                    <Card.Header style={cardHeaderStyle} className={"bg-danger"}>{title}</Card.Header>
+                    <Card.Body value={{handleChange}} style={{"margin": "auto"}}>
+                        {elements.map((e) => {return (<Element key={e.id} field={e} />)})}
+                        <Button class='btn btn-dark' onClick={event => handleSubmit(elements, {question})}>Submit</Button>
+                    </Card.Body>
+                </Card>
+            }
+        </FormContext.Provider>
+    )
+}
+export default FormCard;

@@ -1,0 +1,116 @@
+[
+  {
+    "id": "pre_sex",
+    "name": "sex",
+    "label": "Sex",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_orientation",
+    "name": "orientation",
+    "label": "Sexual Orientation",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_body_type",
+    "name": "body_type",
+    "label": "Body Type",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_diet",
+    "name": "diet",
+    "label": "Diet",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_diet_modifier",
+    "name": "diet_modifier",
+    "label": "Diet importance",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_drinks",
+    "name": "drinks",
+    "label": "Drinks",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_smokes",
+    "name": "smokes",
+    "label": "Smokes",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_drugs",
+    "name": "drugs",
+    "label": "Drugs",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_sign",
+    "name": "sign",
+    "label": "Zodiac Sign",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_education_institution",
+    "name": "education_institution",
+    "label": "Education",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_education_status",
+    "name": "education_status",
+    "label": "Eudcation status",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_job",
+    "name": "job",
+    "label": "Job field",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_sign_modifier",
+    "name": "sign_modifier",
+    "label": "Astrology modifier",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_offspring_future",
+    "name": "offspring_future",
+    "label": "Future kids",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_offspring_status",
+    "name": "offspring_status",
+    "label": "Currently kids",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_pets_cats",
+    "name": "pets_cats",
+    "label": "Cats",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_pets_dogs",
+    "name": "pets_dogs",
+    "label": "Dogs",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_religion_type",
+    "name": "religion_type",
+    "label": "Religion",
+    "type": "checkbox"
+  },
+  {
+    "id": "pre_religion_modifier",
+    "name": "religion_modifier",
+    "label": "Religion importance",
+    "type": "checkbox"
+  }
+]
