@@ -9,7 +9,7 @@ Open tasks before and after the repository is made public. See also [Known issue
 - [x] Remove the raw dataset from the history and add a download script with checksum
 - [x] Rewrite commit e-mails: own addresses to nicolas.huber.dev@gmail.com, teammates to their GitHub noreply addresses
 - [x] Remove IDE files and add one `.gitignore`
-- [ ] Create the GitHub repository and push `main` and `original`
+- [x] Create the GitHub repository and push `main` and `original`
 - [ ] Add a screenshot of the app to the README
 
 ## 2. Run again with current dependencies (step 1)
@@ -51,4 +51,4 @@ Open tasks before and after the repository is made public. See also [Known issue
 - [x] Add the project context (course, university, team) to the README
 - [x] Credit the data source (Kim & Escobedo-Land, JSE_OkCupid)
 - [ ] Check for secrets in the files and the git history, right before publishing
-- [ ] Ask the teammates whether they agree with publishing under their names
+- [x] Teammates agree with publishing under their names
