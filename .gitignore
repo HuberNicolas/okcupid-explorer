@@ -1,0 +1,25 @@
+# OS and editors
+.DS_Store
+.idea/
+.vscode/
+
+# Python
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+.ruff_cache/
+
+# Node
+node_modules/
+frontend/dist/
+frontend/coverage/
+*.log
+
+# Local environment files
+.env
+.env.local
+.env.*.local
+
+# Raw data (download with backend/pipeline/download_data.py)
+backend/data/profiles_revised.csv
+backend/data/profiles_revised.csv.zip
