@@ -7,6 +7,8 @@ export default defineConfig({
   plugins: [vue()],
   server: { port: 3000 },
   build: {
+    // ECharts is about 580 kB (195 kB gzipped) in its own, separately cached chunk
+    chunkSizeWarningLimit: 650,
     rolldownOptions: {
       output: {
         // Keep ECharts in its own chunk, so app updates do not invalidate it
