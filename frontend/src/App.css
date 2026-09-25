@@ -72,3 +72,8 @@ p.ex2{
     transform: rotate(360deg);
   }
 }
+
+/* Bootstrap 5.3 sets a text color on cards; 5.2 inherited it (white from .App) */
+.card {
+  color: inherit;
+}
