@@ -1,13 +1,10 @@
 # IMPORT
-import pandas as pd
 import numpy as np
-from sklearn.preprocessing import LabelEncoder
-from sklearn.preprocessing import StandardScaler
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 # CONST
-ZODIAC_STRING_REPLACMENT = '&rsquo;'  # corresponds to " ' "
-OFFSPRING_STRING_REPLACMENT = '&rsquo;'  # corresponds to " ' "
+ZODIAC_STRING_REPLACMENT = "&rsquo;"  # corresponds to " ' "
+OFFSPRING_STRING_REPLACMENT = "&rsquo;"  # corresponds to " ' "
 
 # FUNCTIONS
 # Using standard scaler
@@ -40,9 +37,9 @@ def minmax_scaler(df, col_names):
 
 def preprocess(columns, df):
     MAX_AGE = 105
-    MISSING_DIET_MODIFIER = 'no specified diet modifier'
-    MISSING_SIGN_MODIFIER = 'no specified sign modifier'
-    MISSING_EDUCATIONAL_STATUS = 'no specified educational status'
+    MISSING_DIET_MODIFIER = "no specified diet modifier"
+    MISSING_SIGN_MODIFIER = "no specified sign modifier"
+    MISSING_EDUCATIONAL_STATUS = "no specified educational status"
 
     # for column in df:
     #   if column in columns:
@@ -50,95 +47,95 @@ def preprocess(columns, df):
     # else:
     #    df.drop(column, axis=1)
 
-    if 'age' in columns:
+    if "age" in columns:
         ### AGE ###
 
         # Remove nan's
-        df.dropna(inplace=True, subset=['age'])
+        df.dropna(inplace=True, subset=["age"])
 
-        df.drop(df[df['age'] >= MAX_AGE].index, inplace=True)
+        df.drop(df[df["age"] >= MAX_AGE].index, inplace=True)
 
-    if 'body_type' in columns:
+    if "body_type" in columns:
         ### BODY_TYPE ###
         # Remove nan's
 
-        df.dropna(inplace=True, subset=['body_type'])
+        df.dropna(inplace=True, subset=["body_type"])
 
-    if 'diet' in columns:
+    if "diet" in columns:
         ### DIET ###
 
         # Remove nan's
-        df.dropna(inplace=True, subset=['diet'])
+        df.dropna(inplace=True, subset=["diet"])
 
         # Extract diet modifier
-        df['diet_modifier'] = df['diet'].str.split(' ').str[:-1]
-        df['diet_modifier'] = df['diet_modifier'].apply(lambda y: MISSING_DIET_MODIFIER if len(
-            y) == 0 else y[0])  # replace empty lists with MISSING_DIET_MODIFIER' and extract term from list
+        df["diet_modifier"] = df["diet"].str.split(" ").str[:-1]
+        df["diet_modifier"] = df["diet_modifier"].apply(
+            lambda y: MISSING_DIET_MODIFIER if len(y) == 0 else y[0]
+        )  # replace empty lists with MISSING_DIET_MODIFIER' and extract term from list
 
         # Extract only diet
-        df['diet'] = df['diet'].str.split(' ').str[-1]
+        df["diet"] = df["diet"].str.split(" ").str[-1]
 
-    if 'drinks' in columns:
+    if "drinks" in columns:
         ### DRINKS ###
 
         # Remove nan's
-        df.dropna(inplace=True, subset=['drinks'])
+        df.dropna(inplace=True, subset=["drinks"])
 
-    if 'drugs' in columns:
+    if "drugs" in columns:
         ### DRUGS ###
 
         # Remove nan's
-        df.dropna(inplace=True, subset=['drugs'])
+        df.dropna(inplace=True, subset=["drugs"])
 
-    if 'education' in columns:
+    if "education" in columns:
         ### EDUCATION ###
 
         # Remove nan's
-        df.dropna(inplace=True, subset=['education'])
+        df.dropna(inplace=True, subset=["education"])
 
         # Extract only education institution
         # Todo find better solution to use the dedicated mapper in naming.yaml
 
         def education_institution_mapper(x):
-            if 'college/university' in x:
-                return 'college/university'
-            if 'two-year college' in x:
-                return 'two-year college'
-            if 'masters program' in x:
-                return 'masters program'
-            if 'ph.d program' in x:
-                return 'ph.d program'
-            if 'high school' in x:
-                return 'high school'
-            if 'law school' in x:
-                return 'law school'
-            if 'med school' in x:
-                return 'med school'
-            if 'space camp' in x:
-                return 'space camp'
-            if 'college' in x:  # double check
-                return 'college'
+            if "college/university" in x:
+                return "college/university"
+            if "two-year college" in x:
+                return "two-year college"
+            if "masters program" in x:
+                return "masters program"
+            if "ph.d program" in x:
+                return "ph.d program"
+            if "high school" in x:
+                return "high school"
+            if "law school" in x:
+                return "law school"
+            if "med school" in x:
+                return "med school"
+            if "space camp" in x:
+                return "space camp"
+            if "college" in x:  # double check
+                return "college"
 
         # Extract only education status
         def education_status_mapper(x):
-            if 'dropped out of' in x:
-                return 'dropped out of'
-            if 'working on' in x:
-                return 'working on'
-            if 'graduated from' in x:
-                return 'graduated from'
+            if "dropped out of" in x:
+                return "dropped out of"
+            if "working on" in x:
+                return "working on"
+            if "graduated from" in x:
+                return "graduated from"
 
-        df['education_status'] = df['education'].apply(
-            lambda x: education_status_mapper(x))
-        df['education_status'] = df['education_status'].apply(
-            lambda y: MISSING_EDUCATIONAL_STATUS if y == None else y)  # replace empty cells with MISSING_EDUCATIONAL_STATUS' and extract term from list
-        df['education_institution'] = df['education'].apply(
-            lambda x: education_institution_mapper(x))
+        df["education_status"] = df["education"].apply(lambda x: education_status_mapper(x))
+        df["education_status"] = df["education_status"].apply(
+            lambda y: MISSING_EDUCATIONAL_STATUS if y == None else y
+        )  # replace empty cells with MISSING_EDUCATIONAL_STATUS' and extract term from list
+        df["education_institution"] = df["education"].apply(lambda x: education_institution_mapper(x))
 
         # Drop reduandant cols
-        df = df.drop('education', axis=1)
+        df = df.drop("education", axis=1)
 
-    if 'ethnicity' in columns:
+    if "ethnicity" in columns:
         ### ETHNICITY ###
 
         # Extract all ethnicities categories
@@ -146,20 +143,18 @@ def preprocess(columns, df):
         ethnicities = df.ethnicity.unique()
 
         # Clean
-        ethnicities = [e for e in ethnicities if str(
-            e) != 'nan']  # remove nan values
+        ethnicities = [e for e in ethnicities if str(e) != "nan"]  # remove nan values
 
         # Extract all ethnicities combinations
-        ethnicities = ', '.join(ethnicities)
-        ethnicities = ethnicities.split(', ')
+        ethnicities = ", ".join(ethnicities)
+        ethnicities = ethnicities.split(", ")
         ethnicities = [*set(ethnicities)]  # create list of "base" ethnicities
 
         # Generate new header for encoded categories
-        ethnicities_encoded_header = ['ethnicities_{}'.format(
-            e.replace(' ', '_')) for e in ethnicities]
+        ethnicities_encoded_header = ["ethnicities_{}".format(e.replace(" ", "_")) for e in ethnicities]
 
         # Remove nan's
-        df.dropna(inplace=True, subset=['ethnicity'])
+        df.dropna(inplace=True, subset=["ethnicity"])
 
         # Add col header
         for eth_col in ethnicities_encoded_header:
@@ -168,7 +163,7 @@ def preprocess(columns, df):
         # Filter
         def filter_ethnicities(col, row_ethnicities):
             # extract all ethnicities from the col 'ethnicity'
-            row_ethnicities = row_ethnicities.split(', ')
+            row_ethnicities = row_ethnicities.split(", ")
 
             # compare all extracted to current row in df
             for re in row_ethnicities:
@@ -179,62 +174,54 @@ def preprocess(columns, df):
             return 0
 
         # Hot encoding for all ethnicities cols
-        for (ethnicities_encoded_header_col, e) in zip(ethnicities_encoded_header, ethnicities):
-            df[ethnicities_encoded_header_col] = df.apply(
-                lambda x: filter_ethnicities(e, x['ethnicity']), axis=1)
+        for ethnicities_encoded_header_col, e in zip(ethnicities_encoded_header, ethnicities):
+            df[ethnicities_encoded_header_col] = df.apply(lambda x: filter_ethnicities(e, x["ethnicity"]), axis=1)
 
         # Drop reduandant cols
-        df = df.drop('ethnicity', axis=1)
+        df = df.drop("ethnicity", axis=1)
 
-    if 'height' in columns:
+    if "height" in columns:
         ### HEIGHT ###
 
         # Remove nan's
-        df.dropna(inplace=True, subset=['height'])
+        df.dropna(inplace=True, subset=["height"])
 
         """
         # Scale
         df = std_scaler(df, ['height'])
         """
 
-    if 'income' in columns:
+    if "income" in columns:
         ###  ###
 
         # Replace -1 entries
-        df['income'] = df['income'].apply(
-            lambda y: np.nan if y == -1 else y)  # replace -1 with nan
+        df["income"] = df["income"].apply(lambda y: np.nan if y == -1 else y)  # replace -1 with nan
 
         # Remove nan's
-        df.dropna(inplace=True, subset=['income'])
+        df.dropna(inplace=True, subset=["income"])
 
-    if 'job' in columns:
+    if "job" in columns:
         ### JOB ###
 
         # Remove nan's
-        df.dropna(inplace=True, subset=['job'])
+        df.dropna(inplace=True, subset=["job"])
 
-    if 'offspring' in columns:
+    if "offspring" in columns:
         ### OFFSPRING  ###
 
         # Extract all offspring categories
         # todo: automate
 
-        OFFSPRING_STATUS = [
-            'doesn\'t have kids', 'has a kid', 'has kids']
+        OFFSPRING_STATUS = ["doesn't have kids", "has a kid", "has kids"]
 
-        OFFSPRING_FUTURE = [
-            'doesn\'t want',
-            'might want',
-            'wants'
-        ]
+        OFFSPRING_FUTURE = ["doesn't want", "might want", "wants"]
 
         # Remove nan's
-        df.dropna(inplace=True, subset=['offspring'])
+        df.dropna(inplace=True, subset=["offspring"])
 
-        df['offspring'] = df['offspring'].str.replace(
-            OFFSPRING_STRING_REPLACMENT, '\'')  # replace
+        df["offspring"] = df["offspring"].str.replace(OFFSPRING_STRING_REPLACMENT, "'")  # replace
 
-        offspring_encoded_header = ['offspring_status', 'offspring_future']
+        offspring_encoded_header = ["offspring_status", "offspring_future"]
 
         # Add col header
         for off_col in offspring_encoded_header:
@@ -261,39 +248,35 @@ def preprocess(columns, df):
             return np.nan
 
         # Hot encoding for both offspring cols
-        df['offspring_status'] = df.apply(
-            lambda x: filter_offspring_status(x['offspring']), axis=1)
-        df['offspring_future'] = df.apply(
-            lambda x: filter_offspring_future(x['offspring']), axis=1)
+        df["offspring_status"] = df.apply(lambda x: filter_offspring_status(x["offspring"]), axis=1)
+        df["offspring_future"] = df.apply(lambda x: filter_offspring_future(x["offspring"]), axis=1)
 
-        df.dropna(inplace=True, subset=['offspring_status'])
-        df.dropna(inplace=True, subset=['offspring_future'])
+        df.dropna(inplace=True, subset=["offspring_status"])
+        df.dropna(inplace=True, subset=["offspring_future"])
 
         # Drop reduandant cols
-        df = df.drop('offspring', axis=1)
+        df = df.drop("offspring", axis=1)
 
-    if 'orientation' in columns:
+    if "orientation" in columns:
         ### ORIENTATION ###
 
         # Remove nan's
-        df.dropna(inplace=True, subset=['orientation'])
+        df.dropna(inplace=True, subset=["orientation"])
 
-    if 'pets' in columns:
+    if "pets" in columns:
         ### PETS ###
 
         # Extract all pets categories
         # todo: automate
 
-        PETS_CATS = [
-            'has cats', 'likes cats', 'dislikes cats']
+        PETS_CATS = ["has cats", "likes cats", "dislikes cats"]
 
-        PETS_DOGS = [
-            'has dogs', 'likes dogs', 'dislikes dogs']
+        PETS_DOGS = ["has dogs", "likes dogs", "dislikes dogs"]
 
         # Remove nan's
-        df.dropna(inplace=True, subset=['pets'])
+        df.dropna(inplace=True, subset=["pets"])
 
-        pets_encoded_header = ['pets_cats', 'pets_dogs']
+        pets_encoded_header = ["pets_cats", "pets_dogs"]
 
         # Add col header
         for pets_col in pets_encoded_header:
@@ -320,18 +303,16 @@ def preprocess(columns, df):
             return np.nan
 
         # Hot encoding for both offspring cols
-        df['pets_cats'] = df.apply(
-            lambda x: filter_pets_cats(x['pets']), axis=1)
-        df['pets_dogs'] = df.apply(
-            lambda x: filter_pets_dogs(x['pets']), axis=1)
+        df["pets_cats"] = df.apply(lambda x: filter_pets_cats(x["pets"]), axis=1)
+        df["pets_dogs"] = df.apply(lambda x: filter_pets_dogs(x["pets"]), axis=1)
 
-        df.dropna(inplace=True, subset=['pets_cats'])
-        df.dropna(inplace=True, subset=['pets_dogs'])
+        df.dropna(inplace=True, subset=["pets_cats"])
+        df.dropna(inplace=True, subset=["pets_dogs"])
 
         # Drop reduandant cols
-        df = df.drop('pets', axis=1)
+        df = df.drop("pets", axis=1)
 
-    if 'religion' in columns:
+    if "religion" in columns:
         ### RELIGION ###
 
         # Extract all offspring categories
@@ -342,28 +323,27 @@ def preprocess(columns, df):
         religion = df.religion.unique()
 
         # Clean
-        religion = [r for r in religion if str(
-            r) != 'nan']  # remove nan values
+        religion = [r for r in religion if str(r) != "nan"]  # remove nan values
 
         # Extract all religion types
         religion_types = []
         religion_modifiers = []
         for r in religion:
             # extraxt first half: up to 'and' or 'but'
-            if 'and' in r:
-                religion_extracted = r.split('and')[0]
-            elif 'but' in r:
-                religion_extracted = r.split('but')[0]
+            if "and" in r:
+                religion_extracted = r.split("and")[0]
+            elif "but" in r:
+                religion_extracted = r.split("but")[0]
             else:
                 religion_extracted = r
             religion_types.append(religion_extracted)
 
         for r in religion:
             # extraxt first half: up to 'and' or 'but'
-            if 'and' in r:
-                religion_modifier_extracted = r.split('and')[1]
-            elif 'but' in r:
-                religion_modifier_extracted = r.split('but')[1]
+            if "and" in r:
+                religion_modifier_extracted = r.split("and")[1]
+            elif "but" in r:
+                religion_modifier_extracted = r.split("but")[1]
 
             religion_modifiers.append(religion_modifier_extracted)
 
@@ -377,9 +357,9 @@ def preprocess(columns, df):
         RELIGION_MODIFIERS = religion_modifiers
 
         # Remove nan's
-        df.dropna(inplace=True, subset=['religion'])
+        df.dropna(inplace=True, subset=["religion"])
 
-        relgion_encoded_header = ['religion_type', 'religion_modifier']
+        relgion_encoded_header = ["religion_type", "religion_modifier"]
 
         # Add col header
         for rel_col in relgion_encoded_header:
@@ -406,55 +386,54 @@ def preprocess(columns, df):
             return np.nan
 
         # Hot encoding for both offspring cols
-        df['religion_type'] = df.apply(
-            lambda x: filter_religion_type(x['religion']), axis=1)
-        df['religion_modifier'] = df.apply(
-            lambda x: filter_religion_modifier(x['religion']), axis=1)
+        df["religion_type"] = df.apply(lambda x: filter_religion_type(x["religion"]), axis=1)
+        df["religion_modifier"] = df.apply(lambda x: filter_religion_modifier(x["religion"]), axis=1)
 
-        df.dropna(inplace=True, subset=['religion_type'])
-        df.dropna(inplace=True, subset=['religion_modifier'])
+        df.dropna(inplace=True, subset=["religion_type"])
+        df.dropna(inplace=True, subset=["religion_modifier"])
 
         # Drop reduandant cols
-        df = df.drop('religion', axis=1)
+        df = df.drop("religion", axis=1)
 
-    if 'sex' in columns:
+    if "sex" in columns:
         ### SEX ###
 
         # Remove nan's
-        df.dropna(inplace=True, subset=['sex'])
+        df.dropna(inplace=True, subset=["sex"])
 
-    if 'sign' in columns:
+    if "sign" in columns:
         ### SIGN ###
 
         # Remove nan's
-        df.dropna(inplace=True, subset=['sign'])
+        df.dropna(inplace=True, subset=["sign"])
 
         # Extract sign modifier
-        df['sign_modifier'] = df['sign'].str.split(' ').str[1:]
-        df['sign_modifier'] = df['sign_modifier'].apply(lambda y: ' '.join(
-            y) if len(y) != 0 else y)  # join list of strings together
-        df['sign_modifier'] = df['sign_modifier'].apply(lambda y: MISSING_SIGN_MODIFIER if len(
-            y) == 0 else y)  # replace empty lists with MISSING_SIGN_MODIFIER
-        df['sign_modifier'] = df['sign_modifier'].str.replace(
-            ZODIAC_STRING_REPLACMENT, '\'')  # replace
+        df["sign_modifier"] = df["sign"].str.split(" ").str[1:]
+        df["sign_modifier"] = df["sign_modifier"].apply(
+            lambda y: " ".join(y) if len(y) != 0 else y
+        )  # join list of strings together
+        df["sign_modifier"] = df["sign_modifier"].apply(
+            lambda y: MISSING_SIGN_MODIFIER if len(y) == 0 else y
+        )  # replace empty lists with MISSING_SIGN_MODIFIER
+        df["sign_modifier"] = df["sign_modifier"].str.replace(ZODIAC_STRING_REPLACMENT, "'")  # replace
 
         # Extract only sign
-        df['sign'] = df['sign'].str.split(' ').str[0]
+        df["sign"] = df["sign"].str.split(" ").str[0]
 
         # Drop reduandant cols
-        #df = df.drop('sign', axis=1)
+        # df = df.drop('sign', axis=1)
 
-    if 'smokes' in columns:
+    if "smokes" in columns:
         ### SMOKES ###
 
         # Remove nan's
-        df.dropna(inplace=True, subset=['smokes'])
+        df.dropna(inplace=True, subset=["smokes"])
 
-    if 'speaks' in columns:
+    if "speaks" in columns:
         ### SPEAKS ###
 
         # Remove nan's
-        df.dropna(inplace=True, subset=['speaks'])
+        df.dropna(inplace=True, subset=["speaks"])
 
         languages = df.speaks.unique()
 
@@ -462,22 +441,21 @@ def preprocess(columns, df):
         language_level = []
 
         for l in languages:
-            entries = l.split(', ')
+            entries = l.split(", ")
             for e in entries:
-
                 # at least on entry that has a modifier
-                if e.find('(') != -1:
+                if e.find("(") != -1:
                     # extract modifier
-                    res = e[e.find('(')+1:e.find(')')]
+                    res = e[e.find("(") + 1 : e.find(")")]
 
                     # check if modifier can be appended
                     if res not in language_level:
                         language_level.append(res)
 
                     # check if language can be appended
-                    if e[:e.find(' ')]:
-                        if e[:e.find(' ')] not in language:
-                            language.append(e[:e.find(' ')])
+                    if e[: e.find(" ")]:
+                        if e[: e.find(" ")] not in language:
+                            language.append(e[: e.find(" ")])
 
                 # no modifier
                 else:
@@ -487,22 +465,21 @@ def preprocess(columns, df):
 
         SPEAKS_LANGUAGE = language
 
-        speaks_encoded_header = [l.replace(' ', '_') for l in SPEAKS_LANGUAGE]
+        speaks_encoded_header = [l.replace(" ", "_") for l in SPEAKS_LANGUAGE]
 
         # Add col header
         for speaks_col in speaks_encoded_header:
-            df['speaks_'+speaks_col] = np.nan
+            df["speaks_" + speaks_col] = np.nan
 
-        speaks_encoded_header = ['speaks_'+l for l in speaks_encoded_header]
-        speaks_encoded_header = [l.replace(' ', '_')
-                                 for l in speaks_encoded_header]
+        speaks_encoded_header = ["speaks_" + l for l in speaks_encoded_header]
+        speaks_encoded_header = [l.replace(" ", "_") for l in speaks_encoded_header]
 
         # Filter
         def filter_speaks(s, row_speaks):
             # compare all extracted to current row in df
 
             # split string into list of multiple langues + modifier
-            rs = row_speaks.split(', ')
+            rs = row_speaks.split(", ")
 
             # check if language s (current col) is in this list
             res = [i for i in rs if s in i]
@@ -511,11 +488,11 @@ def preprocess(columns, df):
                 return 1
 
                 # modifier:
-                if '(fluently)' in res[0]:
+                if "(fluently)" in res[0]:
                     return 4
-                if '(ok)' in res[0]:
+                if "(ok)" in res[0]:
                     return 3
-                if '(poorly)' in res[0]:
+                if "(poorly)" in res[0]:
                     return 1
                 else:
                     return 2
@@ -523,25 +500,25 @@ def preprocess(columns, df):
                 return 0  # maybe change to np.nan
 
         # Hot encoding for all speaks cols
-        for (speaks_encoded_header_col, s) in zip(speaks_encoded_header, SPEAKS_LANGUAGE):
-            df[speaks_encoded_header_col] = df.apply(
-                lambda x: filter_speaks(s, x['speaks']), axis=1)
+        for speaks_encoded_header_col, s in zip(speaks_encoded_header, SPEAKS_LANGUAGE):
+            df[speaks_encoded_header_col] = df.apply(lambda x: filter_speaks(s, x["speaks"]), axis=1)
 
         # Drop reduandant cols
-        df = df.drop('speaks', axis=1)
+        df = df.drop("speaks", axis=1)
 
-    if 'status' in columns:
+    if "status" in columns:
         ### STATUS ###
 
         # Remove nan's
-        df.dropna(inplace=True, subset=['status'])
+        df.dropna(inplace=True, subset=["status"])
 
     # Trim whitespaces
     # Experimental
-    NUMERICAL_ROWS = ['age', 'height', 'income', 'education_status']
+    NUMERICAL_ROWS = ["age", "height", "income", "education_status"]
     for col in df.columns:
         if col not in NUMERICAL_ROWS:
-            df[col] = df[col].apply(lambda x: x.strip() if x is not None and type(
-                x) is not int and type(x) is not float else x)
+            df[col] = df[col].apply(
+                lambda x: x.strip() if x is not None and type(x) is not int and type(x) is not float else x
+            )
 
     return df

@@ -27,3 +27,13 @@ notebooks = [
     "sqlalchemy>=2.1.0",
     "tqdm>=4.70.1",
 ]
+
+[tool.ruff]
+target-version = "py313"
+line-length = 120
+extend-exclude = ["dev", "*.ipynb"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+# Kept from the 2022 code for now: single-letter names, == None inside lambdas, unused locals
+ignore = ["E711", "E741", "F841"]
