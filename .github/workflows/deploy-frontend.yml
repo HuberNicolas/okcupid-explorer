@@ -17,6 +17,8 @@ concurrency:
 
 jobs:
   build:
+    # Runs once the VITE_API_URL variable points to a deployed backend
+    if: vars.VITE_API_URL != ''
     runs-on: ubuntu-latest
     defaults:
       run:
