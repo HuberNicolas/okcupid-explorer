@@ -1,24 +1,23 @@
 import js from '@eslint/js';
 import globals from 'globals';
-import reactHooks from 'eslint-plugin-react-hooks';
-import reactRefresh from 'eslint-plugin-react-refresh';
-import { defineConfig, globalIgnores } from 'eslint/config';
+import tseslint from 'typescript-eslint';
+import pluginVue from 'eslint-plugin-vue';
 
-export default defineConfig([
-  globalIgnores(['dist']),
+export default tseslint.config(
+  { ignores: ['dist'] },
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  ...pluginVue.configs['flat/recommended'],
   {
-    files: ['**/*.{js,jsx}'],
-    extends: [js.configs.recommended, reactHooks.configs.flat.recommended, reactRefresh.configs.vite],
-    languageOptions: {
-      globals: globals.browser,
-      parserOptions: { ecmaFeatures: { jsx: true } },
-    },
-    // Warnings instead of errors for issues in the 2022 code; cleaning them up is step 2 (see TODO.md)
+    files: ['**/*.vue'],
+    languageOptions: { parserOptions: { parser: tseslint.parser } },
+  },
+  {
+    languageOptions: { globals: { ...globals.browser, ...globals.node } },
     rules: {
-      'no-unused-vars': 'warn',
-      'no-case-declarations': 'warn',
-      'no-useless-assignment': 'warn',
-      'react-hooks/set-state-in-effect': 'warn',
+      'vue/max-attributes-per-line': 'off',
+      'vue/singleline-html-element-content-newline': 'off',
+      'vue/html-self-closing': 'off',
     },
   },
-]);
+);

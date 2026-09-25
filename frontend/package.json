@@ -1,37 +1,33 @@
 {
-  "name": "okcupid-explorer-frontend",
-  "version": "1.0.0",
+  "name": "okcupid-explorer",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "apexcharts": "4.7.0",
-    "axios": "^1.20.0",
-    "bootstrap": "^5.3.8",
-    "react": "^19.3.0",
-    "react-apexcharts": "1.7.0",
-    "react-bootstrap": "^2.10.10",
-    "react-dom": "^19.3.0"
+    "echarts": "^6.1.0",
+    "vue": "^3.5.43"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@testing-library/dom": "^10.4.2",
-    "@testing-library/jest-dom": "^7.0.1",
-    "@testing-library/react": "^16.3.3",
-    "@vitejs/plugin-react": "^6.1.1",
+    "@types/node": "^26.6.2",
+    "@vitejs/plugin-vue": "^6.0.9",
+    "@vue/test-utils": "^2.5.1",
     "eslint": "^10.11.0",
-    "eslint-plugin-react-hooks": "^7.1.1",
-    "eslint-plugin-react-refresh": "^0.5.7",
+    "eslint-plugin-vue": "^10.11.1",
     "globals": "^17.12.0",
     "jsdom": "^29.1.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.70.1",
     "vite": "^8.3.1",
-    "vite-plugin-svgr": "^5.2.0",
-    "vitest": "^5.0.1"
+    "vitest": "^5.0.2",
+    "vue-tsc": "^3.3.11"
   }
 }
