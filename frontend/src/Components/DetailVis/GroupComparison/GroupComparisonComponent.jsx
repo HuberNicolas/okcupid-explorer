@@ -1,5 +1,5 @@
 import {Component, React} from "react";
-import Chart from "react-apexcharts";
+import Chart from "../../../Chart";
 
 class GroupComparisonComponent extends Component{
 

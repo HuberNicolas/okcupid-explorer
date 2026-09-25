@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Chart from "react-apexcharts";
+import Chart from "../../Chart";
 import {Card} from "react-bootstrap";
 
 class ScatterComponent extends Component {

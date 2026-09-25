@@ -1,6 +1,6 @@
 import {Component, React} from "react";
 import {Card} from "react-bootstrap";
-import Chart from "react-apexcharts";
+import Chart from "../../Chart";
 
 class GeneralInformationComponent extends Component {
 
