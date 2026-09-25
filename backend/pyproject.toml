@@ -1,0 +1,29 @@
+[project]
+name = "okcupid-explorer-backend"
+version = "1.0.0"
+description = "Flask API that clusters OkCupid profiles and compares them with a questionnaire answer"
+authors = [{ name = "Nicolas Huber", email = "nicolas.huber.dev@gmail.com" }]
+requires-python = "==3.13.*"
+dependencies = [
+    "flask>=3.1.3",
+    "flask-cors>=6.0.5",
+    "gunicorn>=26.2.0",
+    "numpy>=2.5.3",
+    "pandas>=3.0.6",
+    "scikit-learn>=1.9.1",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.16.9",
+]
+notebooks = [
+    "category-encoders>=2.11.1",
+    "jupyterlab>=4.6.4",
+    "matplotlib>=3.11.2",
+    "plotly>=7.1.0",
+    "pyyaml>=6.0.3",
+    "seaborn>=0.13.2",
+    "sqlalchemy>=2.1.0",
+    "tqdm>=4.70.1",
+]
