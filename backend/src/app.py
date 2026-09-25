@@ -1,15 +1,16 @@
 import sqlite3
 import json
+import os
 from flask import Flask, render_template, request, jsonify, Response
 from flask_cors import CORS, cross_origin
 
 # INIT TODO:Refactor
 import pandas as pd
 import numpy as np
-from sklearn_pandas import DataFrameMapper
+from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import LabelBinarizer
-from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import OrdinalEncoder
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.decomposition import PCA
 from sklearn.cluster import KMeans
@@ -34,15 +35,20 @@ speaks_cols = [
     'speaks_english', 'speaks_spanish', 'speaks_french', 'speaks_c++',
     'speaks_chinese',
     'speaks_japanese', 'speaks_german', 'speaks_italian']
-mapper = DataFrameMapper(
-    [([continuous_col], StandardScaler()) for continuous_col in continuous_cols] +
-    [(categorical_col, LabelEncoder()) for categorical_col in categorical_cols] +
-    [(ethnities_col, LabelEncoder()) for ethnities_col in ethnities_cols] +
-    [(speaks_col, LabelEncoder()) for speaks_col in speaks_cols],
-    df_out=True
-)
+# One transformer per column, like sklearn-pandas' DataFrameMapper did before:
+# scale the continuous columns, encode every other column as integers.
+mapper = ColumnTransformer(
+    [(continuous_col, StandardScaler(), [continuous_col]) for continuous_col in continuous_cols] +
+    [(col, OrdinalEncoder(dtype=np.int64), [col])
+     for col in categorical_cols + ethnities_cols + speaks_cols],
+    verbose_feature_names_out=False,
+).set_output(transform='pandas')
 
-df_clean = pd.read_csv('../pipeline/data/cleaned.csv')
+# Resolve data files relative to this file, so the app runs from any working directory
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, 'okcupid.sqlite')
+
+df_clean = pd.read_csv(os.path.join(BASE_DIR, '..', 'pipeline', 'data', 'cleaned.csv'))
 sample = df_clean.iloc[:1]
 df_std = np.round(mapper.fit_transform(df_clean.copy()), 2)
 
@@ -59,7 +65,7 @@ user_sample_std = {}
 
 
 def get_db_connection():
-    conn = sqlite3.connect('okcupid.sqlite')
+    conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
 
@@ -76,7 +82,7 @@ def template():
 # CLEAN
 @app.route('/api/clean/index')
 def clean_index():
-    with sqlite3.connect('okcupid.sqlite') as conn:
+    with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM okcupid_clean')
         data = cursor.fetchall()
@@ -85,7 +91,7 @@ def clean_index():
 
 @app.route('/api/clean/<int:id>')
 def clean_row(id):
-    with sqlite3.connect('okcupid.sqlite') as conn:
+    with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM okcupid_clean WHERE rowid = ?', [id])
         data = cursor.fetchall()
@@ -98,7 +104,7 @@ def alean_age_between():
         age_from = request.form['age_from']
         age_to = request.form['age_to']
 
-        with sqlite3.connect('okcupid.sqlite') as conn:
+        with sqlite3.connect(DB_PATH) as conn:
             cursor = conn.cursor()
             cursor.execute(
                 'SELECT * FROM okcupid_clean WHERE age BETWEEN ? and ?', [age_from, age_to])
@@ -110,7 +116,7 @@ def alean_age_between():
 
 @app.route('/api/std/index')
 def std_index():
-    with sqlite3.connect('okcupid.sqlite') as conn:
+    with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM okcupid_std')
         data = cursor.fetchall()
@@ -119,7 +125,7 @@ def std_index():
 
 @app.route('/api/std/<int:id>')
 def std_row(id):
-    with sqlite3.connect('okcupid.sqlite') as conn:
+    with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM okcupid_std WHERE rowid = ?', [id])
         data = cursor.fetchall()
@@ -130,7 +136,7 @@ def std_row(id):
 
 @app.route('/api/<int:id>')
 def row(id):
-    with sqlite3.connect('okcupid.sqlite') as conn:
+    with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM okcupid_clean WHERE rowid = ?', [id])
         clean = cursor.fetchall()
@@ -163,7 +169,7 @@ def get_by_indices():
         data = request.json
         ids = tuple(data['ids'])
         response_dict = {}
-        with sqlite3.connect('okcupid.sqlite') as conn:
+        with sqlite3.connect(DB_PATH) as conn:
             cursor = conn.cursor()
             # https://stackoverflow.com/questions/9522971/is-it-possible-to-use-index-as-a-column-name-in-sqlite
             # TODO: Fix [index] (rename)
@@ -206,7 +212,7 @@ def get_by_index():
     if request.method == 'GET':
         #id = request.args.get("id")
         response_dict = {}
-        with sqlite3.connect('okcupid.sqlite') as conn:
+        with sqlite3.connect(DB_PATH) as conn:
             cursor = conn.cursor()
             cursor.execute(
                 f'SELECT * FROM okcupid_std')
@@ -250,7 +256,7 @@ def get_standarization():
         # print(df_std)
         # print(std)
 
-        df_std = df_std.append(std)  # add new input as last row
+        df_std = pd.concat([df_std, std])  # add new input as last row
         # calucalte cosine similarty and extract last row
         lables = cosine_similarity(df_std)[-1]
 
@@ -272,12 +278,12 @@ def get_standarization():
         # KMEANS
         OPTIMAL_N_CLUSTER = 4
         kmeans_pca = KMeans(n_clusters=OPTIMAL_N_CLUSTER,
-                            init='k-means++', random_state=420)
+                            init='k-means++', n_init=10, random_state=420)
         kmeans_pca.fit(scores_pca)
 
         df_segm_pca_kmeans = pd.concat(
             [df.reset_index(drop=True), pd.DataFrame(scores_pca)], axis=1)
-        df_segm_pca_kmeans.columns.values[-PCA_COMPONENTS:] = [
+        df_segm_pca_kmeans.columns = list(df_segm_pca_kmeans.columns[:-PCA_COMPONENTS]) + [
             'PComp 1', 'PComp 2', 'PComp 3', 'PComp 4']
 
         df_segm_pca_kmeans['Segment K-means PCA'] = kmeans_pca.labels_
@@ -375,7 +381,7 @@ def db_user():
         sample = pd.DataFrame.from_records(data=[data])
 
         # DB DATA
-        with sqlite3.connect('okcupid.sqlite') as conn:
+        with sqlite3.connect(DB_PATH) as conn:
             cursor = conn.cursor()
             cursor.execute('SELECT * FROM okcupid_clean')
             clean = cursor.fetchall()
@@ -408,7 +414,7 @@ def db_user():
         std = np.round(mapper.transform(sample), 2)
 
         # LOGIC
-        df_std = df_std.append(std)  # add new input as last row
+        df_std = pd.concat([df_std, std])  # add new input as last row
         # calucalte cosine similarty and extract last row
         lables = cosine_similarity(df_std)[-1]
 
@@ -429,12 +435,12 @@ def db_user():
         # KMEANS
         OPTIMAL_N_CLUSTER = 4
         kmeans_pca = KMeans(n_clusters=OPTIMAL_N_CLUSTER,
-                            init='k-means++', random_state=420)
+                            init='k-means++', n_init=10, random_state=420)
         kmeans_pca.fit(scores_pca)
 
         df_segm_pca_kmeans = pd.concat(
             [df.reset_index(drop=True), pd.DataFrame(scores_pca)], axis=1)
-        df_segm_pca_kmeans.columns.values[-PCA_COMPONENTS:] = [
+        df_segm_pca_kmeans.columns = list(df_segm_pca_kmeans.columns[:-PCA_COMPONENTS]) + [
             'PComp 1', 'PComp 2', 'PComp 3', 'PComp 4']
 
         df_segm_pca_kmeans['Segment K-means PCA'] = kmeans_pca.labels_
@@ -535,7 +541,7 @@ def unsimilar():
 
 
         # DB DATA
-        with sqlite3.connect('okcupid.sqlite') as conn:
+        with sqlite3.connect(DB_PATH) as conn:
             cursor = conn.cursor()
             cursor.execute('SELECT * FROM okcupid_clean')
             clean = cursor.fetchall()
@@ -568,7 +574,7 @@ def unsimilar():
         std = np.round(mapper.transform(sample), 2)
 
         # LOGIC
-        df_std = df_std.append(std)  # add new input as last row
+        df_std = pd.concat([df_std, std])  # add new input as last row
         # calucalte cosine similarty and extract last row
         lables = cosine_similarity(df_std)[-1]
         lables = list(map(lambda x: 1-x, lables))  # calculate anti-similarity
@@ -590,12 +596,12 @@ def unsimilar():
         # KMEANS
         OPTIMAL_N_CLUSTER = 4
         kmeans_pca = KMeans(n_clusters=OPTIMAL_N_CLUSTER,
-                            init='k-means++', random_state=420)
+                            init='k-means++', n_init=10, random_state=420)
         kmeans_pca.fit(scores_pca)
 
         df_segm_pca_kmeans = pd.concat(
             [df.reset_index(drop=True), pd.DataFrame(scores_pca)], axis=1)
-        df_segm_pca_kmeans.columns.values[-PCA_COMPONENTS:] = [
+        df_segm_pca_kmeans.columns = list(df_segm_pca_kmeans.columns[:-PCA_COMPONENTS]) + [
             'PComp 1', 'PComp 2', 'PComp 3', 'PComp 4']
 
         df_segm_pca_kmeans['Segment K-means PCA'] = kmeans_pca.labels_
@@ -696,7 +702,7 @@ def post_non_std():
         sample = pd.DataFrame.from_records(data=[localData])
 
         # DB DATA
-        with sqlite3.connect('okcupid.sqlite') as conn:
+        with sqlite3.connect(DB_PATH) as conn:
             cursor = conn.cursor()
             cursor.execute('SELECT * FROM okcupid_clean')
             clean = cursor.fetchall()
@@ -729,7 +735,7 @@ def post_non_std():
         std = np.round(mapper.transform(sample), 2)
 
         # LOGIC
-        df_std = df_std.append(std)  # add new input as last row
+        df_std = pd.concat([df_std, std])  # add new input as last row
         # calucalte cosine similarty and extract last row
         lables = cosine_similarity(df_std)[-1]
 
@@ -756,12 +762,12 @@ def post_non_std():
         # KMEANS
         OPTIMAL_N_CLUSTER = 4
         kmeans_pca = KMeans(n_clusters=OPTIMAL_N_CLUSTER,
-                            init='k-means++', random_state=420)
+                            init='k-means++', n_init=10, random_state=420)
         kmeans_pca.fit(scores_pca)
 
         df_segm_pca_kmeans = pd.concat(
             [df.reset_index(drop=True), pd.DataFrame(scores_pca)], axis=1)
-        df_segm_pca_kmeans.columns.values[-PCA_COMPONENTS:] = [
+        df_segm_pca_kmeans.columns = list(df_segm_pca_kmeans.columns[:-PCA_COMPONENTS]) + [
             'PComp 1', 'PComp 2', 'PComp 3', 'PComp 4']
 
         df_segm_pca_kmeans['Segment K-means PCA'] = kmeans_pca.labels_
@@ -863,7 +869,7 @@ def post_std():
         sample = pd.DataFrame.from_records(data=[localData])
 
         # DB DATA
-        with sqlite3.connect('okcupid.sqlite') as conn:
+        with sqlite3.connect(DB_PATH) as conn:
             cursor = conn.cursor()
             cursor.execute('SELECT * FROM okcupid_clean')
             clean = cursor.fetchall()
@@ -896,7 +902,7 @@ def post_std():
         std = np.round(mapper.transform(sample), 2)
 
         # LOGIC
-        df_std = df_std.append(std)  # add new input as last row
+        df_std = pd.concat([df_std, std])  # add new input as last row
         # calucalte cosine similarty and extract last row
         lables = cosine_similarity(df_std)[-1]
 
@@ -923,12 +929,12 @@ def post_std():
         # KMEANS
         OPTIMAL_N_CLUSTER = 4
         kmeans_pca = KMeans(n_clusters=OPTIMAL_N_CLUSTER,
-                            init='k-means++', random_state=420)
+                            init='k-means++', n_init=10, random_state=420)
         kmeans_pca.fit(scores_pca)
 
         df_segm_pca_kmeans = pd.concat(
             [df.reset_index(drop=True), pd.DataFrame(scores_pca)], axis=1)
-        df_segm_pca_kmeans.columns.values[-PCA_COMPONENTS:] = [
+        df_segm_pca_kmeans.columns = list(df_segm_pca_kmeans.columns[:-PCA_COMPONENTS]) + [
             'PComp 1', 'PComp 2', 'PComp 3', 'PComp 4']
 
         df_segm_pca_kmeans['Segment K-means PCA'] = kmeans_pca.labels_
@@ -1029,7 +1035,7 @@ def std():
         sample = pd.DataFrame.from_records(data=[localData])
 
         # DB DATA
-        with sqlite3.connect('okcupid.sqlite') as conn:
+        with sqlite3.connect(DB_PATH) as conn:
             cursor = conn.cursor()
             cursor.execute('SELECT * FROM okcupid_clean')
             clean = cursor.fetchall()
@@ -1073,7 +1079,7 @@ def stdUserRadar():
         sample = pd.DataFrame.from_records(data=[localData])
 
         # DB DATA
-        with sqlite3.connect('okcupid.sqlite') as conn:
+        with sqlite3.connect(DB_PATH) as conn:
             cursor = conn.cursor()
             cursor.execute('SELECT * FROM okcupid_clean')
             clean = cursor.fetchall()
