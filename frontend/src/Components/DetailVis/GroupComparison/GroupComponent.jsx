@@ -1,6 +1,6 @@
 import {Component, React} from "react";
 import {Card, Tab, Tabs,} from "react-bootstrap";
-import { ReactComponent as Profile } from './groupProfile.svg'
+import Profile from './groupProfile.svg?react'
 import ComparisonComponent from "./GroupComparisonComponent";
 import categories from "../../Form/fields.json"
 

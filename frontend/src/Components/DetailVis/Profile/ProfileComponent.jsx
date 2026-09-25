@@ -1,6 +1,6 @@
 import {Component, React} from "react";
 import {Card,} from "react-bootstrap";
-import { ReactComponent as Profile } from './profile.svg'
+import Profile from './profile.svg?react'
 import ComparisonComponent from "./ComparisonComponent";
 
 class ProfileComponent extends Component{

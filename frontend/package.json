@@ -1,52 +1,37 @@
 {
-  "name": "ivda-frontend",
-  "version": "0.1.0",
+  "name": "okcupid-explorer-frontend",
+  "version": "1.0.0",
   "private": true,
-  "dependencies": {
-    "@d3/brushable-scatterplot": "https://api.observablehq.com/@d3/brushable-scatterplot@223.tgz?v=3",
-    "@observablehq/runtime": "^4.28.0",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@upsetjs/react": "^1.11.0",
-    "apexcharts": "^3.36.3",
-    "autoprefixer": "^10.4.13",
-    "axios": "^1.2.0",
-    "bootstrap": "^5.2.2",
-    "bootstrap-icons": "^1.10.2",
-    "d3": "^7.6.1",
-    "mdb-react-ui-kit": "^5.0.0",
-    "postcss-cli": "^10.1.0",
-    "react": "^18.2.0",
-    "react-apexcharts": "^1.4.0",
-    "react-bootstrap": "^2.6.0",
-    "react-bootstrap-multiselect": "^2.4.1",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
-  },
+  "type": "module",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "lint": "eslint ."
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "dependencies": {
+    "apexcharts": "^7.6.0",
+    "axios": "^1.20.0",
+    "bootstrap": "^5.3.8",
+    "react": "^19.3.0",
+    "react-apexcharts": "^2.1.1",
+    "react-bootstrap": "^2.10.10",
+    "react-dom": "^19.3.0"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@vitejs/plugin-react": "^6.1.1",
+    "eslint": "^10.11.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "globals": "^17.12.0",
+    "jsdom": "^29.1.1",
+    "vite": "^8.3.1",
+    "vite-plugin-svgr": "^5.2.0",
+    "vitest": "^5.0.1"
   }
 }
