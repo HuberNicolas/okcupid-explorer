@@ -106,6 +106,13 @@ class ScatterComponent extends Component {
         this.props.frameSize({filerType: 'detail'})
     }
     onSelect (chartContext, { xaxis, yaxis }){
+        // ApexCharts 4 reports NaN for the y range of an xy selection; compute it from the selection rectangle
+        if (isNaN(yaxis.min) || isNaN(yaxis.max)) {
+            const {selection, gridHeight, yAxisScale} = chartContext.w.globals
+            const {niceMin, niceMax} = yAxisScale[0]
+            const yAt = pixel => niceMax - pixel / gridHeight * (niceMax - niceMin)
+            yaxis = {min: yAt(selection.y + selection.height), max: yAt(selection.y)}
+        }
         const min = [xaxis.min, yaxis.min]
         const max = [xaxis.max, yaxis.max]
         const categories = this.props.data.map(category => {
