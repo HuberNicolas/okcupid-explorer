@@ -24,8 +24,8 @@ Open tasks. See also [Known issues](README.md#known-issues).
 - [x] Vue 3 app in the design of nicolas-huber.dev: questionnaire, map, person and group views, distributions
 - [x] Answer options from the data, so every answer is valid
 - [x] Remove the Docker image and the Hugging Face workflow; the app needs no server
-- [ ] Merge `vue` into `main`
-- [ ] Enable GitHub Pages with GitHub Actions and check the deployed site
+- [x] Merge `vue` into `main`
+- [x] Enable GitHub Pages with GitHub Actions and check the deployed site
 
 ## 4. Ideas
 
@@ -42,4 +42,4 @@ Open tasks. See also [Known issues](README.md#known-issues).
 - [x] Add the project context (course, university, team) to the README
 - [x] Credit the data source (Kim & Escobedo-Land, JSE_OkCupid)
 - [x] Teammates agree with publishing under their names
-- [ ] Check for secrets in the files and the git history, right before merging to `main`
+- [x] Check for secrets in the files and the git history, right before merging to `main`
