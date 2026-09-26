@@ -1,8 +1,19 @@
-# API
+# Reference API (2022)
 
-The Flask app lives in [backend/src/app.py](../backend/src/app.py). It allows requests from any origin (CORS).
+The 2022 app sent the questionnaire to a Flask API, [backend/src/app.py](../backend/src/app.py). Since 2026 the same
+analysis runs in the browser ([frontend/src/engine/](../frontend/src/engine/)), and the API is no longer deployed. It
+stays in the repository as the reference implementation:
+[backend/scripts/export_frontend_data.py](../backend/scripts/export_frontend_data.py) calls it to produce the results
+the TypeScript tests compare against.
 
-## Endpoints used by the frontend
+Run it with `uv run flask --app src/app run --port 5001` in `backend/`. It allows requests from any origin (CORS).
+
+> [!NOTE]
+> Two bugs of the API are documented here and kept as they were: answers with values that no profile has fail with
+> 500, and in `/api/post/users/std` the last row (your answers) carries the PCA coordinates of profile 0, because pandas
+> aligns the appended row by its index 0.
+
+## Endpoints used by the 2022 frontend
 
 ### Questionnaire endpoints
 
@@ -30,7 +41,7 @@ The Flask app lives in [backend/src/app.py](../backend/src/app.py). It allows re
 |---|---|
 | `threshold` | 0 to 1; profiles with a (dis)similarity at or above it get `Label: 1` |
 | `mode` | `1` similarity, `0` dissimilarity |
-| `data` | The answers; values must occur in the profiles (see the options in [fields.json](../frontend/src/Components/Form/fields.json)) |
+| `data` | The answers; values must occur in the profiles; the 2022 form ([fields.json](https://github.com/HuberNicolas/okcupid-explorer/blob/original/frontend/src/Components/Form/fields.json)) offered some that do not |
 
 | Endpoint | Response |
 |---|---|

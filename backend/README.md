@@ -1,7 +1,8 @@
 # Backend
 
-Flask API of the [OkCupid Explorer](../README.md). It encodes the questionnaire answers, compares them with 842 OkCupid
-profiles and returns the profiles with PCA components, k-means groups and similarity labels.
+Data preparation and the 2022 Flask API of the [OkCupid Explorer](../README.md). The app no longer calls the API; it
+runs the same analysis in the browser. The API stays as the reference the app's tests are checked against, and
+[scripts/export_frontend_data.py](scripts/export_frontend_data.py) exports the profiles for the app.
 
 ```bash
 uv sync
@@ -20,7 +21,7 @@ uv run flask --app src/app run --port 5001
 | [pipeline/](pipeline/) | Cleaning code, exploration notebook, plots, cleaned CSV, [download script](pipeline/download_data.py) |
 | [dev/](dev/), [src/vis.ipynb](src/vis.ipynb) | Exploration notebooks from 2022 |
 | [cleaning.md](cleaning.md) | Cleaned columns |
-| [tests/](tests/) | Smoke tests |
-| [Dockerfile](Dockerfile) | Image for deployment |
+| [scripts/export_frontend_data.py](scripts/export_frontend_data.py) | Exports the profiles and reference results to `frontend/src/` |
+| [tests/](tests/) | Smoke tests of the API |
 
-See [docs/api.md](../docs/api.md), [docs/data.md](../docs/data.md) and [docs/development.md](../docs/development.md).
+See [docs/reference-api.md](../docs/reference-api.md), [docs/data.md](../docs/data.md) and [docs/development.md](../docs/development.md).

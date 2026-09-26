@@ -21,7 +21,8 @@ research only, and do not try to identify people.
 |---|---|---|---|
 | `backend/data/profiles_revised.csv` | 59,946 | Raw dataset | No; run `uv run python pipeline/download_data.py` in `backend/` |
 | [backend/pipeline/data/cleaned.csv](../backend/pipeline/data/cleaned.csv) | 842 | Cleaned profiles; the API fits its encoder on them | Yes |
-| [backend/src/okcupid.sqlite](../backend/src/okcupid.sqlite) | 842 per table | `okcupid_clean` (clean values), `okcupid_std` (encoded values), two empty tables for user input | Yes |
+| [backend/src/okcupid.sqlite](../backend/src/okcupid.sqlite) | 842 per table | `okcupid_clean` (clean values), `okcupid_std` (encoded values), two empty tables for user input; source of the app's data | Yes |
+| [frontend/src/data/profiles.json](../frontend/src/data/profiles.json) | 842 | `okcupid_clean` as JSON for the app, written by [scripts/export_frontend_data.py](../backend/scripts/export_frontend_data.py) | Yes |
 | [backend/pipeline/okcupid.sqlite](../backend/pipeline/okcupid.sqlite) | 842 per table | Notebook output with `okcupid_clean` and `okcupid_std`; the API uses the copy in `src/` | Yes |
 | [backend/pipeline/exploration/](../backend/pipeline/exploration/) | – | Plots and a pandas-profiling report of the raw data | Yes |
 
