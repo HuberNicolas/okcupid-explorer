@@ -12,7 +12,7 @@
 ![Ruff](https://img.shields.io/badge/Ruff-D7FF64?logo=ruff&logoColor=black)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
-[▶ Open the app](https://nicolas-huber.dev/okcupid-explorer/) · [Quick start](#quick-start) · [How it works](#how-it-works) · [Documentation](#documentation)
+[▶ Open the app](https://hubernicolas.github.io/okcupid-explorer/) · [Quick start](#quick-start) · [How it works](#how-it-works) · [Documentation](#documentation)
 
 <img src="docs/images/results.jpg" alt="Results view: key figures, the PCA map of all profiles coloured by group, and your group's summary" width="820">
 
