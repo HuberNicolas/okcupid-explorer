@@ -42,6 +42,11 @@ const steps = [
         The same analysis the 2022 Flask backend ran, now in TypeScript. Tests check it against the original Python code:
         encoding and matches are identical, the projection agrees to six decimals.
       </p>
+      <p class="method__note reveal">
+        <span class="mono">note</span> Because answers are coded as consecutive numbers, attributes with many values
+        weigh most: the map's first axis is essentially the job, the second the zodiac sign. That is how the 2022
+        analysis worked, and it is kept here on purpose.
+      </p>
       <div class="method__grid">
         <article
           v-for="(s, i) in steps"
@@ -63,6 +68,21 @@ const steps = [
 <style scoped>
 .method {
   border-top: 1px solid var(--line);
+}
+.method__note {
+  font-size: 14px;
+  color: var(--text-dim);
+  max-width: 760px;
+  margin: -24px 0 36px;
+  padding: 12px 16px;
+  border-left: 2px solid var(--amber);
+  background: rgba(255, 192, 110, 0.05);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.method__note .mono {
+  color: var(--amber);
+  font-size: 12px;
+  margin-right: 6px;
 }
 .method__grid {
   display: grid;

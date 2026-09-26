@@ -59,18 +59,20 @@ const radarOption = computed(() => {
       {
         type: 'radar',
         symbolSize: 5,
+        // You last, so your shape is drawn on top
         data: [
-          {
-            name: 'You',
-            value: keys.map((key) => scalePosition(key, answers.categorical[key])),
-            itemStyle: { color: YOU_COLOR },
-            areaStyle: { color: 'rgba(255,143,199,0.18)' },
-          },
           {
             name: 'Them',
             value: keys.map((key) => scalePosition(key, row[key])),
             itemStyle: { color: GROUP_COLORS[analysis.value.group[person.value!]] },
             areaStyle: { color: 'rgba(110,181,255,0.14)' },
+          },
+          {
+            name: 'You',
+            value: keys.map((key) => scalePosition(key, answers.categorical[key])),
+            itemStyle: { color: YOU_COLOR },
+            areaStyle: { color: 'rgba(255,143,199,0.18)' },
+            lineStyle: { width: 2 },
           },
         ],
       },
