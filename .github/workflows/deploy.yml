@@ -1,9 +1,9 @@
-name: Deploy frontend to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main]
-    paths: [frontend/**, .github/workflows/deploy-frontend.yml]
+    paths: [frontend/**, .github/workflows/deploy.yml]
   workflow_dispatch:
 
 permissions:
@@ -17,8 +17,6 @@ concurrency:
 
 jobs:
   build:
-    # Runs once the VITE_API_URL variable points to a deployed backend
-    if: vars.VITE_API_URL != ''
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -31,10 +29,8 @@ jobs:
           cache: npm
           cache-dependency-path: frontend/package-lock.json
       - run: npm ci
+      - run: npm test
       - run: npm run build
-        env:
-          # URL of the deployed backend, set as a repository variable
-          VITE_API_URL: ${{ vars.VITE_API_URL }}
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5
         with:
