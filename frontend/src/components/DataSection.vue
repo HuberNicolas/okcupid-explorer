@@ -22,9 +22,9 @@ import { DATASET, PAPER } from '../links';
         </div>
       </div>
       <ul class="data__facts">
-        <li><span class="mono">59,946</span>profiles in the original dataset</li>
-        <li><span class="mono">842</span>complete profiles used here</li>
-        <li><span class="mono">0</span>answers of yours sent anywhere</li>
+        <li><span class="num">59,946</span>profiles in the original dataset</li>
+        <li><span class="num">842</span>complete profiles used here</li>
+        <li><span class="num">0</span>answers of yours sent anywhere</li>
       </ul>
     </div>
   </section>
@@ -70,7 +70,7 @@ import { DATASET, PAPER } from '../links';
   color: var(--text-dim);
   font-size: 14px;
 }
-.data__facts .mono {
+.data__facts .num {
   font-size: 26px;
   font-weight: 600;
   color: var(--text);

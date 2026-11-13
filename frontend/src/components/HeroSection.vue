@@ -110,7 +110,6 @@ const you = computed(() => stars.value[stars.value.length - 1]);
   flex-wrap: wrap;
   align-items: center;
   gap: 4px 10px;
-  font-family: var(--font-mono);
   font-size: 13px;
   color: var(--text-dim);
   margin: 0 0 24px;

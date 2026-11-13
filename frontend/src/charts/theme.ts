@@ -14,11 +14,12 @@ export const COLORS = {
   tooltip: 'rgba(13, 13, 20, 0.96)',
 };
 
-const MONO = "'JetBrains Mono', ui-monospace, monospace";
+/** The one typeface of the app, also used inside the charts */
+export const SANS = "'Space Grotesk', system-ui, sans-serif";
 
 export const baseOption = {
   backgroundColor: 'transparent',
-  textStyle: { fontFamily: "'Space Grotesk', system-ui, sans-serif", color: COLORS.dim },
+  textStyle: { fontFamily: SANS, color: COLORS.dim },
   animationDuration: 600,
   animationEasing: 'cubicOut' as const,
   tooltip: {
@@ -34,7 +35,7 @@ export const baseOption = {
 export const axisStyle = {
   axisLine: { lineStyle: { color: COLORS.lineStrong } },
   axisTick: { show: false },
-  axisLabel: { color: COLORS.dim, fontFamily: MONO, fontSize: 11 },
+  axisLabel: { color: COLORS.dim, fontFamily: SANS, fontSize: 11 },
   splitLine: { lineStyle: { color: COLORS.line } },
-  nameTextStyle: { color: COLORS.faint, fontFamily: MONO, fontSize: 11 },
+  nameTextStyle: { color: COLORS.faint, fontFamily: SANS, fontSize: 11 },
 };

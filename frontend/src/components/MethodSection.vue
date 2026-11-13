@@ -43,7 +43,7 @@ const steps = [
           :key="s.n"
           class="step panel"
         >
-          <span class="step__n mono">{{ s.n }}</span>
+          <span class="step__n num">{{ s.n }}</span>
           <h3 class="step__title">{{ s.title }}</h3>
           <p class="step__text">{{ s.text }}</p>
           <code class="step__formula">{{ s.formula }}</code>
@@ -83,8 +83,9 @@ const steps = [
   flex: 1;
 }
 .step__formula {
-  font-family: var(--font-mono);
-  font-size: 12.5px;
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
   color: var(--text-dim);
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--line);

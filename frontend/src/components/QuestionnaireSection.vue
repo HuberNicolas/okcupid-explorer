@@ -56,7 +56,7 @@ const isCategorical = (field: string): field is Categorical => field in ATTRIBUT
               :aria-current="i === current ? 'step' : undefined"
               @click="current = i"
             >
-              <span class="quiz__num mono">{{ s.kicker }}</span>
+              <span class="quiz__num num">{{ s.kicker }}</span>
               <span>{{ s.title }}</span>
             </button>
           </li>

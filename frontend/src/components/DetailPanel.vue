@@ -100,7 +100,7 @@ const sameCount = computed(() => comparison.value.filter((c) => c.same).length);
         <button type="button" class="detail__close" aria-label="Close" @click="selection = null">×</button>
       </div>
       <div class="detail__score">
-        <span class="detail__big mono">{{ percent(analysis.score[person]) }}</span>
+        <span class="detail__big num">{{ percent(analysis.score[person]) }}</span>
         <span class="dim">{{ settings.mode === 'similar' ? 'similar to you' : 'opposite of you' }} · {{ sameCount }} of {{ comparison.length }} answers alike</span>
       </div>
       <EChart :option="radarOption" height="280px" />
@@ -129,8 +129,8 @@ const sameCount = computed(() => comparison.value.filter((c) => c.same).length);
       </div>
 
       <div class="detail__facts">
-        <div><span class="mono">{{ groupStats.meanAge.toFixed(1) }}</span><small>average age</small></div>
-        <div><span class="mono">{{ percent(groupStats.women) }}</span><small>women</small></div>
+        <div><span class="num">{{ groupStats.meanAge.toFixed(1) }}</span><small>average age</small></div>
+        <div><span class="num">{{ percent(groupStats.women) }}</span><small>women</small></div>
       </div>
 
       <p class="detail__label">Groups in here</p>
@@ -148,7 +148,7 @@ const sameCount = computed(() => comparison.value.filter((c) => c.same).length);
       <ul class="detail__standouts">
         <li v-for="s in groupStats.standouts" :key="s.label">
           <span>{{ s.label }}</span>
-          <span class="mono dim">{{ percent(s.share) }} · {{ s.lift.toFixed(1) }}×</span>
+          <span class="num dim">{{ percent(s.share) }} · {{ s.lift.toFixed(1) }}×</span>
         </li>
         <li v-if="!groupStats.standouts.length" class="dim">Select at least a few people to compare.</li>
       </ul>
@@ -253,7 +253,7 @@ const sameCount = computed(() => comparison.value.filter((c) => c.same).length);
   display: flex;
   flex-direction: column;
 }
-.detail__facts .mono {
+.detail__facts .num {
   font-size: 22px;
   font-weight: 600;
 }
@@ -262,7 +262,6 @@ const sameCount = computed(() => comparison.value.filter((c) => c.same).length);
   font-size: 12px;
 }
 .detail__label {
-  font-family: var(--font-mono);
   font-size: 11.5px;
   color: var(--text-faint);
   text-transform: uppercase;
@@ -290,7 +289,7 @@ const sameCount = computed(() => comparison.value.filter((c) => c.same).length);
   padding: 8px 0;
   border-bottom: 1px solid var(--line);
 }
-.detail__standouts .mono {
+.detail__standouts .num {
   font-size: 12px;
   white-space: nowrap;
 }

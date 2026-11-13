@@ -10,7 +10,7 @@ const fill = computed(() => `${((model.value - props.min) / (props.max - props.m
   <label class="range">
     <span class="range__head">
       <span class="range__label">{{ label }}</span>
-      <span class="range__value mono">{{ display(model) }}</span>
+      <span class="range__value num">{{ display(model) }}</span>
     </span>
     <input v-model.number="model" type="range" :min="min" :max="max" :step="step ?? 1" :style="{ '--fill': fill }" />
   </label>

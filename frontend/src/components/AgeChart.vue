@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import EChart from './EChart.vue';
-import { axisStyle, baseOption, COLORS, YOU_COLOR } from '../charts/theme';
+import { axisStyle, baseOption, COLORS, SANS, YOU_COLOR } from '../charts/theme';
 import { useExplorer } from '../composables/useExplorer';
 import { useMediaQuery } from '../composables/useMediaQuery';
 
@@ -36,7 +36,7 @@ const option = computed(() => {
           symbol: 'none',
           silent: true,
           lineStyle: { color: YOU_COLOR, type: 'dashed', width: 1.5 },
-          label: { color: YOU_COLOR, formatter: 'you', fontFamily: "'JetBrains Mono', monospace" },
+          label: { color: YOU_COLOR, formatter: 'you', fontFamily: SANS },
           data: [{ xAxis: String(Math.min(Math.max(answers.age, 17), 66)) }],
         },
       },

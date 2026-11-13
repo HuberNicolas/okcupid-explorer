@@ -2,7 +2,7 @@
 import { computed, shallowRef } from 'vue';
 import type { ECharts } from 'echarts/core';
 import EChart from './EChart.vue';
-import { axisStyle, baseOption, COLORS, GROUP_COLORS, YOU_COLOR } from '../charts/theme';
+import { axisStyle, baseOption, COLORS, GROUP_COLORS, SANS, YOU_COLOR } from '../charts/theme';
 import { useExplorer } from '../composables/useExplorer';
 import { ATTRIBUTES, valueLabel } from '../content/attributes';
 import { GROUPS } from '../engine';
@@ -48,7 +48,7 @@ const option = computed(() => {
       icon: 'circle',
       itemWidth: 9,
       itemHeight: 9,
-      textStyle: { color: COLORS.dim, fontFamily: "'JetBrains Mono', monospace", fontSize: 11.5 },
+      textStyle: { color: COLORS.dim, fontFamily: SANS, fontSize: 11.5 },
       data: [...series.map((s) => s.name), 'You'],
     },
     xAxis: { ...axisStyle, type: 'value', scale: true, name: `PC 1 · ${percent(explained[0])}`, nameLocation: 'middle', nameGap: 26 },

@@ -30,7 +30,6 @@
   --nav-h: 68px;
 
   --font-sans: 'Space Grotesk', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
   color-scheme: dark;
 }
@@ -140,8 +139,8 @@ html {
   margin: 0 0 clamp(32px, 5vw, 52px);
 }
 
-.mono {
-  font-family: var(--font-mono);
+.num {
+  font-variant-numeric: tabular-nums;
 }
 
 .dim {

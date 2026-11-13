@@ -44,7 +44,8 @@ typography:
     fontSize: "14.5px"
     fontWeight: 500
   stat:
-    fontFamily: "JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace"
+    fontFamily: "Space Grotesk, system-ui, -apple-system, sans-serif"
+    fontFeature: "'tnum' 1"
     fontSize: "clamp(28px, 4vw, 40px)"
     fontWeight: 600
     letterSpacing: "-0.02em"
@@ -108,12 +109,12 @@ The 842 profiles are a field of stars in a dark sky, and the visitor is the one 
 
 Density is moderate. Sections breathe with large vertical padding, while the results area packs controls, key figures, map and detail panel into a working instrument. Interactive parts are tactile: buttons lift and pick up a soft white glow on hover, selected chips fill with white, slider thumbs carry a soft halo. Nothing animates on scroll; the only standing motion is the ring that pulses from your dot in the hero.
 
-Typography is one geometric grotesque for everything people read and click, and a mono face only where something is measured: numbers, formulas, axes.
+Typography is a single geometric grotesque for everything. Where something is measured, its figures switch to equal widths, so numbers line up and do not jump while they change.
 
 **Key Characteristics:**
 - Near-black ink background, no glows, no pattern
 - Colour means data: four group colours, pink for you; the interface itself is ink, white and grey
-- Space Grotesk for text, headings, buttons and labels; JetBrains Mono for numbers, formulas and axes
+- One typeface, Space Grotesk, for everything; tabular figures for numbers
 - See-through panels (2.5% white) with hairline borders; depth through light, not shadow
 - Pills for choices, softly rounded rectangles for buttons and panels
 - One solid white primary button per view; lift and soft glow as the response to touch
@@ -153,10 +154,9 @@ A night palette: deep ink neutrals, and five luminous pastels that each mean som
 
 ## Typography
 
-**Text Font:** Space Grotesk (with system-ui, -apple-system, sans-serif)
-**Mono Font:** JetBrains Mono (with ui-monospace, SF Mono, Menlo, monospace)
+**Font:** Space Grotesk (with system-ui, -apple-system, sans-serif), the only typeface, also inside the charts
 
-**Character:** Space Grotesk is warm but engineered, with tight tracking at large sizes; JetBrains Mono turns measurements into instrument readings.
+**Character:** Space Grotesk is warm but engineered, with tight tracking at large sizes and distinctive figures (the 1 and the 4) that give the key numbers their own voice.
 
 ### Hierarchy
 - **Display** (600, clamp(38px, 6.4vw, 72px), 1.02): the hero question only; the part about you in solid Heartbeat Pink.
@@ -165,11 +165,11 @@ A night palette: deep ink neutrals, and five luminous pastels that each mean som
 - **Body** (400, 16px, 1.65): running text; leads in Dim at max 540–640px wide, the hero lead at 17px.
 - **Label** (sans 500, 14.5px for buttons, 13–14px for chips, segments and nav links).
 - **Meta** (sans 500, 13px, Dim or the group's colour): informational lines above a panel title, such as "Step 1 of 6" or "Group 3 · profile #29605".
-- **Stat** (mono 600, 22–30px): key figures; in the colour of their group or of you when they are about one, otherwise Paper White.
+- **Stat** (600, 22–30px, tabular figures): key figures; in the colour of their group or of you when they are about one, otherwise Paper White.
 - **Control label** (sans, 11.5px, uppercase, 0.06em, Faint): labels above controls such as MODE and THRESHOLD.
 
 ### Named Rules
-**The Readout Rule.** Mono is for measurements only: numbers, formulas, axis labels, step numbers. Words that people read or click are set in Space Grotesk.
+**The Readout Rule.** One typeface. Numbers that are measured, compared or change live (key figures, percentages, slider values, formulas, step numbers) use tabular figures (`font-variant-numeric: tabular-nums`, the `num` class); no monospace font anywhere, including `<code>`.
 
 ## Layout
 
@@ -233,17 +233,17 @@ A pill track (3px inset, hairline border) of buttons; the pressed one fills with
 Fixed, 68px, transparent at the top; after scrolling it gains 72% ink with a 14px backdrop blur and a hairline bottom border. The logo is a pink heart and "Project Eros" at 15px, weight 600; links are 14px in Dim, Paper White on hover. Below 560px only the first link and the GitHub icon remain.
 
 ### Key-figure strip
-Four cells in one bordered, rounded block, divided by hairlines. Each cell has a mono value and a 12.5px Dim label below. Your match count is pink, your group and your closest match take the colour of their group, the share of everyone stays Paper White. Cells that act as buttons brighten to Panel Strong on hover.
+Four cells in one bordered, rounded block, divided by hairlines. Each cell has a value with tabular figures and a 12.5px Dim label below. Your match count is pink, your group and your closest match take the colour of their group, the share of everyone stays Paper White. Cells that act as buttons brighten to Panel Strong on hover.
 
 ### Observatory map (signature)
-The PCA scatter: every profile a dot in its group colour, profiles below the threshold dimmed, the visitor a pink heart drawn on top. Axes and grid in hairlines, mono axis labels at 11px, a dark, nearly opaque tooltip. In the hero the same map appears as a static SVG figure; the only motion is a ring pulsing out from your dot. A short caption follows ("842 profiles · ● you").
+The PCA scatter: every profile a dot in its group colour, profiles below the threshold dimmed, the visitor a pink heart drawn on top. Axes and grid in hairlines, axis labels at 11px, a dark, nearly opaque tooltip. In the hero the same map appears as a static SVG figure; the only motion is a ring pulsing out from your dot. A short caption follows ("842 profiles · ● you").
 
 ## Do's and Don'ts
 
 ### Do:
 - **Do** let the data carry the colour: group colours for groups, pink for you, nothing else coloured except the focus ring (The Quiet Interface Rule).
 - **Do** keep Heartbeat Pink for the visitor alone (The One Heart Rule).
-- **Do** set numbers, formulas and axes in JetBrains Mono, everything people read or click in Space Grotesk (The Readout Rule).
+- **Do** set everything in Space Grotesk and give measured numbers tabular figures (The Readout Rule).
 - **Do** answer touch with light: lift, soft glow, white fill, thumb halo, eased with `cubic-bezier(0.22, 1, 0.36, 1)` over 0.22s.
 - **Do** build new containers as see-through panels with a 1px hairline border and 14px radius.
 - **Do** stop all animation under `prefers-reduced-motion`.

@@ -77,7 +77,7 @@ function showBest() {
           :type="kpi.action ? 'button' : undefined"
           @click="kpi.action && showBest()"
         >
-          <span class="kpi__value mono">{{ kpi.value }}</span>
+          <span class="kpi__value num">{{ kpi.value }}</span>
           <span class="kpi__label">{{ kpi.label }}</span>
         </component>
       </div>
