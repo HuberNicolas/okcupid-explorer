@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-13T09:15:54+00:00",
+  "title": "Design System: Project Eros",
+  "extensions": {
+    "colorMeta": {
+      "aurora-green": {
+        "role": "primary",
+        "displayName": "Aurora Green",
+        "canonical": "oklch(85.9% 0.156 161.5)",
+        "tonalRamp": [
+          "#000f07",
+          "#012d1c",
+          "#014f34",
+          "#08734e",
+          "#0f9a69",
+          "#43bf8a",
+          "#81e0b2",
+          "#c4fedf"
+        ]
+      },
+      "nebula-blue": {
+        "role": "secondary",
+        "displayName": "Nebula Blue",
+        "canonical": "oklch(75.7% 0.129 250.8)",
+        "tonalRamp": [
+          "#000b1d",
+          "#032646",
+          "#114473",
+          "#27649f",
+          "#4086cc",
+          "#6eaae8",
+          "#a3cefc",
+          "#e3f0fe"
+        ]
+      },
+      "twilight-violet": {
+        "role": "secondary",
+        "displayName": "Twilight Violet",
+        "canonical": "oklch(77.0% 0.146 304.4)",
+        "tonalRamp": [
+          "#120222",
+          "#2f1647",
+          "#4f3070",
+          "#724b9b",
+          "#9669c8",
+          "#b790e4",
+          "#d7bafd",
+          "#f3eaff"
+        ]
+      },
+      "lantern-amber": {
+        "role": "secondary",
+        "displayName": "Lantern Amber",
+        "canonical": "oklch(84.9% 0.123 72.1)",
+        "tonalRamp": [
+          "#130900",
+          "#352002",
+          "#5b3a06",
+          "#835710",
+          "#af7519",
+          "#ce9a56",
+          "#eec088",
+          "#ffebd4"
+        ]
+      },
+      "heartbeat-pink": {
+        "role": "tertiary",
+        "displayName": "Heartbeat Pink",
+        "canonical": "oklch(78.6% 0.149 349.7)",
+        "tonalRamp": [
+          "#1c010f",
+          "#430c2b",
+          "#6a244a",
+          "#953d6c",
+          "#c1588f",
+          "#e082b1",
+          "#ffacd3",
+          "#fee7f1"
+        ]
+      },
+      "ink-black": {
+        "role": "neutral",
+        "displayName": "Ink Black",
+        "canonical": "oklch(13.7% 0.009 285.1)",
+        "tonalRamp": [
+          "#0b0b0d",
+          "#252528",
+          "#414145",
+          "#616166",
+          "#818288",
+          "#a4a4aa",
+          "#c8c9cd",
+          "#eeeef2"
+        ]
+      },
+      "paper-white": {
+        "role": "neutral",
+        "displayName": "Paper White",
+        "canonical": "oklch(93.9% 0.011 286.2)",
+        "tonalRamp": [
+          "#0b0b0d",
+          "#252528",
+          "#414146",
+          "#616066",
+          "#818189",
+          "#a4a4ab",
+          "#c8c8ce",
+          "#eeeef3"
+        ]
+      },
+      "text-dim": {
+        "role": "neutral",
+        "displayName": "Dim",
+        "canonical": "oklch(69.2% 0.028 285.7)",
+        "tonalRamp": [
+          "#0b0a11",
+          "#24242d",
+          "#41414d",
+          "#60606f",
+          "#808093",
+          "#a3a3b4",
+          "#c7c8d6",
+          "#ededf9"
+        ]
+      },
+      "text-faint": {
+        "role": "neutral",
+        "displayName": "Faint",
+        "canonical": "oklch(58.7% 0.033 285.3)",
+        "tonalRamp": [
+          "#0a0a12",
+          "#24242f",
+          "#40404f",
+          "#5f5f72",
+          "#808096",
+          "#a3a3b7",
+          "#c7c7d9",
+          "#ededfc"
+        ]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Panel"
+      },
+      "panel-strong": {
+        "role": "neutral",
+        "displayName": "Panel Strong"
+      },
+      "tooltip-ink": {
+        "role": "neutral",
+        "displayName": "Tooltip Ink"
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Line"
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Line Strong"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The hero question only; the part about you in solid Heartbeat Pink."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Step titles, card titles, detail panel and distribution headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text; leads in Dim at 540–640px max width."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Mono kickers written as code comments, nav links, buttons, chips."
+      },
+      "stat": {
+        "displayName": "Stat",
+        "purpose": "Key figures in their accent colour."
+      }
+    },
+    "shadows": [
+      {
+        "name": "hover-glow",
+        "value": "0 8px 30px rgba(92, 240, 176, 0.12)",
+        "purpose": "Buttons on hover, together with a 2px lift."
+      },
+      {
+        "name": "thumb-halo",
+        "value": "0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent)",
+        "purpose": "Range slider thumbs."
+      },
+      {
+        "name": "tooltip-float",
+        "value": "0 12px 40px rgba(0, 0, 0, 0.5)",
+        "purpose": "Chart tooltips only, with backdrop-filter: blur(6px)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Every transition."
+      },
+      {
+        "name": "dur",
+        "value": "0.22s",
+        "purpose": "Hover and state changes."
+      },
+      {
+        "name": "reveal",
+        "value": "0.7s, translateY(22px) to none",
+        "purpose": "Sections rising into view on scroll."
+      },
+      {
+        "name": "chart",
+        "value": "600ms cubicOut",
+        "purpose": "ECharts entry animation."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "nav-compact",
+        "value": "560px"
+      },
+      {
+        "name": "two-up",
+        "value": "640px"
+      },
+      {
+        "name": "strip-2x2",
+        "value": "760px"
+      },
+      {
+        "name": "hero-stack",
+        "value": "880px"
+      },
+      {
+        "name": "results-stack",
+        "value": "960px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "Main call to action, e.g. starting the questionnaire or seeing results.",
+      "html": "<button class=\"ds-btn ds-btn-primary\">See where you land <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></button>",
+      "css": ":host{--bg:#08080c;--panel:rgba(255,255,255,.025);--panel-strong:rgba(255,255,255,.045);--text:#eaeaf2;--text-dim:#9a9aad;--text-faint:#7a7a90;--green:#5cf0b0;--blue:#6eb5ff;--violet:#c99bff;--amber:#ffc06e;--pink:#ff8fc7;--line:rgba(255,255,255,.08);--line-strong:rgba(255,255,255,.16);--radius:14px;--radius-sm:10px;--ease:cubic-bezier(.22,1,.36,1);--dur:.22s;--font-sans:'Space Grotesk',system-ui,sans-serif;--font-mono:'JetBrains Mono',ui-monospace,monospace;} .ds-btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-mono);font-size:14px;font-weight:500;padding:12px 20px;border-radius:var(--radius-sm);border:1px solid var(--line-strong);background:var(--panel);color:var(--text);cursor:pointer;transition:transform var(--dur) var(--ease),border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease);} .ds-btn:hover{transform:translateY(-2px);border-color:rgba(92,240,176,.5);box-shadow:0 8px 30px rgba(92,240,176,.12);} .ds-btn:focus-visible{outline:2px solid var(--green);outline-offset:2px;} .ds-btn svg{width:16px;height:16px;} .ds-btn-primary{background:linear-gradient(120deg,rgba(92,240,176,.16),rgba(110,181,255,.12));border-color:rgba(92,240,176,.4);color:#fff;}"
+    },
+    {
+      "name": "Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "Secondary actions such as Source on GitHub or Edit answers.",
+      "html": "<button class=\"ds-btn\">Source on GitHub</button>",
+      "css": ":host{--bg:#08080c;--panel:rgba(255,255,255,.025);--panel-strong:rgba(255,255,255,.045);--text:#eaeaf2;--text-dim:#9a9aad;--text-faint:#7a7a90;--green:#5cf0b0;--blue:#6eb5ff;--violet:#c99bff;--amber:#ffc06e;--pink:#ff8fc7;--line:rgba(255,255,255,.08);--line-strong:rgba(255,255,255,.16);--radius:14px;--radius-sm:10px;--ease:cubic-bezier(.22,1,.36,1);--dur:.22s;--font-sans:'Space Grotesk',system-ui,sans-serif;--font-mono:'JetBrains Mono',ui-monospace,monospace;} .ds-btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-mono);font-size:14px;font-weight:500;padding:12px 20px;border-radius:var(--radius-sm);border:1px solid var(--line-strong);background:var(--panel);color:var(--text);cursor:pointer;transition:transform var(--dur) var(--ease),border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease);} .ds-btn:hover{transform:translateY(-2px);border-color:rgba(92,240,176,.5);box-shadow:0 8px 30px rgba(92,240,176,.12);} .ds-btn:focus-visible{outline:2px solid var(--green);outline-offset:2px;} .ds-btn svg{width:16px;height:16px;}"
+    },
+    {
+      "name": "Small Button",
+      "kind": "button",
+      "refersTo": "button-small",
+      "description": "Tool actions inside panels: random answers, reset, select an area.",
+      "html": "<button class=\"ds-btn ds-btn-small\">Random answers</button>",
+      "css": ":host{--bg:#08080c;--panel:rgba(255,255,255,.025);--panel-strong:rgba(255,255,255,.045);--text:#eaeaf2;--text-dim:#9a9aad;--text-faint:#7a7a90;--green:#5cf0b0;--blue:#6eb5ff;--violet:#c99bff;--amber:#ffc06e;--pink:#ff8fc7;--line:rgba(255,255,255,.08);--line-strong:rgba(255,255,255,.16);--radius:14px;--radius-sm:10px;--ease:cubic-bezier(.22,1,.36,1);--dur:.22s;--font-sans:'Space Grotesk',system-ui,sans-serif;--font-mono:'JetBrains Mono',ui-monospace,monospace;} .ds-btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-mono);font-size:14px;font-weight:500;padding:12px 20px;border-radius:var(--radius-sm);border:1px solid var(--line-strong);background:var(--panel);color:var(--text);cursor:pointer;transition:transform var(--dur) var(--ease),border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease);} .ds-btn:hover{transform:translateY(-2px);border-color:rgba(92,240,176,.5);box-shadow:0 8px 30px rgba(92,240,176,.12);} .ds-btn:focus-visible{outline:2px solid var(--green);outline-offset:2px;} .ds-btn svg{width:16px;height:16px;} .ds-btn-small{padding:7px 13px;font-size:12.5px;}"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Answer options and attribute pickers; selected state fills with the accent.",
+      "html": "<div class=\"ds-chips\"><button class=\"ds-chip\" aria-pressed=\"true\">vegetarian</button><button class=\"ds-chip\" aria-pressed=\"false\">anything</button><button class=\"ds-chip\" aria-pressed=\"false\">vegan</button></div>",
+      "css": ":host{--bg:#08080c;--panel:rgba(255,255,255,.025);--panel-strong:rgba(255,255,255,.045);--text:#eaeaf2;--text-dim:#9a9aad;--text-faint:#7a7a90;--green:#5cf0b0;--blue:#6eb5ff;--violet:#c99bff;--amber:#ffc06e;--pink:#ff8fc7;--line:rgba(255,255,255,.08);--line-strong:rgba(255,255,255,.16);--radius:14px;--radius-sm:10px;--ease:cubic-bezier(.22,1,.36,1);--dur:.22s;--font-sans:'Space Grotesk',system-ui,sans-serif;--font-mono:'JetBrains Mono',ui-monospace,monospace;} .ds-chips{display:flex;gap:8px;flex-wrap:wrap;} .ds-chip{display:inline-flex;align-items:center;font-family:var(--font-mono);font-size:12.5px;color:var(--text-dim);padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:var(--panel);cursor:pointer;transition:color var(--dur) var(--ease),border-color var(--dur) var(--ease),background var(--dur) var(--ease);} .ds-chip:hover{color:var(--text);border-color:var(--line-strong);} .ds-chip:focus-visible{outline:2px solid var(--green);outline-offset:2px;} .ds-chip[aria-pressed='true']{color:#fff;border-color:color-mix(in srgb,var(--green) 60%,transparent);background:color-mix(in srgb,var(--green) 14%,transparent);}"
+    },
+    {
+      "name": "Segmented Control",
+      "kind": "custom",
+      "refersTo": "segmented",
+      "description": "Two-way mode switch: similar to me or opposites attract.",
+      "html": "<div class=\"ds-seg\"><button aria-pressed=\"true\">♥ similar to me</button><button aria-pressed=\"false\">⇄ opposites attract</button></div>",
+      "css": ":host{--bg:#08080c;--panel:rgba(255,255,255,.025);--panel-strong:rgba(255,255,255,.045);--text:#eaeaf2;--text-dim:#9a9aad;--text-faint:#7a7a90;--green:#5cf0b0;--blue:#6eb5ff;--violet:#c99bff;--amber:#ffc06e;--pink:#ff8fc7;--line:rgba(255,255,255,.08);--line-strong:rgba(255,255,255,.16);--radius:14px;--radius-sm:10px;--ease:cubic-bezier(.22,1,.36,1);--dur:.22s;--font-sans:'Space Grotesk',system-ui,sans-serif;--font-mono:'JetBrains Mono',ui-monospace,monospace;} .ds-seg{display:inline-flex;padding:3px;border:1px solid var(--line);border-radius:999px;background:var(--panel);} .ds-seg button{border:0;background:transparent;font-family:var(--font-mono);font-size:12.5px;color:var(--text-dim);padding:6px 14px;border-radius:999px;cursor:pointer;transition:background var(--dur) var(--ease),color var(--dur) var(--ease);} .ds-seg button:hover{color:var(--text);} .ds-seg button:focus-visible{outline:2px solid var(--green);outline-offset:2px;} .ds-seg button[aria-pressed='true']{background:color-mix(in srgb,var(--pink) 18%,transparent);color:#fff;}"
+    },
+    {
+      "name": "Range Slider",
+      "kind": "input",
+      "description": "Threshold and numeric answers; accent fill up to the value, thumb with halo.",
+      "html": "<input class=\"ds-range\" type=\"range\" value=\"80\" style=\"--fill:80%\" aria-label=\"Threshold\">",
+      "css": ":host{--bg:#08080c;--panel:rgba(255,255,255,.025);--panel-strong:rgba(255,255,255,.045);--text:#eaeaf2;--text-dim:#9a9aad;--text-faint:#7a7a90;--green:#5cf0b0;--blue:#6eb5ff;--violet:#c99bff;--amber:#ffc06e;--pink:#ff8fc7;--line:rgba(255,255,255,.08);--line-strong:rgba(255,255,255,.16);--radius:14px;--radius-sm:10px;--ease:cubic-bezier(.22,1,.36,1);--dur:.22s;--font-sans:'Space Grotesk',system-ui,sans-serif;--font-mono:'JetBrains Mono',ui-monospace,monospace;} .ds-range{-webkit-appearance:none;appearance:none;width:280px;height:4px;border-radius:99px;background:linear-gradient(90deg,var(--pink) var(--fill),var(--line-strong) var(--fill));cursor:pointer;} .ds-range::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--bg);border:2px solid var(--pink);box-shadow:0 0 0 4px color-mix(in srgb,var(--pink) 18%,transparent);} .ds-range::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--pink);} .ds-range:focus-visible{outline:2px solid var(--green);outline-offset:6px;}"
+    },
+    {
+      "name": "Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Standard container: see-through fill, hairline border, title and hint.",
+      "html": "<section class=\"ds-panel\"><p class=\"ds-kicker\">// your group · group 4</p><h3>263 people</h3><p class=\"ds-hint\">98% pass your threshold</p></section>",
+      "css": ":host{--bg:#08080c;--panel:rgba(255,255,255,.025);--panel-strong:rgba(255,255,255,.045);--text:#eaeaf2;--text-dim:#9a9aad;--text-faint:#7a7a90;--green:#5cf0b0;--blue:#6eb5ff;--violet:#c99bff;--amber:#ffc06e;--pink:#ff8fc7;--line:rgba(255,255,255,.08);--line-strong:rgba(255,255,255,.16);--radius:14px;--radius-sm:10px;--ease:cubic-bezier(.22,1,.36,1);--dur:.22s;--font-sans:'Space Grotesk',system-ui,sans-serif;--font-mono:'JetBrains Mono',ui-monospace,monospace;} .ds-panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px;color:var(--text);font-family:var(--font-sans);max-width:320px;} .ds-panel h3{font-size:20px;font-weight:600;margin:0 0 4px;letter-spacing:-.02em;} .ds-hint{font-size:13px;color:var(--text-dim);margin:0;} .ds-kicker{font-family:var(--font-mono);font-size:13px;font-weight:500;letter-spacing:.04em;color:var(--amber);margin:0 0 8px;}"
+    },
+    {
+      "name": "Key Figure",
+      "kind": "custom",
+      "description": "Cell of the key-figure strip: value in the accent colour, dim label.",
+      "html": "<div class=\"ds-kpis\"><div class=\"ds-kpi\" style=\"--accent:var(--pink)\"><span class=\"ds-v\">431</span><span class=\"ds-l\">profiles at 80% or more</span></div><button class=\"ds-kpi ds-kpi-action\" style=\"--accent:var(--green)\"><span class=\"ds-v\">98%</span><span class=\"ds-l\">your closest match, click to see</span></button></div>",
+      "css": ":host{--bg:#08080c;--panel:rgba(255,255,255,.025);--panel-strong:rgba(255,255,255,.045);--text:#eaeaf2;--text-dim:#9a9aad;--text-faint:#7a7a90;--green:#5cf0b0;--blue:#6eb5ff;--violet:#c99bff;--amber:#ffc06e;--pink:#ff8fc7;--line:rgba(255,255,255,.08);--line-strong:rgba(255,255,255,.16);--radius:14px;--radius-sm:10px;--ease:cubic-bezier(.22,1,.36,1);--dur:.22s;--font-sans:'Space Grotesk',system-ui,sans-serif;--font-mono:'JetBrains Mono',ui-monospace,monospace;} .ds-kpis{display:grid;grid-template-columns:repeat(2,1fr);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;font-family:var(--font-sans);} .ds-kpi{display:flex;flex-direction:column;gap:4px;padding:20px 22px;border:0;border-left:1px solid var(--line);background:var(--panel);text-align:left;color:inherit;font:inherit;} .ds-kpi:first-child{border-left:0;} .ds-kpi-action{cursor:pointer;transition:background var(--dur) var(--ease);} .ds-kpi-action:hover{background:var(--panel-strong);} .ds-kpi-action:focus-visible{outline:2px solid var(--green);outline-offset:-2px;} .ds-v{font-family:var(--font-mono);font-size:30px;font-weight:600;color:var(--accent);letter-spacing:-.02em;} .ds-l{font-size:12.5px;color:var(--text-dim);}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "description": "Fixed top bar, blurred ink after scrolling; heart logo and mono links.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-logo\" href=\"#\"><span>♥</span> ~/project-eros</a><div class=\"ds-links\"><a href=\"#\">Explore</a><a href=\"#\">How it works</a><a href=\"#\">Data</a></div></nav>",
+      "css": ":host{--bg:#08080c;--panel:rgba(255,255,255,.025);--panel-strong:rgba(255,255,255,.045);--text:#eaeaf2;--text-dim:#9a9aad;--text-faint:#7a7a90;--green:#5cf0b0;--blue:#6eb5ff;--violet:#c99bff;--amber:#ffc06e;--pink:#ff8fc7;--line:rgba(255,255,255,.08);--line-strong:rgba(255,255,255,.16);--radius:14px;--radius-sm:10px;--ease:cubic-bezier(.22,1,.36,1);--dur:.22s;--font-sans:'Space Grotesk',system-ui,sans-serif;--font-mono:'JetBrains Mono',ui-monospace,monospace;} .ds-nav{display:flex;align-items:center;justify-content:space-between;height:68px;padding:0 24px;background:rgba(8,8,12,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);color:var(--text);} .ds-nav a{color:inherit;text-decoration:none;} .ds-logo{font-family:var(--font-mono);font-size:14px;font-weight:500;display:flex;gap:8px;} .ds-logo span{color:var(--pink);} .ds-links{display:flex;gap:30px;font-family:var(--font-mono);font-size:13px;color:var(--text-dim);} .ds-links a{transition:color var(--dur) var(--ease);} .ds-links a:hover{color:var(--text);} .ds-nav a:focus-visible{outline:2px solid var(--green);outline-offset:2px;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Night Observatory",
+    "overview": "The 842 profiles are a field of stars in a dark sky, and the visitor is the one pink point looking for its place among them. The interface is the observatory's instrument: dark ink surfaces that let the data glow, mono-type annotations that read like readouts, and a few soft lights in the corners of the page. The map, the four group colours and the pink \"you\" carry the colour; everything else stays close to the night.\n\nDensity is moderate. Sections breathe with large vertical padding, while the results area packs controls, key figures, map and detail panel into a working instrument. Interactive parts are glowing and tactile: buttons lift and pick up a green glow on hover, selected chips fill with their accent, slider thumbs carry a soft halo. Motion is short and eased out; elements rise into view as you scroll, and all of it stops under reduced motion.\n\nTypography pairs a geometric grotesque for speech with a mono face for data and annotations. Terminal hints (`~/project-eros`, `// how it works`) mark the author's developer voice, but they are captions, not the subject.",
+    "keyCharacteristics": [
+      "Near-black ink background with two faint corner glows (pink top left, blue top right) and no pattern",
+      "Four group colours plus pink for you; colour means data or state",
+      "Space Grotesk for text, JetBrains Mono for numbers, labels, kickers and controls",
+      "See-through panels (2.5% white) with hairline borders; depth through light, not shadow",
+      "Pills for choices, softly rounded rectangles for buttons and panels",
+      "Glow, lift and accent fills as the response to touch"
+    ],
+    "rules": [
+      {
+        "name": "The One Heart Rule",
+        "body": "Heartbeat Pink belongs to the visitor. If something pink is not you or about you, it is wrong.",
+        "section": "colors"
+      },
+      {
+        "name": "The Group Colour Rule",
+        "body": "Group colours are fixed in order (green, blue, violet, amber for groups 1 to 4; groups are numbered left to right on the map). A component that shows a group takes that group's colour through `data-accent`; never reassign the colours for decoration.",
+        "section": "colors"
+      },
+      {
+        "name": "The Readout Rule",
+        "body": "Numbers, formulas, controls and annotations are mono; sentences are sans. A figure that the visitor reads as a measurement is set in JetBrains Mono.",
+        "section": "typography"
+      },
+      {
+        "name": "The Starlight Rule",
+        "body": "Things glow; they do not cast shadows. Use a coloured glow for interaction and a dark shadow only for tooltips that float over the chart.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** let the data carry the colour: group colours on the map, in key figures and in kickers of group-related panels.",
+      "**Do** keep Heartbeat Pink for the visitor alone (The One Heart Rule).",
+      "**Do** set numbers, labels, controls and kickers in JetBrains Mono, sentences in Space Grotesk.",
+      "**Do** answer touch with light: lift, green glow, accent fill, thumb halo, eased with `cubic-bezier(0.22, 1, 0.36, 1)` over 0.22s.",
+      "**Do** build new containers as see-through panels with a 1px hairline border and 14px radius.",
+      "**Do** stop all animation and reveal everything at once under `prefers-reduced-motion`."
+    ],
+    "donts": [
+      "**Don't** add dark drop shadows to cards or buttons; only tooltips float (The Starlight Rule).",
+      "**Don't** go below 4.5:1 for any text; Faint (`text-faint`) is the lowest text colour, for captions and labels beside stronger text.",
+      "**Don't** use Faint (`text-faint`) for text the visitor must read; it is for captions and labels beside stronger text.",
+      "**Don't** add gradient text, grid or dot patterns behind the page, or coloured stripes on the edge of callouts."
+    ]
+  }
+}
