@@ -5,10 +5,10 @@ import EChart from './EChart.vue';
 import { alpha, baseOption, COLORS, GROUP_ACCENTS, GROUP_COLORS, YOU_COLOR } from '../charts/theme';
 import { useExplorer } from '../composables/useExplorer';
 import { ATTRIBUTES, valueLabel } from '../content/attributes';
-import { GROUPS } from '../engine';
+import { FEATURES, GROUPS } from '../engine';
 import { compare, heightLabel, percent, scalePosition, standouts } from '../insights';
 
-const { analysis, profiles, selection, answers, charts, settings } = useExplorer();
+const { analysis, profiles, selection, answers, charts, settings, groups } = useExplorer();
 
 const youGroup = computed(() => analysis.value.group[analysis.value.group.length - 1]);
 
@@ -91,6 +91,12 @@ const closest = computed(() => {
 const describe = (i: number) =>
   `${profiles[i].age}, ${valueLabel(profiles[i].sex).toLowerCase()}, ${valueLabel(profiles[i].job).toLowerCase()}`;
 
+/** What the panel shows, announced to screen readers without the numbers that change while you drag */
+const status = computed(() => {
+  if (person.value !== null) return `Showing ${describe(person.value)}.`;
+  return selection.value ? 'Showing your selection on the map.' : `Showing your group, group ${youGroup.value + 1}.`;
+});
+
 const radarLabel = computed(
   () =>
     `Radar chart comparing your answers with this person's on ${radarKeys.value.map((k) => ATTRIBUTES[k].label.toLowerCase()).join(', ')}.`,
@@ -99,7 +105,8 @@ const sameCount = computed(() => comparison.value.filter((c) => c.same).length);
 </script>
 
 <template>
-  <aside class="detail panel" aria-live="polite">
+  <aside class="detail panel" aria-label="Details">
+    <p class="sr-only" aria-live="polite">{{ status }}</p>
     <!-- A person -->
     <template v-if="personRow && person !== null">
       <div class="detail__head">
@@ -115,9 +122,14 @@ const sameCount = computed(() => comparison.value.filter((c) => c.same).length);
       </div>
       <div class="detail__score">
         <span class="detail__big num">{{ percent(analysis.score[person]) }}</span>
-        <span class="dim">{{ settings.mode === 'similar' ? 'similar to you' : 'opposite of you' }} · {{ sameCount }} of {{ comparison.length }} answers alike</span>
+        <span class="dim">{{ settings.mode === 'similar' ? 'similarity' : 'opposition' }} · {{ sameCount }} of {{ comparison.length }} answers identical</span>
       </div>
+      <p class="detail__note">
+        The score compares the direction of your {{ FEATURES.length }} encoded answers with theirs, so close answers count
+        too, not only identical ones.
+      </p>
       <EChart :option="radarOption" height="280px" :label="radarLabel" />
+      <p class="detail__note detail__note--center">Axes: the attributes chosen under “How your matches compare”.</p>
       <div class="detail__compare" tabindex="0" role="region" aria-label="Your answers and theirs">
         <table>
           <thead>
@@ -147,13 +159,14 @@ const sameCount = computed(() => comparison.value.filter((c) => c.same).length);
     <template v-else>
       <div class="detail__head">
         <div>
-          <p class="meta" :data-accent="selection ? 'violet' : GROUP_ACCENTS[youGroup]">
+          <p class="meta" :data-accent="selection ? undefined : GROUP_ACCENTS[youGroup]">
             {{ selection ? 'Your selection' : `Your group · Group ${youGroup + 1}` }}
           </p>
           <h3 class="detail__title">
             {{ groupStats.size }} people
             <span class="dim">· {{ percent(groupStats.matchShare) }} pass your threshold</span>
           </h3>
+          <p v-if="!selection" class="detail__summary">{{ groups[youGroup].summary }}</p>
         </div>
         <button v-if="selection" type="button" class="detail__close" aria-label="Clear selection" @click="selection = null">
           <LineIcon name="close" />
@@ -328,11 +341,27 @@ const sameCount = computed(() => comparison.value.filter((c) => c.same).length);
   margin-bottom: 18px;
 }
 .detail__facts div {
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  padding: 12px 14px;
   display: flex;
   flex-direction: column;
+}
+.detail__facts div + div {
+  padding-left: 16px;
+  border-left: 1px solid var(--line);
+}
+.detail__summary {
+  margin: -8px 0 16px;
+  font-size: 13.5px;
+  color: var(--text-dim);
+}
+.detail__note {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-faint);
+}
+.detail__note--center {
+  margin: -4px 0 4px;
+  text-align: center;
 }
 .detail__facts .num {
   font-size: 22px;

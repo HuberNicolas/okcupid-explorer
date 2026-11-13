@@ -24,9 +24,9 @@ const team = [
         </p>
       </div>
       <nav class="footer__links" aria-label="Links">
-        <a :href="REPOSITORY" target="_blank" rel="noopener">source ↗</a>
-        <a :href="ORIGINAL" target="_blank" rel="noopener">2022 version ↗</a>
-        <a :href="PORTFOLIO" target="_blank" rel="noopener">nicolas-huber.dev ↗</a>
+        <a :href="REPOSITORY" target="_blank" rel="noopener">Source code<LineIcon name="external" /></a>
+        <a :href="ORIGINAL" target="_blank" rel="noopener">2022 version<LineIcon name="external" /></a>
+        <a :href="PORTFOLIO" target="_blank" rel="noopener">nicolas-huber.dev<LineIcon name="external" /></a>
       </nav>
     </div>
     <p class="container footer__legal">Code under the MIT license · data © their authors, see the dataset's terms</p>
@@ -78,7 +78,14 @@ const team = [
   color: var(--text-dim);
 }
 .footer__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   padding: 4px 0;
+}
+.footer__links .icon {
+  width: 13px;
+  height: 13px;
 }
 .footer__links a:hover {
   color: var(--text);

@@ -333,7 +333,7 @@
       },
       {
         "name": "The Group Colour Rule",
-        "body": "Group colours are fixed in order (green, blue, violet, amber for groups 1 to 4; groups are numbered left to right on the map). A component that shows a group takes that group's colour through `data-accent`; never use them to decorate steps, sections or numbers that are not about a group.",
+        "body": "Group colours are fixed in order (green, blue, violet, amber for groups 1 to 4; groups are numbered left to right on the map) and mean groups only. A component that shows a group takes that group's colour through `data-accent`. Anything else a chart must tell apart (matches, women and men, a selection) uses lightness: white, Dim, faint white.",
         "section": "colors"
       },
       {

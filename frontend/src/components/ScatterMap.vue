@@ -9,7 +9,7 @@ import { ATTRIBUTES, valueLabel } from '../content/attributes';
 import { GROUPS } from '../engine';
 import { heightLabel, percent } from '../insights';
 
-const { analysis, profiles, selection, visible, settings, filter } = useExplorer();
+const { analysis, profiles, selection, visible, settings, filter, groups } = useExplorer();
 const chart = shallowRef<ECharts>();
 const brushing = shallowRef(false);
 
@@ -149,16 +149,68 @@ function toggleBrush() {
           only {{ ATTRIBUTES[filter.key].label.toLowerCase() }}: {{ valueLabel(filter.value) }}
           <LineIcon name="close" />
         </button>
-        <button type="button" class="chip" :aria-pressed="brushing" data-accent="violet" @click="toggleBrush">
+        <button type="button" class="chip" :aria-pressed="brushing" @click="toggleBrush">
           <LineIcon name="select" />{{ brushing ? 'Selecting… drag on the map' : 'Select an area' }}
         </button>
       </div>
     </div>
-    <EChart :option="option" :label="label" height="440px" @ready="onReady" @click="onClick" @brush="onBrush" />
+    <EChart
+      class="map__chart"
+      :option="option"
+      :label="label"
+      height="440px"
+      @ready="onReady"
+      @click="onClick"
+      @brush="onBrush"
+    />
+    <ul class="map__groups" aria-label="The four groups">
+      <li v-for="(g, i) in groups" :key="i">
+        <span class="map__dot" :style="{ background: GROUP_COLORS[i] }" aria-hidden="true"></span>
+        <span class="map__group">Group {{ i + 1 }}</span>
+        <span class="map__summary">{{ g.size }} people · {{ g.summary }}</span>
+      </li>
+    </ul>
   </div>
 </template>
 
 <style scoped>
+.map {
+  display: flex;
+  flex-direction: column;
+}
+/* The chart takes the height the panel gets from the detail panel beside it */
+.map__chart {
+  flex: 1 1 auto;
+  min-height: 440px;
+}
+.map__groups {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 12px 0 0;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+}
+.map__groups li {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: baseline;
+  gap: 8px;
+}
+.map__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transform: translateY(-1px);
+}
+.map__group {
+  font-weight: 600;
+  white-space: nowrap;
+}
+.map__summary {
+  color: var(--text-dim);
+}
 .map__head {
   display: flex;
   justify-content: space-between;

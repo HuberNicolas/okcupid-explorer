@@ -32,13 +32,6 @@ const you = computed(() => stars.value[stars.value.length - 1]);
           are <span class="hero__you-text">just like you?</span>
         </h1>
 
-        <p class="formula">
-          <span>your answers</span>
-          <span class="formula__arrow" aria-hidden="true">→</span>
-          <span>similarity</span>
-          <span class="formula__arrow" aria-hidden="true">→</span>
-          <span>clusters</span>
-        </p>
 
         <p class="hero__lead">
           Answer 24 questions and see where you land among <strong>842 real OkCupid profiles</strong> from the San
@@ -73,7 +66,7 @@ const you = computed(() => stars.value[stars.value.length - 1]);
             <circle r="6" :fill="YOU_COLOR" />
           </g>
         </svg>
-        <figcaption>842 profiles · <span class="you">● you</span></figcaption>
+        <figcaption>842 profiles · <span class="you">● you</span>{{ submitted ? '' : ', from the most common answers' }}</figcaption>
       </figure>
     </div>
   </section>
@@ -103,18 +96,6 @@ const you = computed(() => stars.value[stars.value.length - 1]);
 }
 .hero__you-text {
   color: var(--pink);
-}
-.formula {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px 10px;
-  font-size: 13px;
-  color: var(--text-dim);
-  margin: 0 0 24px;
-}
-.formula__arrow {
-  color: var(--text-faint);
 }
 .hero__lead {
   color: var(--text-dim);

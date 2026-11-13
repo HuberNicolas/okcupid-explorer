@@ -1,6 +1,7 @@
 import { computed, reactive, ref, shallowRef, watch } from 'vue';
 import { profiles, valueCounts } from '../data/profiles';
-import { analyze, CATEGORICAL, prepare, type Analysis, type Answers, type Categorical, type Settings } from '../engine';
+import { analyze, CATEGORICAL, GROUPS, prepare, type Analysis, type Answers, type Categorical, type Settings } from '../engine';
+import { groupSummary } from '../insights';
 import type { WorkerRequest, WorkerResponse } from '../engine/analysis.worker';
 import { DEFAULT_CHARTS, ETHNICITY_VALUES, LANGUAGE_VALUES, MAX_CHARTS } from '../content/attributes';
 
@@ -150,6 +151,14 @@ watch(
   { deep: true },
 );
 
+/** Size and a short portrait of each k-means group */
+const groups = computed(() =>
+  Array.from({ length: GROUPS }, (_, g) => {
+    const rows = profiles.filter((_, i) => analysis.value.group[i] === g);
+    return { size: rows.length, summary: groupSummary(rows, profiles) };
+  }),
+);
+
 /** Profile indices that pass the attribute filter (all when no filter is set). */
 const visible = computed(() => {
   const f = filter.value;
@@ -175,6 +184,7 @@ export function useExplorer() {
     selection,
     filter,
     analysis,
+    groups,
     visible,
     setAnswers,
     toggleChart,

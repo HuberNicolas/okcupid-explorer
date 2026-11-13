@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import EChart from './EChart.vue';
-import { alpha, axisStyle, baseOption, COLORS, SANS, SEX_COLORS, YOU_COLOR } from '../charts/theme';
+import { axisStyle, baseOption, COLORS, SANS, SEX_COLORS, YOU_COLOR } from '../charts/theme';
 import { useExplorer } from '../composables/useExplorer';
 import { useMediaQuery } from '../composables/useMediaQuery';
 
@@ -28,8 +28,8 @@ const option = computed(() => {
     xAxis: { ...axisStyle, type: 'category', data: ages, axisLabel: { ...axisStyle.axisLabel, interval: 4 } },
     yAxis: { ...axisStyle, type: 'value' },
     series: [
-      { name: 'Women', type: 'bar', stack: 'all', data: count('f', false), itemStyle: { color: alpha(SEX_COLORS.f, 0.25) } },
-      { name: 'Men', type: 'bar', stack: 'all', data: count('m', false), itemStyle: { color: alpha(SEX_COLORS.m, 0.25) } },
+      { name: 'Women', type: 'bar', stack: 'all', data: count('f', false), itemStyle: { color: SEX_COLORS.allF } },
+      { name: 'Men', type: 'bar', stack: 'all', data: count('m', false), itemStyle: { color: SEX_COLORS.allM } },
       { name: 'Matching women', type: 'bar', stack: 'matches', barGap: '-100%', data: count('f', true), itemStyle: { color: SEX_COLORS.f } },
       {
         name: 'Matching men',

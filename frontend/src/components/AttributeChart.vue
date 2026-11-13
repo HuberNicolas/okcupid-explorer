@@ -4,7 +4,7 @@ import EChart from './EChart.vue';
 import { axisStyle, baseOption, COLORS, MATCH_COLOR, YOU_COLOR } from '../charts/theme';
 import { useExplorer } from '../composables/useExplorer';
 import { useMediaQuery } from '../composables/useMediaQuery';
-import { ATTRIBUTES, attributeValues, valueLabel } from '../content/attributes';
+import { ATTRIBUTES, attributeValues, isWide, valueLabel } from '../content/attributes';
 import type { Categorical } from '../engine';
 import { percent } from '../insights';
 
@@ -13,7 +13,7 @@ const { analysis, profiles, answers, filter } = useExplorer();
 
 const values = computed(() => attributeValues(props.attribute));
 // Attributes with many values (such as job) take a full row; on phones their bars turn horizontal
-const wide = computed(() => values.value.length > 12);
+const wide = computed(() => isWide(props.attribute));
 const narrow = useMediaQuery('(max-width: 640px)');
 const horizontal = computed(() => wide.value && narrow.value);
 const height = computed(() => (horizontal.value ? `${values.value.length * 22 + 40}px` : '210px'));

@@ -124,12 +124,12 @@ Typography is a single geometric grotesque for everything. Where something is me
 A night palette: deep ink neutrals, and five luminous pastels that each mean something in the data.
 
 ### Primary
-- **Paper White** (`paper-white`): primary text, the solid primary button, selected chips and segments (as a 14–18% tint), slider fills, caret and accent colour.
+- **Paper White** (`paper-white`): primary text, the solid primary button, selected chips and segments (as a 14–18% tint), slider fills, caret and accent colour. In the charts it marks your matches (white bars against the grey of all profiles), matching women in the age chart, and the brushed area on the map.
 
 ### Secondary
 - **Aurora Green** (`aurora-green`): group 1, and the 2px focus ring, the one interface state that must stand out on every surface.
-- **Nebula Blue** (`nebula-blue`): group 2; your matches in the distribution charts.
-- **Twilight Violet** (`twilight-violet`): group 3; an area selected with the brush on the map.
+- **Nebula Blue** (`nebula-blue`): group 2.
+- **Twilight Violet** (`twilight-violet`): group 3.
 - **Lantern Amber** (`lantern-amber`): group 4.
 
 ### Tertiary
@@ -139,16 +139,14 @@ A night palette: deep ink neutrals, and five luminous pastels that each mean som
 - **Ink Black** (`ink-black`): the page background and the theme colour; the text on the primary button; the fill of slider thumbs.
 - **Panel / Panel Strong** (`panel`, `panel-strong`): see-through white fills for cards, chips and buttons; the strong one for hover and active states.
 - **Tooltip Ink** (`tooltip-ink`): the nearly opaque chart tooltip.
-- **Dim** (`text-dim`): secondary text, leads, inactive controls, axis labels, formulas.
+- **Dim** (`text-dim`): secondary text, leads, inactive controls, axis labels; matching men in the age chart.
 - **Faint** (`text-faint`): captions, axis names, uppercase control labels, step numbers. It meets 4.5:1 on the background and on panels, and stays one clear step below Dim.
 - **Line / Line Strong** (`line`, `line-strong`): hairline borders, dividers and grid lines; the strong one for hover borders, chart axes and scrollbars.
-
-`--bg-1`, `--bg-2` and `--red` are defined in `main.css` but not used.
 
 ### Named Rules
 **The One Heart Rule.** Heartbeat Pink belongs to the visitor. If something pink is not you or about you, it is wrong.
 
-**The Group Colour Rule.** Group colours are fixed in order (green, blue, violet, amber for groups 1 to 4; groups are numbered left to right on the map). A component that shows a group takes that group's colour through `data-accent`; never use them to decorate steps, sections or numbers that are not about a group.
+**The Group Colour Rule.** Group colours are fixed in order (green, blue, violet, amber for groups 1 to 4; groups are numbered left to right on the map) and mean groups only. A component that shows a group takes that group's colour through `data-accent`. Anything else a chart must tell apart (matches, women and men, a selection) uses lightness: white, Dim, faint white.
 
 **The Quiet Interface Rule.** Controls, sections and cards have no colour of their own. If an element is coloured, it must show a group, you, or keyboard focus.
 
@@ -177,7 +175,9 @@ A centred container (max 1180px, 24px side gutter) holds every section. Sections
 
 - **Hero:** two columns (1.1fr / 0.9fr) with copy left and the map figure right; one column below 880px. Nothing sits above the headline; the course and year follow the buttons as a quiet line. The questionnaire follows directly; there is no figure strip in between.
 - **Questionnaire:** a 240px sticky step list beside the question panel; on phones the steps scroll sideways above it.
-- **Results:** a controls bar, a four-cell key-figure strip, then map and detail panel at 1.75fr / 1fr (one column below 960px); distributions in three columns, two below 960px, one below 640px. Attributes with more than 12 values take a full row, and on phones their bars turn horizontal.
+- **Results:** a controls bar, a three-cell key-figure strip, then map and detail panel at 1.75fr / 1fr (one column below 960px; the map stretches to the panel's height and lists the four groups below it); distributions in three columns, two below 960px, one below 640px. Normal charts come first and the last one stretches to close its row; attributes with more than 12 values take a full row after them, and on phones their bars turn horizontal. The attribute picker shows only the chosen attributes plus a dashed "Add attribute" chip that opens the rest.
+- **Method:** a pipeline, not a card grid: one hairline through four stations (dots), each with its step, the visitor's own value (their encoded numbers, closest score, coordinates, group with a group-colour dot), a sentence and the formula. The last station is a pink dot, the visitor; on narrow screens the line runs down the left.
+- **Data:** text beside a funnel with bars to scale, from 59,946 profiles to the 842 used (1.4%).
 - **Gaps:** 16px between panels and grid cells; 8–12px between chips and buttons.
 
 ## Elevation & Depth
@@ -233,13 +233,13 @@ A pill track (3px inset, hairline border) of buttons; the pressed one fills with
 Fixed, 68px, transparent at the top; after scrolling it gains 72% ink with a 14px backdrop blur and a hairline bottom border. The logo is a pink heart and "Project Eros" at 15px, weight 600; links are 14px in Dim, Paper White on hover. Links carry 12px vertical padding, so each is a 44px touch target. Below 560px all three section links stay (13.5px, 14px apart) and the GitHub icon moves out; the hero button and the footer link to the source. A skip link ("Skip to content", a solid white pill) appears top left on the first Tab.
 
 ### Key-figure strip
-Four cells in one bordered, rounded block, divided by hairlines. Each cell has a value with tabular figures and a 12.5px Dim label below. Your match count is pink, your group and your closest match take the colour of their group, the share of everyone stays Paper White. Cells that act as buttons brighten to Panel Strong on hover.
+Three cells in one bordered, rounded block, divided by hairlines (stacked on phones). Each cell has a value with tabular figures and a 12.5px Dim label below: your match count in pink with its share of everyone, your group with its size and portrait, your closest match. Group values are Paper White with a 10px dot in the group colour in front; large text in group colours reads as decoration (and violet or blue display text as an AI tell). Cells that act as buttons brighten to Panel Strong on hover.
 
 ### Observatory map (signature)
-The PCA scatter: every profile a dot in its group colour, profiles below the threshold dimmed, the visitor a pink heart drawn on top. Axes and grid in hairlines, axis labels at 11px, a dark, nearly opaque tooltip. In the hero the same map appears as a static SVG figure; the only motion is a ring pulsing out from your dot. A short caption follows ("842 profiles · ● you"). Every chart is a `role="img"` with a label that states its finding ("You are in group 3; 217 profiles pass your threshold"). Clicking a bar filters the map; for the keyboard each chart has a row of filter chips that appears when one of them gets focus.
+The PCA scatter: every profile a dot in its group colour, profiles below the threshold dimmed, the visitor a pink heart drawn on top. Axes and grid in hairlines, axis labels at 11px, a dark, nearly opaque tooltip. In the hero the same map appears as a static SVG figure; the only motion is a ring pulsing out from your dot. A short caption follows ("842 profiles · ● you", with "from the most common answers" before the questionnaire is done). Every chart is a `role="img"` with a label that states its finding ("You are in group 3; 217 profiles pass your threshold"). Clicking a bar filters the map; for the keyboard each chart has a row of filter chips that appears when one of them gets focus.
 
 ### Detail panel
-The panel beside the map shows your group, a brushed area or one person. In group view a "Closest to you" list of five people (full-width rows, their score in their group colour) opens a person, also by keyboard. In person view, a radar chart and a real table of your answers and theirs (`th` per question, "You" and "Them" columns; same answers in Paper White at weight 500, with "(same)" for screen readers). Close buttons are 32px circles with the close icon.
+The panel beside the map shows your group, a brushed area or one person. In group view a "Closest to you" list of five people (full-width rows, their score in their group colour) opens a person, also by keyboard. In person view, a radar chart and a real table of your answers and theirs (`th` per question, "You" and "Them" columns; same answers in Paper White at weight 500, with "(same)" for screen readers). Close buttons are 32px circles with the close icon. Your group is introduced by its portrait ("around 33 · job: medicine / health · education: law school"), built only from neutral attributes (job, education, drinking, smoking, diet, kids, pets, zodiac sign), never from sex, orientation, ethnicity, religion, drugs, body type or income. Facts sit side by side, divided by a hairline, without boxes of their own. The person view explains its score in place: "similarity · 9 of 20 answers identical" and a note that the score compares the direction of the encoded answers, so close answers count too.
 
 ## Do's and Don'ts
 

@@ -2,7 +2,7 @@
 // The app's line icons: 24px grid, 2px stroke, round caps. Decorative, so hidden from screen readers;
 // the control around an icon carries the name.
 defineProps<{
-  name: 'arrow-right' | 'arrow-left' | 'close' | 'dice' | 'edit' | 'heart' | 'select' | 'swap';
+  name: 'arrow-right' | 'arrow-left' | 'close' | 'dice' | 'edit' | 'external' | 'heart' | 'plus' | 'select' | 'swap';
 }>();
 </script>
 
@@ -39,5 +39,7 @@ defineProps<{
     />
     <rect v-else-if="name === 'select'" x="4" y="4" width="16" height="16" rx="2" stroke-dasharray="3 3" />
     <path v-else-if="name === 'swap'" d="M4 8h14l-3-3M20 16H6l3 3" />
+    <path v-else-if="name === 'plus'" d="M12 5v14M5 12h14" />
+    <path v-else-if="name === 'external'" d="M7 17 17 7M9 7h8v8" />
   </svg>
 </template>

@@ -20,11 +20,18 @@ export const COLORS = {
   hover: 'rgba(255, 255, 255, 0.03)',
 };
 
-/** Your matches in the distribution charts, and women and men in the age chart */
-export const MATCH_COLOR = GROUP_COLORS[1];
-export const SEX_COLORS = { f: GROUP_COLORS[2], m: GROUP_COLORS[1] };
+// Group colours mean groups only. Everything else in the charts is told apart by lightness.
+/** Your matches in the distribution charts: white against the grey of all profiles */
+export const MATCH_COLOR = COLORS.text;
+/** Women and men in the age chart: lighter and darker, all profiles faint behind your matches */
+export const SEX_COLORS = {
+  f: COLORS.text,
+  m: COLORS.dim,
+  allF: 'rgba(255, 255, 255, 0.08)',
+  allM: 'rgba(255, 255, 255, 0.18)',
+};
 /** An area selected with the brush on the map */
-export const SELECTION_COLOR = GROUP_COLORS[2];
+export const SELECTION_COLOR = COLORS.text;
 
 /** A #rrggbb colour with transparency, for the canvas (which cannot read CSS color-mix) */
 export function alpha(hex: string, opacity: number): string {

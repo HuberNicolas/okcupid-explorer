@@ -86,6 +86,9 @@ export function valueLabel(value: string | number): string {
   return VALUE_LABELS[value] ?? capitalize(value);
 }
 
+/** Attributes with many values (such as job) need a full row to keep their labels readable */
+export const isWide = (key: Categorical) => attributeValues(key).length > 12;
+
 /** All values of an attribute that occur in the data, in display order. */
 export function attributeValues(key: Categorical): (string | number)[] {
   const byCount = valueCounts(key).map((entry) => entry.value);
