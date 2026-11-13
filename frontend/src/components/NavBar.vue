@@ -17,8 +17,8 @@ const links = [
 <template>
   <header class="nav" :class="{ 'nav--scrolled': scrolled }">
     <div class="container nav__inner">
-      <a href="#top" class="nav__logo mono" aria-label="Project Eros, back to top">
-        <span class="nav__heart">♥</span>~/project-eros
+      <a href="#top" class="nav__logo" aria-label="Project Eros, back to top">
+        <span class="nav__heart" aria-hidden="true">♥</span>Project Eros
       </a>
       <nav class="nav__links" aria-label="Sections">
         <a v-for="link in links" :key="link.href" :href="link.href">{{ link.label }}</a>
@@ -53,8 +53,8 @@ const links = [
   justify-content: space-between;
 }
 .nav__logo {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -66,8 +66,7 @@ const links = [
   display: flex;
   align-items: center;
   gap: clamp(14px, 3vw, 30px);
-  font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-dim);
 }
 .nav__links a {

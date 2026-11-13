@@ -27,7 +27,7 @@ export const baseOption = {
     borderWidth: 1,
     padding: [10, 12],
     textStyle: { color: COLORS.text, fontSize: 12.5 },
-    extraCssText: 'border-radius:10px;box-shadow:0 12px 40px rgba(0,0,0,.5);backdrop-filter:blur(6px);',
+    extraCssText: 'border-radius:10px;box-shadow:0 12px 40px rgba(0,0,0,.5);',
   },
 };
 

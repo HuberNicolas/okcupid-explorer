@@ -27,12 +27,12 @@ const kpis = computed(() => [
     label: `profiles at ${percent(settings.threshold)} or more ${settings.mode === 'similar' ? 'similarity' : 'opposition'}`,
     accent: 'pink',
   },
-  { value: percent(matches.value / profiles.length, 1), label: 'of everyone', accent: 'blue' },
+  { value: percent(matches.value / profiles.length, 1), label: 'of everyone' },
   { value: `Group ${youGroup.value + 1}`, label: `your group · ${groupSize.value} people`, accent: GROUP_ACCENTS[youGroup.value] },
   {
     value: percent(analysis.value.score[best.value]),
     label: `${settings.mode === 'similar' ? 'your closest match' : 'your strongest opposite'}, click to see`,
-    accent: 'green',
+    accent: GROUP_ACCENTS[analysis.value.group[best.value]],
     action: true,
   },
 ]);
@@ -46,25 +46,27 @@ function showBest() {
 <template>
   <section id="results" class="section results">
     <div class="container">
-      <p class="kicker reveal" data-accent="pink">// your results</p>
-      <h2 class="section-title reveal">Here is where you land</h2>
+      <h2 class="section-title">Here is where you land</h2>
 
-      <div class="controls panel reveal" data-accent="pink">
+      <div class="controls panel" data-accent="pink">
         <div class="controls__item">
-          <span class="controls__label mono">mode</span>
+          <span class="controls__label">mode</span>
           <div class="segmented" role="group" aria-label="Mode">
             <button type="button" :aria-pressed="settings.mode === 'similar'" @click="settings.mode = 'similar'">♥ similar to me</button>
             <button type="button" :aria-pressed="settings.mode === 'opposite'" @click="settings.mode = 'opposite'">⇄ opposites attract</button>
           </div>
         </div>
         <label class="controls__item controls__item--grow">
-          <span class="controls__label mono">threshold · {{ percent(settings.threshold) }}</span>
+          <span class="controls__label">threshold · {{ percent(settings.threshold) }}</span>
           <input v-model.number="settings.threshold" type="range" min="0" max="1" step="0.01" :style="{ '--fill': fill }" />
         </label>
-        <a href="#explore" class="btn btn--small">✎ Edit answers</a>
+        <a href="#explore" class="btn btn--small">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4Z" /><path d="m13 7 4 4" /></svg>
+          Edit answers
+        </a>
       </div>
 
-      <div class="kpis reveal">
+      <div class="kpis">
         <component
           :is="kpi.action ? 'button' : 'div'"
           v-for="kpi in kpis"
@@ -80,13 +82,13 @@ function showBest() {
         </component>
       </div>
 
-      <div id="map" class="grid reveal">
+      <div id="map" class="grid">
         <ScatterMap />
         <DetailPanel />
       </div>
 
       <div class="dist">
-        <div class="dist__head reveal">
+        <div class="dist__head">
           <div>
             <h3 class="dist__title">How your matches compare</h3>
             <p class="panel__hint">
@@ -94,17 +96,16 @@ function showBest() {
               answer. Click a bar to filter the map.
             </p>
           </div>
-          <button v-if="filter" type="button" class="chip" aria-pressed="true" data-accent="amber" @click="filter = null">
+          <button v-if="filter" type="button" class="chip" aria-pressed="true" @click="filter = null">
             {{ ATTRIBUTES[filter.key].label }}: {{ valueLabel(filter.value) }} ×
           </button>
         </div>
-        <div class="dist__picker reveal">
+        <div class="dist__picker">
           <button
             v-for="key in CATEGORICAL"
             :key="key"
             type="button"
             class="chip"
-            data-accent="blue"
             :aria-pressed="charts.includes(key)"
             :disabled="!charts.includes(key) && charts.length >= MAX_CHARTS"
             @click="toggleChart(key)"
@@ -126,7 +127,6 @@ function showBest() {
 <style scoped>
 .results {
   border-top: 1px solid var(--line);
-  background: radial-gradient(900px circle at 50% 0%, rgba(255, 143, 199, 0.05), transparent 60%);
 }
 .controls {
   display: flex;
@@ -182,7 +182,7 @@ function showBest() {
 .kpi__value {
   font-size: clamp(22px, 3vw, 30px);
   font-weight: 600;
-  color: var(--accent);
+  color: var(--accent, var(--text));
   letter-spacing: -0.02em;
 }
 .kpi__label {

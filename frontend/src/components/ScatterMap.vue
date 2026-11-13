@@ -69,6 +69,8 @@ const option = computed(() => {
         ].join('<br/>');
       },
     },
+    // The brush needs the toolbox; it stays hidden because our own button toggles the brush
+    toolbox: { show: false },
     brush: {
       xAxisIndex: 0,
       brushType: 'rect',
@@ -135,7 +137,7 @@ function toggleBrush() {
         </p>
       </div>
       <div class="map__tools">
-        <button v-if="filter" type="button" class="chip" aria-pressed="true" data-accent="amber" @click="filter = null">
+        <button v-if="filter" type="button" class="chip" aria-pressed="true" @click="filter = null">
           only {{ ATTRIBUTES[filter.key].label.toLowerCase() }}: {{ valueLabel(filter.value) }} ×
         </button>
         <button type="button" class="chip" :aria-pressed="brushing" data-accent="violet" @click="toggleBrush">

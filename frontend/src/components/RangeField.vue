@@ -32,6 +32,6 @@ const fill = computed(() => `${((model.value - props.min) / (props.max - props.m
 }
 .range__value {
   font-size: 13px;
-  color: var(--accent, var(--green));
+  color: var(--accent, var(--text));
 }
 </style>

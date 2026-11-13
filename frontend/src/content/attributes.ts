@@ -1,8 +1,6 @@
 import type { Categorical } from '../engine';
 import { valueCounts } from '../data/profiles';
 
-export type Accent = 'green' | 'blue' | 'violet' | 'amber';
-
 export interface Attribute {
   key: Categorical;
   label: string;
@@ -104,17 +102,16 @@ export interface Step {
   id: string;
   title: string;
   kicker: string;
-  accent: Accent;
   fields: (Categorical | 'age' | 'height' | 'ethnicities' | 'speaks')[];
 }
 
 export const STEPS: Step[] = [
-  { id: 'you', kicker: '01', title: 'About you', accent: 'green', fields: ['age', 'height', 'sex', 'orientation', 'body_type'] },
-  { id: 'life', kicker: '02', title: 'Lifestyle', accent: 'blue', fields: ['diet', 'diet_modifier', 'drinks', 'smokes', 'drugs'] },
-  { id: 'work', kicker: '03', title: 'Work & education', accent: 'violet', fields: ['education_institution', 'education_status', 'job', 'income'] },
-  { id: 'beliefs', kicker: '04', title: 'Beliefs', accent: 'amber', fields: ['religion_type', 'religion_modifier', 'sign', 'sign_modifier'] },
-  { id: 'family', kicker: '05', title: 'Kids & pets', accent: 'green', fields: ['offspring_status', 'offspring_future', 'pets_cats', 'pets_dogs'] },
-  { id: 'background', kicker: '06', title: 'Languages & background', accent: 'blue', fields: ['speaks', 'ethnicities'] },
+  { id: 'you', kicker: '01', title: 'About you', fields: ['age', 'height', 'sex', 'orientation', 'body_type'] },
+  { id: 'life', kicker: '02', title: 'Lifestyle', fields: ['diet', 'diet_modifier', 'drinks', 'smokes', 'drugs'] },
+  { id: 'work', kicker: '03', title: 'Work & education', fields: ['education_institution', 'education_status', 'job', 'income'] },
+  { id: 'beliefs', kicker: '04', title: 'Beliefs', fields: ['religion_type', 'religion_modifier', 'sign', 'sign_modifier'] },
+  { id: 'family', kicker: '05', title: 'Kids & pets', fields: ['offspring_status', 'offspring_future', 'pets_cats', 'pets_dogs'] },
+  { id: 'background', kicker: '06', title: 'Languages & background', fields: ['speaks', 'ethnicities'] },
 ];
 
 /** Attributes shown as distribution charts before the user picks others */

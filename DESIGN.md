@@ -40,10 +40,9 @@ typography:
     fontWeight: 400
     lineHeight: 1.65
   label:
-    fontFamily: "JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace"
-    fontSize: "13px"
+    fontFamily: "Space Grotesk, system-ui, -apple-system, sans-serif"
+    fontSize: "14.5px"
     fontWeight: 500
-    letterSpacing: "0.04em"
   stat:
     fontFamily: "JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace"
     fontSize: "clamp(28px, 4vw, 40px)"
@@ -60,6 +59,12 @@ spacing:
   panel: "clamp(18px, 2.4vw, 26px)"
   section: "clamp(64px, 10vw, 112px)"
 components:
+  button-primary:
+    backgroundColor: "{colors.paper-white}"
+    textColor: "{colors.ink-black}"
+    typography: "{typography.label}"
+    rounded: "{rounded.sm}"
+    padding: "12px 20px"
   button:
     backgroundColor: "{colors.panel}"
     textColor: "{colors.paper-white}"
@@ -99,150 +104,157 @@ components:
 
 **Creative North Star: "The Night Observatory"**
 
-The 842 profiles are a field of stars in a dark sky, and the visitor is the one pink point looking for its place among them. The interface is the observatory's instrument: dark ink surfaces that let the data glow, mono-type annotations that read like readouts, and a few soft lights in the corners of the page. The map, the four group colours and the pink "you" carry the colour; everything else stays close to the night.
+The 842 profiles are a field of stars in a dark sky, and the visitor is the one pink point looking for its place among them. The interface is the observatory's instrument: plain dark ink surfaces that let the data glow and stay out of its way. The map, the four group colours and the pink "you" carry all of the colour; everything else stays close to the night, in ink, white and grey.
 
-Density is moderate. Sections breathe with large vertical padding, while the results area packs controls, key figures, map and detail panel into a working instrument. Interactive parts are glowing and tactile: buttons lift and pick up a green glow on hover, selected chips fill with their accent, slider thumbs carry a soft halo. Motion is short and eased out; elements rise into view as you scroll, and all of it stops under reduced motion.
+Density is moderate. Sections breathe with large vertical padding, while the results area packs controls, key figures, map and detail panel into a working instrument. Interactive parts are tactile: buttons lift and pick up a soft white glow on hover, selected chips fill with white, slider thumbs carry a soft halo. Nothing animates on scroll; the only standing motion is the ring that pulses from your dot in the hero.
 
-Typography pairs a geometric grotesque for speech with a mono face for data and annotations. Terminal hints (`~/project-eros`, `// how it works`) mark the author's developer voice, but they are captions, not the subject.
+Typography is one geometric grotesque for everything people read and click, and a mono face only where something is measured: numbers, formulas, axes.
 
 **Key Characteristics:**
-- Near-black ink background with two faint corner glows (pink top left, blue top right) and no pattern
-- Four group colours plus pink for you; colour means data or state
-- Space Grotesk for text, JetBrains Mono for numbers, labels, kickers and controls
+- Near-black ink background, no glows, no pattern
+- Colour means data: four group colours, pink for you; the interface itself is ink, white and grey
+- Space Grotesk for text, headings, buttons and labels; JetBrains Mono for numbers, formulas and axes
 - See-through panels (2.5% white) with hairline borders; depth through light, not shadow
 - Pills for choices, softly rounded rectangles for buttons and panels
-- Glow, lift and accent fills as the response to touch
+- One solid white primary button per view; lift and soft glow as the response to touch
 
 ## Colors
 
-A night palette: deep ink neutrals and five luminous pastels that each mean something.
+A night palette: deep ink neutrals, and five luminous pastels that each mean something in the data.
 
 ### Primary
-- **Aurora Green** (`aurora-green`): the default accent. Group 1, focus outlines, text selection, the hover glow of buttons, the primary button tint, selected chips and slider fills when no other accent is set.
+- **Paper White** (`paper-white`): primary text, the solid primary button, selected chips and segments (as a 14–18% tint), slider fills, caret and accent colour.
 
 ### Secondary
-- **Nebula Blue** (`nebula-blue`): group 2; the second corner glow of the page; partner of green in the primary button gradient.
-- **Twilight Violet** (`twilight-violet`): group 3.
+- **Aurora Green** (`aurora-green`): group 1, and the 2px focus ring, the one interface state that must stand out on every surface.
+- **Nebula Blue** (`nebula-blue`): group 2; your matches in the distribution charts.
+- **Twilight Violet** (`twilight-violet`): group 3; an area selected with the brush on the map.
 - **Lantern Amber** (`lantern-amber`): group 4.
 
 ### Tertiary
-- **Heartbeat Pink** (`heartbeat-pink`): you. Your heart on the map, the logo heart, "just like you?" in the hero headline, the questionnaire progress start and the top-left page glow. Nothing else uses it.
+- **Heartbeat Pink** (`heartbeat-pink`): you. Your heart on the map and in the logo, "just like you?" in the hero headline, your answers in the charts, your match count, your mode and threshold controls, and the questionnaire progress bar.
 
 ### Neutral
-- **Ink Black** (`ink-black`): the page background and the theme colour; also the fill of slider thumbs.
+- **Ink Black** (`ink-black`): the page background and the theme colour; the text on the primary button; the fill of slider thumbs.
 - **Panel / Panel Strong** (`panel`, `panel-strong`): see-through white fills for cards, chips and buttons; the strong one for hover and active states.
-- **Tooltip Ink** (`tooltip-ink`): the nearly opaque chart tooltip with backdrop blur.
-- **Paper White** (`paper-white`): primary text.
-- **Dim** (`text-dim`): secondary text, leads, inactive controls, axis labels.
-- **Faint** (`text-faint`): captions, axis names, uppercase control labels, inactive step numbers. It meets 4.5:1 on the background and on panels, and stays one clear step below Dim.
-- **Line / Line Strong** (`line`, `line-strong`): hairline borders, dividers and grid lines; the strong one for hover borders and chart axes.
+- **Tooltip Ink** (`tooltip-ink`): the nearly opaque chart tooltip.
+- **Dim** (`text-dim`): secondary text, leads, inactive controls, axis labels, formulas.
+- **Faint** (`text-faint`): captions, axis names, uppercase control labels, step numbers. It meets 4.5:1 on the background and on panels, and stays one clear step below Dim.
+- **Line / Line Strong** (`line`, `line-strong`): hairline borders, dividers and grid lines; the strong one for hover borders, chart axes and scrollbars.
 
 `--bg-1`, `--bg-2` and `--red` are defined in `main.css` but not used.
 
 ### Named Rules
 **The One Heart Rule.** Heartbeat Pink belongs to the visitor. If something pink is not you or about you, it is wrong.
 
-**The Group Colour Rule.** Group colours are fixed in order (green, blue, violet, amber for groups 1 to 4; groups are numbered left to right on the map). A component that shows a group takes that group's colour through `data-accent`; never reassign the colours for decoration.
+**The Group Colour Rule.** Group colours are fixed in order (green, blue, violet, amber for groups 1 to 4; groups are numbered left to right on the map). A component that shows a group takes that group's colour through `data-accent`; never use them to decorate steps, sections or numbers that are not about a group.
+
+**The Quiet Interface Rule.** Controls, sections and cards have no colour of their own. If an element is coloured, it must show a group, you, or keyboard focus.
 
 ## Typography
 
-**Display Font:** Space Grotesk (with system-ui, -apple-system, sans-serif)
-**Label/Mono Font:** JetBrains Mono (with ui-monospace, SF Mono, Menlo, monospace)
+**Text Font:** Space Grotesk (with system-ui, -apple-system, sans-serif)
+**Mono Font:** JetBrains Mono (with ui-monospace, SF Mono, Menlo, monospace)
 
-**Character:** Space Grotesk is warm but engineered, with tight negative tracking at large sizes; JetBrains Mono gives every number and label the look of an instrument reading.
+**Character:** Space Grotesk is warm but engineered, with tight tracking at large sizes; JetBrains Mono turns measurements into instrument readings.
 
 ### Hierarchy
 - **Display** (600, clamp(38px, 6.4vw, 72px), 1.02): the hero question only; the part about you in solid Heartbeat Pink.
-- **Headline** (700, clamp(28px, 4.4vw, 46px), 1.08): section titles.
+- **Headline** (700, clamp(28px, 4.4vw, 46px), 1.08): section titles. No label above them; the heading starts the section.
 - **Title** (600, 20–26px): questionnaire step title, step cards, detail panel title, distribution heading.
 - **Body** (400, 16px, 1.65): running text; leads in Dim at max 540–640px wide, the hero lead at 17px.
-- **Label** (mono 500, 13px, 0.04em): kickers in the section accent, written as code comments (`// how it works`); nav links; buttons at 14px; chips and segmented controls at 12.5px.
-- **Stat** (mono 600, clamp(28px, 4vw, 40px)): key figures in their accent colour.
+- **Label** (sans 500, 14.5px for buttons, 13–14px for chips, segments and nav links).
+- **Meta** (sans 500, 13px, Dim or the group's colour): informational lines above a panel title, such as "Step 1 of 6" or "Group 3 · profile #29605".
+- **Stat** (mono 600, 22–30px): key figures; in the colour of their group or of you when they are about one, otherwise Paper White.
 - **Control label** (sans, 11.5px, uppercase, 0.06em, Faint): labels above controls such as MODE and THRESHOLD.
 
 ### Named Rules
-**The Readout Rule.** Numbers, formulas, controls and annotations are mono; sentences are sans. A figure that the visitor reads as a measurement is set in JetBrains Mono.
+**The Readout Rule.** Mono is for measurements only: numbers, formulas, axis labels, step numbers. Words that people read or click are set in Space Grotesk.
 
 ## Layout
 
 A centred container (max 1180px, 24px side gutter) holds every section. Sections are separated by hairline top borders and padded clamp(64px, 10vw, 112px) vertically. The fixed nav is 68px tall; anchor scrolling leaves 20px more.
 
-- **Hero:** two columns (1.1fr / 0.9fr) with copy left and the map figure right; one column below 880px. Nothing sits above the headline; the course and year follow the buttons as a quiet mono line.
-- **Questionnaire:** a 240px sticky step list beside the question panel.
-- **Results:** a controls bar, a four-cell key-figure strip, then map and detail panel at 1.75fr / 1fr (one column below 960px); distributions in three columns, two below 960px, one below 640px.
-- **Strips:** four cells divided by hairlines, two by two on small screens.
+- **Hero:** two columns (1.1fr / 0.9fr) with copy left and the map figure right; one column below 880px. Nothing sits above the headline; the course and year follow the buttons as a quiet line. The questionnaire follows directly; there is no figure strip in between.
+- **Questionnaire:** a 240px sticky step list beside the question panel; on phones the steps scroll sideways above it.
+- **Results:** a controls bar, a four-cell key-figure strip, then map and detail panel at 1.75fr / 1fr (one column below 960px); distributions in three columns, two below 960px, one below 640px. Attributes with more than 12 values take a full row, and on phones their bars turn horizontal.
 - **Gaps:** 16px between panels and grid cells; 8–12px between chips and buttons.
 
 ## Elevation & Depth
 
-Depth comes from light, not shadow. Surfaces are flat, see-through panels on the ink background, separated by hairline borders. Depth appears as glow: soft radial lights behind the page and a coloured halo when a button is hovered. The only dark drop shadow belongs to the floating chart tooltip.
+Depth comes from light, not shadow. Surfaces are flat, see-through panels on the ink background, separated by hairline borders. Light appears only as a response: a soft white halo when a button is hovered, a halo around slider thumbs. The only dark drop shadow belongs to the floating chart tooltip.
 
 ### Shadow Vocabulary
-- **Hover glow** (`box-shadow: 0 8px 30px rgba(92, 240, 176, 0.12)`): buttons on hover, together with a 2px lift.
+- **Hover glow** (`box-shadow: 0 8px 30px rgba(234, 234, 242, 0.08)`): buttons on hover, together with a 2px lift.
 - **Thumb halo** (`box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent)`): range slider thumbs.
-- **Tooltip float** (`box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5)` with `backdrop-filter: blur(6px)`): chart tooltips only.
+- **Tooltip float** (`box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5)`): chart tooltips only.
 
 ### Named Rules
-**The Starlight Rule.** Things glow; they do not cast shadows. Use a coloured glow for interaction and a dark shadow only for tooltips that float over the chart.
+**The Starlight Rule.** Things glow; they do not cast shadows. Use a soft glow for interaction and a dark shadow only for tooltips that float over the chart.
 
 ## Shapes
 
-Softly rounded rectangles for containers and buttons (14px for panels, 10px for buttons, step items and tooltips, 8px for small inline formula tags). Full pills for every choice: chips, segmented controls and the slider track. Circles for dots, thumbs and the map's points. Borders are always 1px hairlines; accent strokes are 2px (the top edge of method cards, the questionnaire progress bar).
+Softly rounded rectangles for containers and buttons (14px for panels, 10px for buttons, step items and tooltips, 8px for small inline formula tags). Full pills for every choice: chips, segmented controls and the slider track. Circles for dots, thumbs and the map's points. Borders are always 1px hairlines; the only 2px stroke is the pink questionnaire progress bar.
 
 ## Components
 
 ### Buttons
-Glowing and tactile.
+Tactile, with one clear primary.
 - **Shape:** gently rounded (10px).
-- **Default:** see-through panel fill, Line Strong border, Paper White mono text at 14px, padding 12px 20px, 9px gap to a 16px icon.
-- **Hover / Focus:** lifts 2px, border turns green (50% alpha) and picks up the hover glow; focus shows a 2px green outline with 2px offset.
-- **Primary:** a faint green-to-blue tint (16% and 12% alpha) with a green border at 40%, white text.
-- **Small:** padding 7px 13px, 12.5px text.
+- **Primary:** solid Paper White with Ink Black text, weight 600; pure white on hover. One per view (start the questionnaire, Next, Show my results).
+- **Default:** see-through panel fill, Line Strong border, Paper White text at 14.5px, padding 12px 20px, 9px gap to a 16px icon.
+- **Hover / Focus:** lifts 2px, border brightens to 40% white and picks up the hover glow; focus shows a 2px green outline with 2px offset.
+- **Small:** padding 7px 13px, 13px text.
 - **Disabled:** 40% opacity, no lift.
 
 ### Chips
-- **Style:** pill, panel fill, hairline border, Dim mono text at 12.5px, padding 5px 12px.
+- **Style:** pill, panel fill, hairline border, Dim text at 13px, padding 5px 12px.
 - **Hover:** text to Paper White, border to Line Strong.
-- **Selected (`aria-pressed`):** fill 14% and border 60% of the accent, white text.
+- **Selected (`aria-pressed`):** fill 14% and border 60% of the accent (white unless the chip is about a group or you), white text.
 - **Disabled:** 45% opacity.
 
 ### Segmented control
-A pill track (3px inset, hairline border) of mono buttons; the pressed one fills with 18% of the accent and turns white. Used for the similar/opposites mode.
+A pill track (3px inset, hairline border) of buttons; the pressed one fills with 18% of the accent and turns white. The similar/opposites mode uses pink, because it is your setting.
 
 ### Cards / Containers
 - **Corner Style:** 14px.
 - **Background:** Panel (2.5% white).
-- **Shadow Strategy:** none at rest (see Elevation & Depth).
+- **Shadow Strategy:** none at rest (see Elevation & Depth). Cards that are not interactive do not move on hover.
 - **Border:** 1px Line.
 - **Internal Padding:** clamp(18px, 2.4vw, 26px).
-- **Content:** a 15px semibold title, a 13px Dim hint, then content.
+- **Content:** an optional Meta line, a 15–20px semibold title, a 13px Dim hint, then content.
 
 ### Inputs / Fields
-- **Range slider:** 4px pill track filled with the accent up to the value and Line Strong after it; an 18px ink thumb with a 2px accent ring and the thumb halo.
+- **Range slider:** 4px pill track filled with the accent (white by default, pink for your threshold) up to the value and Line Strong after it; an 18px ink thumb with a 2px accent ring and the thumb halo.
 - **Choice fields:** rows of chips.
 - **Focus:** the global green outline.
 
 ### Navigation
-Fixed, 68px, transparent at the top; after scrolling it gains 72% ink with a 14px backdrop blur and a hairline bottom border. The logo is a pink heart and `~/project-eros` at 14px; links are 13px mono in Dim, Paper White on hover. Below 560px only the first link and the GitHub icon remain.
+Fixed, 68px, transparent at the top; after scrolling it gains 72% ink with a 14px backdrop blur and a hairline bottom border. The logo is a pink heart and "Project Eros" at 15px, weight 600; links are 14px in Dim, Paper White on hover. Below 560px only the first link and the GitHub icon remain.
 
 ### Key-figure strip
-Four cells in one bordered, rounded block, divided by hairlines. Each cell has a mono or sans value in its accent colour and a 12.5–13.5px Dim label below. Cells that act as buttons brighten to Panel Strong on hover.
+Four cells in one bordered, rounded block, divided by hairlines. Each cell has a mono value and a 12.5px Dim label below. Your match count is pink, your group and your closest match take the colour of their group, the share of everyone stays Paper White. Cells that act as buttons brighten to Panel Strong on hover.
 
 ### Observatory map (signature)
-The PCA scatter: every profile a dot in its group colour, profiles below the threshold dimmed, the visitor a pink heart drawn on top. Axes and grid in hairlines, mono axis labels at 11px, a dark blurred tooltip. In the hero the same map appears as a static SVG figure; the only motion is a ring pulsing out from your dot. A mono caption follows (`~/pca-map · 842 profiles · ● you`).
+The PCA scatter: every profile a dot in its group colour, profiles below the threshold dimmed, the visitor a pink heart drawn on top. Axes and grid in hairlines, mono axis labels at 11px, a dark, nearly opaque tooltip. In the hero the same map appears as a static SVG figure; the only motion is a ring pulsing out from your dot. A short caption follows ("842 profiles · ● you").
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** let the data carry the colour: group colours on the map, in key figures and in kickers of group-related panels.
+- **Do** let the data carry the colour: group colours for groups, pink for you, nothing else coloured except the focus ring (The Quiet Interface Rule).
 - **Do** keep Heartbeat Pink for the visitor alone (The One Heart Rule).
-- **Do** set numbers, labels, controls and kickers in JetBrains Mono, sentences in Space Grotesk.
-- **Do** answer touch with light: lift, green glow, accent fill, thumb halo, eased with `cubic-bezier(0.22, 1, 0.36, 1)` over 0.22s.
+- **Do** set numbers, formulas and axes in JetBrains Mono, everything people read or click in Space Grotesk (The Readout Rule).
+- **Do** answer touch with light: lift, soft glow, white fill, thumb halo, eased with `cubic-bezier(0.22, 1, 0.36, 1)` over 0.22s.
 - **Do** build new containers as see-through panels with a 1px hairline border and 14px radius.
-- **Do** stop all animation and reveal everything at once under `prefers-reduced-motion`.
+- **Do** stop all animation under `prefers-reduced-motion`.
+- **Do** draw icons as inline line SVGs (24px grid, 2px stroke, round caps) at 16px; no emoji or text glyphs as icons.
+- **Do** theme browser surfaces from the palette: thin scrollbars in Line Strong, white caret and accent colour, green focus ring.
 
 ### Don't:
+- **Don't** put a label or kicker above a section heading, and don't use code paths (`~/…`) or code comments (`// …`) as decoration.
+- **Don't** add a row of big decorative numbers under the hero; key figures belong where they answer a question, as in the results.
+- **Don't** fade or slide content in on scroll.
 - **Don't** add dark drop shadows to cards or buttons; only tooltips float (The Starlight Rule).
 - **Don't** introduce new hues; red, the two unused background steps and any new accent need a reason tied to data or state.
 - **Don't** go below 4.5:1 for any text; Faint (`text-faint`) is the lowest text colour, for captions and labels beside stronger text.
-- **Don't** add gradient text, grid or dot patterns behind the page, or coloured stripes on the edge of callouts.
+- **Don't** add gradient text, glows, grid or dot patterns behind the page, or coloured stripes on the edge of callouts.

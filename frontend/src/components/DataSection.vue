@@ -6,26 +6,25 @@ import { DATASET, PAPER } from '../links';
   <section id="data" class="section data">
     <div class="container data__inner">
       <div>
-        <p class="kicker reveal" data-accent="amber">// the data</p>
-        <h2 class="section-title reveal">Real people, handled with care</h2>
-        <p class="data__text reveal">
+        <h2 class="section-title">Real people, handled with care</h2>
+        <p class="data__text">
           The profiles come from a dataset that OkCupid allowed to be published for teaching: 59,946 users within 25 miles
           of San Francisco, collected by Albert Y. Kim and Adriana Escobedo-Land. The 2021 revision removed locations and
           dates and added noise to the ages. This app uses the 842 profiles that answered every question it asks.
         </p>
-        <p class="data__text reveal">
+        <p class="data__text">
           The profiles include sensitive attributes such as ethnicity, religion, sexual orientation and drug use. Use them
           to explore patterns, not to identify anyone.
         </p>
-        <div class="data__links reveal">
+        <div class="data__links">
           <a class="btn btn--small" :href="DATASET" target="_blank" rel="noopener">Dataset on GitHub ↗</a>
           <a class="btn btn--small" :href="PAPER" target="_blank" rel="noopener">Paper (JSE, 2015) ↗</a>
         </div>
       </div>
-      <ul class="data__facts reveal">
-        <li data-accent="amber"><span class="mono">59,946</span>profiles in the original dataset</li>
-        <li data-accent="pink"><span class="mono">842</span>complete profiles used here</li>
-        <li data-accent="blue"><span class="mono">0</span>answers of yours sent anywhere</li>
+      <ul class="data__facts">
+        <li><span class="mono">59,946</span>profiles in the original dataset</li>
+        <li><span class="mono">842</span>complete profiles used here</li>
+        <li><span class="mono">0</span>answers of yours sent anywhere</li>
       </ul>
     </div>
   </section>
@@ -74,7 +73,7 @@ import { DATASET, PAPER } from '../links';
 .data__facts .mono {
   font-size: 26px;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--text);
   min-width: 96px;
 }
 @media (max-width: 860px) {

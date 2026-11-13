@@ -3,8 +3,12 @@ import { computed } from 'vue';
 import EChart from './EChart.vue';
 import { axisStyle, baseOption, COLORS, YOU_COLOR } from '../charts/theme';
 import { useExplorer } from '../composables/useExplorer';
+import { useMediaQuery } from '../composables/useMediaQuery';
 
 const { analysis, profiles, answers } = useExplorer();
+
+// On narrow screens the legend wraps to two lines; the plot then moves down to clear the "you" label
+const narrow = useMediaQuery('(max-width: 480px)');
 
 const option = computed(() => {
   const ages = Array.from({ length: 50 }, (_, i) => 17 + i);
@@ -13,7 +17,7 @@ const option = computed(() => {
     ages.map((age) => profiles.filter((row, i) => row.age === age && row.sex === sex && (!onlyMatches || match[i])).length);
   return {
     ...baseOption,
-    grid: { left: 8, right: 12, top: 36, bottom: 4, containLabel: true },
+    grid: { left: 8, right: 12, top: narrow.value ? 60 : 36, bottom: 4, outerBoundsMode: 'same', outerBoundsContain: 'axisLabel' },
     legend: { top: 0, right: 0, icon: 'circle', itemWidth: 9, textStyle: { color: COLORS.dim, fontSize: 11.5 } },
     tooltip: { ...baseOption.tooltip, trigger: 'axis', axisPointer: { type: 'shadow', shadowStyle: { color: 'rgba(255,255,255,0.03)' } } },
     xAxis: { ...axisStyle, type: 'category', data: ages, axisLabel: { ...axisStyle.axisLabel, interval: 4 } },

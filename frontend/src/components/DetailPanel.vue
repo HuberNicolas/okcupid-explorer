@@ -90,8 +90,8 @@ const sameCount = computed(() => comparison.value.filter((c) => c.same).length);
     <template v-if="personRow && person !== null">
       <div class="detail__head">
         <div>
-          <p class="kicker" :data-accent="GROUP_ACCENTS[analysis.group[person]]">
-            // group {{ analysis.group[person] + 1 }} · profile #{{ personRow.index }}
+          <p class="meta" :data-accent="GROUP_ACCENTS[analysis.group[person]]">
+            Group {{ analysis.group[person] + 1 }} · profile #{{ personRow.index }}
           </p>
           <h3 class="detail__title">
             {{ personRow.age }}, {{ valueLabel(personRow.sex).toLowerCase() }}, {{ valueLabel(personRow.job).toLowerCase() }}
@@ -105,7 +105,7 @@ const sameCount = computed(() => comparison.value.filter((c) => c.same).length);
       </div>
       <EChart :option="radarOption" height="280px" />
       <ul class="detail__compare">
-        <li class="detail__compare-head mono"><span></span><span>you</span><span>them</span></li>
+        <li class="detail__compare-head"><span></span><span>you</span><span>them</span></li>
         <li><span>Height</span><span>{{ heightLabel(answers.height) }}</span><span>{{ heightLabel(Number(personRow.height)) }}</span></li>
         <li v-for="c in comparison" :key="c.key" :class="{ same: c.same }">
           <span>{{ c.label }}</span><span>{{ c.you }}</span><span>{{ c.them }}</span>
@@ -117,8 +117,8 @@ const sameCount = computed(() => comparison.value.filter((c) => c.same).length);
     <template v-else>
       <div class="detail__head">
         <div>
-          <p class="kicker" :data-accent="selection ? 'violet' : GROUP_ACCENTS[youGroup]">
-            {{ selection ? '// your selection' : `// your group · group ${youGroup + 1}` }}
+          <p class="meta" :data-accent="selection ? 'violet' : GROUP_ACCENTS[youGroup]">
+            {{ selection ? 'Your selection' : `Your group · Group ${youGroup + 1}` }}
           </p>
           <h3 class="detail__title">
             {{ groupStats.size }} people
@@ -171,7 +171,7 @@ const sameCount = computed(() => comparison.value.filter((c) => c.same).length);
   justify-content: space-between;
   gap: 12px;
 }
-.detail__head .kicker {
+.detail__head .meta {
   margin-bottom: 6px;
 }
 .detail__title {
@@ -232,7 +232,8 @@ const sameCount = computed(() => comparison.value.filter((c) => c.same).length);
   color: var(--text-faint);
 }
 .detail__compare li.same span:not(:first-child) {
-  color: var(--green);
+  color: var(--text);
+  font-weight: 500;
 }
 .detail__compare-head {
   font-size: 11px;

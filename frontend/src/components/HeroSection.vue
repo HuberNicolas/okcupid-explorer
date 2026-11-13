@@ -26,12 +26,12 @@ const you = computed(() => stars.value[stars.value.length - 1]);
   <section id="top" class="hero">
     <div class="container hero__inner">
       <div class="hero__text">
-        <h1 class="hero__title reveal">
+        <h1 class="hero__title">
           How many people<br />
           are <span class="hero__you-text">just like you?</span>
         </h1>
 
-        <p class="formula reveal">
+        <p class="formula">
           <span>your answers</span>
           <span class="formula__arrow" aria-hidden="true">→</span>
           <span>similarity</span>
@@ -39,12 +39,12 @@ const you = computed(() => stars.value[stars.value.length - 1]);
           <span>clusters</span>
         </p>
 
-        <p class="hero__lead reveal">
+        <p class="hero__lead">
           Answer 24 questions and see where you land among <strong>842 real OkCupid profiles</strong> from the San
           Francisco area. Everything is computed in your browser; nothing you enter leaves this page.
         </p>
 
-        <div class="hero__cta reveal">
+        <div class="hero__cta">
           <a class="btn btn--primary" href="#explore">
             {{ submitted ? 'Back to your results' : 'Take the questionnaire' }}
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -54,10 +54,10 @@ const you = computed(() => stars.value[stars.value.length - 1]);
           <a class="btn" :href="REPOSITORY" target="_blank" rel="noopener">Source on GitHub</a>
         </div>
 
-        <p class="hero__origin mono reveal">University of Zurich · IVDA · 2022</p>
+        <p class="hero__origin">University of Zurich · IVDA · 2022</p>
       </div>
 
-      <figure class="hero__map reveal" aria-label="All profiles as points, coloured by group">
+      <figure class="hero__map" aria-label="All profiles as points, coloured by group">
         <svg viewBox="0 0 500 500" role="img">
           <g class="hero__stars">
             <circle
@@ -74,7 +74,7 @@ const you = computed(() => stars.value[stars.value.length - 1]);
             <circle r="6" :fill="YOU_COLOR" />
           </g>
         </svg>
-        <figcaption class="mono">~/pca-map · 842 profiles · <span class="you">● you</span></figcaption>
+        <figcaption>842 profiles · <span class="you">● you</span></figcaption>
       </figure>
     </div>
   </section>
@@ -99,7 +99,7 @@ const you = computed(() => stars.value[stars.value.length - 1]);
   font-size: clamp(38px, 6.4vw, 72px);
   font-weight: 600;
   line-height: 1.02;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.03em;
   margin: 0 0 26px;
 }
 .hero__you-text {
@@ -134,7 +134,7 @@ const you = computed(() => stars.value[stars.value.length - 1]);
   gap: 12px;
 }
 .hero__origin {
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--text-dim);
   margin: 28px 0 0;
 }

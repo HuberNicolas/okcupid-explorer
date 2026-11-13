@@ -13,7 +13,7 @@ const team = [
   <footer class="footer">
     <div class="container footer__inner">
       <div>
-        <p class="footer__logo mono"><span>♥</span> project eros</p>
+        <p class="footer__logo"><span aria-hidden="true">♥</span> Project Eros</p>
         <p class="footer__text">
           Built in 2022 by group nvwd for <em>Interactive Visual Data Analysis</em> at the University of Zurich:
           <template v-for="(member, i) in team" :key="member.name">
@@ -22,13 +22,13 @@ const team = [
           Rebuilt in 2026 with Vue by Nicolas Huber.
         </p>
       </div>
-      <nav class="footer__links mono" aria-label="Links">
+      <nav class="footer__links" aria-label="Links">
         <a :href="REPOSITORY" target="_blank" rel="noopener">source ↗</a>
         <a :href="ORIGINAL" target="_blank" rel="noopener">2022 version ↗</a>
         <a :href="PORTFOLIO" target="_blank" rel="noopener">nicolas-huber.dev ↗</a>
       </nav>
     </div>
-    <p class="container footer__legal mono">Code under the MIT license · data © their authors, see the dataset's terms</p>
+    <p class="container footer__legal">Code under the MIT license · data © their authors, see the dataset's terms</p>
   </footer>
 </template>
 
@@ -61,7 +61,7 @@ const team = [
   border-bottom: 1px solid var(--line-strong);
 }
 .footer__text a:hover {
-  border-color: var(--green);
+  border-color: var(--text);
 }
 .footer__links {
   display: flex;

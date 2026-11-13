@@ -58,14 +58,11 @@ body {
   overflow-x: hidden;
 }
 
-/* Ambient background: two soft glows */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -3;
-  background: radial-gradient(650px circle at 12% -5%, rgba(255, 143, 199, 0.08), transparent 55%),
-    radial-gradient(700px circle at 92% 8%, rgba(110, 181, 255, 0.08), transparent 55%);
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
 }
 
 a {
@@ -78,8 +75,30 @@ button {
   color: inherit;
 }
 
+/* Browser surfaces in the palette */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+  accent-color: var(--text);
+  caret-color: var(--text);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 99px;
+}
+
 ::selection {
-  background: rgba(92, 240, 176, 0.25);
+  background: rgba(234, 234, 242, 0.2);
   color: #fff;
 }
 
@@ -100,13 +119,11 @@ button {
   padding: clamp(64px, 10vw, 112px) 0;
 }
 
-.kicker {
-  font-family: var(--font-mono);
+.meta {
   font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0.04em;
-  color: var(--accent, var(--green));
-  margin: 0 0 14px;
+  color: var(--accent, var(--text-dim));
+  margin: 0 0 6px;
 }
 
 .section-title {
@@ -173,8 +190,7 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-family: var(--font-mono);
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--text-dim);
   padding: 5px 12px;
   border: 1px solid var(--line);
@@ -191,8 +207,8 @@ button {
 
 .chip[aria-pressed='true'] {
   color: #fff;
-  border-color: color-mix(in srgb, var(--accent, var(--green)) 60%, transparent);
-  background: color-mix(in srgb, var(--accent, var(--green)) 14%, transparent);
+  border-color: color-mix(in srgb, var(--accent, var(--text)) 60%, transparent);
+  background: color-mix(in srgb, var(--accent, var(--text)) 14%, transparent);
 }
 
 .chip:disabled {
@@ -205,8 +221,7 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: 14.5px;
   font-weight: 500;
   padding: 12px 20px;
   border-radius: var(--radius-sm);
@@ -220,8 +235,8 @@ button {
 
 .btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  border-color: rgba(92, 240, 176, 0.5);
-  box-shadow: 0 8px 30px rgba(92, 240, 176, 0.12);
+  border-color: rgba(234, 234, 242, 0.4);
+  box-shadow: 0 8px 30px rgba(234, 234, 242, 0.08);
 }
 
 .btn:disabled {
@@ -230,14 +245,20 @@ button {
 }
 
 .btn--primary {
-  background: linear-gradient(120deg, rgba(92, 240, 176, 0.16), rgba(110, 181, 255, 0.12));
-  border-color: rgba(92, 240, 176, 0.4);
-  color: #fff;
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+  font-weight: 600;
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: #fff;
+  border-color: #fff;
 }
 
 .btn--small {
   padding: 7px 13px;
-  font-size: 12.5px;
+  font-size: 13px;
 }
 
 .btn svg {
@@ -257,8 +278,7 @@ button {
 .segmented button {
   border: 0;
   background: transparent;
-  font-family: var(--font-mono);
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--text-dim);
   padding: 6px 14px;
   border-radius: 999px;
@@ -268,7 +288,7 @@ button {
 }
 
 .segmented button[aria-pressed='true'] {
-  background: color-mix(in srgb, var(--accent, var(--green)) 18%, transparent);
+  background: color-mix(in srgb, var(--accent, var(--text)) 18%, transparent);
   color: #fff;
 }
 
@@ -279,7 +299,7 @@ input[type='range'] {
   width: 100%;
   height: 4px;
   border-radius: 99px;
-  background: linear-gradient(90deg, var(--accent, var(--green)) var(--fill, 50%), var(--line-strong) var(--fill, 50%));
+  background: linear-gradient(90deg, var(--accent, var(--text)) var(--fill, 50%), var(--line-strong) var(--fill, 50%));
   cursor: pointer;
 }
 
@@ -289,8 +309,8 @@ input[type='range']::-webkit-slider-thumb {
   height: 18px;
   border-radius: 50%;
   background: var(--bg);
-  border: 2px solid var(--accent, var(--green));
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent, var(--green)) 18%, transparent);
+  border: 2px solid var(--accent, var(--text));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent, var(--text)) 18%, transparent);
 }
 
 input[type='range']::-moz-range-thumb {
@@ -298,29 +318,14 @@ input[type='range']::-moz-range-thumb {
   height: 14px;
   border-radius: 50%;
   background: var(--bg);
-  border: 2px solid var(--accent, var(--green));
+  border: 2px solid var(--accent, var(--text));
 }
 
-/* ---- Reveal on scroll ---- */
-.reveal {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
 
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
-  }
-  .reveal {
-    opacity: 1;
-    transform: none;
   }
 }

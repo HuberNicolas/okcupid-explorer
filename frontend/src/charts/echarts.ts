@@ -6,6 +6,7 @@ import {
   LegendComponent,
   MarkLineComponent,
   RadarComponent,
+  ToolboxComponent,
   TooltipComponent,
 } from 'echarts/components';
 import { CanvasRenderer } from 'echarts/renderers';
@@ -19,6 +20,7 @@ echarts.use([
   LegendComponent,
   MarkLineComponent,
   RadarComponent,
+  ToolboxComponent,
   TooltipComponent,
   CanvasRenderer,
 ]);

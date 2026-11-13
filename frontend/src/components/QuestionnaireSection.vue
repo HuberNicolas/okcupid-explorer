@@ -40,21 +40,19 @@ const isCategorical = (field: string): field is Categorical => field in ATTRIBUT
 <template>
   <section id="explore" class="section">
     <div class="container">
-      <p class="kicker reveal" data-accent="pink">// questionnaire</p>
-      <h2 class="section-title reveal">Tell us about yourself</h2>
-      <p class="section-lead reveal">
+      <h2 class="section-title">Tell us about yourself</h2>
+      <p class="section-lead">
         The same questions the OkCupid users answered. Every option comes from the data itself, and the most common
         answer is preselected. Change as much as you like.
       </p>
 
-      <div class="quiz reveal">
+      <div class="quiz">
         <ol class="quiz__steps" aria-label="Steps">
           <li v-for="(s, i) in STEPS" :key="s.id">
             <button
               type="button"
               class="quiz__step"
               :class="{ 'is-active': i === current, 'is-done': i < current }"
-              :data-accent="s.accent"
               :aria-current="i === current ? 'step' : undefined"
               @click="current = i"
             >
@@ -64,12 +62,15 @@ const isCategorical = (field: string): field is Categorical => field in ATTRIBUT
           </li>
         </ol>
 
-        <div class="quiz__body panel" :data-accent="step.accent">
+        <div class="quiz__body panel">
           <div class="quiz__progress"><span :style="{ width: progress }"></span></div>
           <div class="quiz__head">
-            <p class="kicker">step {{ step.kicker }} / {{ String(STEPS.length).padStart(2, '0') }}</p>
+            <p class="meta">Step {{ current + 1 }} of {{ STEPS.length }}</p>
             <div class="quiz__tools">
-              <button type="button" class="btn btn--small" @click="randomize">🎲 Random answers</button>
+              <button type="button" class="btn btn--small" @click="randomize">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3" /><circle cx="9" cy="9" r="1" fill="currentColor" /><circle cx="15" cy="15" r="1" fill="currentColor" /><circle cx="15" cy="9" r="1" fill="currentColor" /><circle cx="9" cy="15" r="1" fill="currentColor" /></svg>
+                Random answers
+              </button>
               <button type="button" class="btn btn--small" @click="reset">Reset</button>
             </div>
           </div>
@@ -122,10 +123,17 @@ const isCategorical = (field: string): field is Categorical => field in ATTRIBUT
           </Transition>
 
           <div class="quiz__nav">
-            <button type="button" class="btn" :disabled="current === 0" @click="current--">← Back</button>
-            <button v-if="!isLast" type="button" class="btn btn--primary" @click="current++">Next →</button>
+            <button type="button" class="btn" :disabled="current === 0" @click="current--">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>
+              Back
+            </button>
+            <button v-if="!isLast" type="button" class="btn btn--primary" @click="current++">
+              Next
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </button>
             <button v-else type="button" class="btn btn--primary" @click="finish">
-              {{ submitted ? 'Update my results' : 'Show my results' }} ✦
+              {{ submitted ? 'Update my results' : 'Show my results' }}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
             </button>
           </div>
         </div>
@@ -180,7 +188,7 @@ const isCategorical = (field: string): field is Categorical => field in ATTRIBUT
 }
 .quiz__step.is-active .quiz__num,
 .quiz__step.is-done .quiz__num {
-  color: var(--accent);
+  color: var(--text);
 }
 .quiz__body {
   position: relative;
@@ -198,7 +206,7 @@ const isCategorical = (field: string): field is Categorical => field in ATTRIBUT
 .quiz__progress span {
   display: block;
   height: 100%;
-  background: linear-gradient(90deg, var(--pink), var(--accent));
+  background: var(--pink);
   transition: width 0.5s var(--ease);
 }
 .quiz__head {
@@ -208,7 +216,7 @@ const isCategorical = (field: string): field is Categorical => field in ATTRIBUT
   gap: 12px;
   flex-wrap: wrap;
 }
-.quiz__head .kicker {
+.quiz__head .meta {
   margin: 0;
 }
 .quiz__tools {
