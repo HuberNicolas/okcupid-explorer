@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import EChart from './EChart.vue';
-import { axisStyle, baseOption, COLORS, YOU_COLOR } from '../charts/echarts';
+import { axisStyle, baseOption, COLORS, YOU_COLOR } from '../charts/theme';
 import { useExplorer } from '../composables/useExplorer';
 import { ATTRIBUTES, attributeValues, valueLabel } from '../content/attributes';
 import type { Categorical } from '../engine';

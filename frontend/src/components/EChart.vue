@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, shallowRef, useTemplateRef, watch } from 'vue';
 import type { ECharts, EChartsCoreOption } from 'echarts/core';
-import { echarts } from '../charts/echarts';
 
 const props = defineProps<{ option: EChartsCoreOption; height?: string }>();
 const emit = defineEmits<{
@@ -14,8 +13,13 @@ const el = useTemplateRef<HTMLDivElement>('el');
 const chart = shallowRef<ECharts>();
 let resizeObserver: ResizeObserver | undefined;
 
-onMounted(() => {
-  chart.value = echarts.init(el.value!, undefined, { renderer: 'canvas' });
+let unmounted = false;
+
+onMounted(async () => {
+  // Load ECharts only when the first chart mounts, so it does not delay the first render
+  const { echarts } = await import('../charts/echarts');
+  if (unmounted || !el.value) return;
+  chart.value = echarts.init(el.value, undefined, { renderer: 'canvas' });
   chart.value.setOption(props.option);
   chart.value.on('click', (params) => emit('click', params as unknown as Record<string, unknown>));
   chart.value.on('brushSelected', (params) => emit('brush', params as unknown as Record<string, unknown>));
@@ -30,6 +34,7 @@ watch(
 );
 
 onBeforeUnmount(() => {
+  unmounted = true;
   resizeObserver?.disconnect();
   chart.value?.dispose();
 });

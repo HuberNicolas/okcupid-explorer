@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import EChart from './EChart.vue';
-import { baseOption, COLORS, GROUP_ACCENTS, GROUP_COLORS, YOU_COLOR } from '../charts/echarts';
+import { baseOption, COLORS, GROUP_ACCENTS, GROUP_COLORS, YOU_COLOR } from '../charts/theme';
 import { useExplorer } from '../composables/useExplorer';
 import { ATTRIBUTES, valueLabel } from '../content/attributes';
 import { GROUPS } from '../engine';

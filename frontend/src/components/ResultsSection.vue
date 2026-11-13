@@ -4,7 +4,7 @@ import AgeChart from './AgeChart.vue';
 import AttributeChart from './AttributeChart.vue';
 import DetailPanel from './DetailPanel.vue';
 import ScatterMap from './ScatterMap.vue';
-import { GROUP_ACCENTS } from '../charts/echarts';
+import { GROUP_ACCENTS } from '../charts/theme';
 import { useExplorer } from '../composables/useExplorer';
 import { ATTRIBUTES, MAX_CHARTS, valueLabel } from '../content/attributes';
 import { CATEGORICAL } from '../engine';

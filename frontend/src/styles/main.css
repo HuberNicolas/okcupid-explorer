@@ -9,7 +9,7 @@
 
   --text: #eaeaf2;
   --text-dim: #9a9aad;
-  --text-faint: #55556a;
+  --text-faint: #7a7a90;
 
   --green: #5cf0b0;
   --blue: #6eb5ff;
@@ -58,20 +58,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Ambient background: subtle grid and two soft glows */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  background-image: linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 46px 46px;
-  -webkit-mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 30%, transparent 80%);
-  mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 30%, transparent 80%);
-  opacity: 0.5;
-}
-
+/* Ambient background: two soft glows */
 body::after {
   content: '';
   position: fixed;

@@ -2,7 +2,7 @@
 import { computed, shallowRef } from 'vue';
 import type { ECharts } from 'echarts/core';
 import EChart from './EChart.vue';
-import { axisStyle, baseOption, COLORS, GROUP_COLORS, YOU_COLOR } from '../charts/echarts';
+import { axisStyle, baseOption, COLORS, GROUP_COLORS, YOU_COLOR } from '../charts/theme';
 import { useExplorer } from '../composables/useExplorer';
 import { ATTRIBUTES, valueLabel } from '../content/attributes';
 import { GROUPS } from '../engine';

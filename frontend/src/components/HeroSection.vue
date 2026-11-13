@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { GROUP_COLORS, YOU_COLOR } from '../charts/echarts';
+import { GROUP_COLORS, YOU_COLOR } from '../charts/theme';
 import { useExplorer } from '../composables/useExplorer';
 import { REPOSITORY } from '../links';
 
@@ -17,7 +17,6 @@ const stars = computed(() => {
     y: 20 + ((maxY - c[1]) / (maxY - minY)) * 460,
     color: i === coords.length - 1 ? YOU_COLOR : GROUP_COLORS[group[i]],
     you: i === coords.length - 1,
-    delay: (i % 17) * 0.35,
   }));
 });
 const you = computed(() => stars.value[stars.value.length - 1]);
@@ -27,19 +26,18 @@ const you = computed(() => stars.value[stars.value.length - 1]);
   <section id="top" class="hero">
     <div class="container hero__inner">
       <div class="hero__text">
-        <p class="hero__badge reveal"><span class="dot"></span>University of Zurich · IVDA · 2022</p>
         <h1 class="hero__title reveal">
           How many people<br />
-          are <span class="hero__accent">just like you?</span>
+          are <span class="hero__you-text">just like you?</span>
         </h1>
 
-        <div class="formula reveal">
-          <span class="formula__item formula__item--a">your answers</span>
-          <span class="formula__arrow">→</span>
-          <span class="formula__item formula__item--b">similarity</span>
-          <span class="formula__arrow">→</span>
-          <span class="formula__item formula__item--c">clusters</span>
-        </div>
+        <p class="formula reveal">
+          <span>your answers</span>
+          <span class="formula__arrow" aria-hidden="true">→</span>
+          <span>similarity</span>
+          <span class="formula__arrow" aria-hidden="true">→</span>
+          <span>clusters</span>
+        </p>
 
         <p class="hero__lead reveal">
           Answer 24 questions and see where you land among <strong>842 real OkCupid profiles</strong> from the San
@@ -55,6 +53,8 @@ const you = computed(() => stars.value[stars.value.length - 1]);
           </a>
           <a class="btn" :href="REPOSITORY" target="_blank" rel="noopener">Source on GitHub</a>
         </div>
+
+        <p class="hero__origin mono reveal">University of Zurich · IVDA · 2022</p>
       </div>
 
       <figure class="hero__map reveal" aria-label="All profiles as points, coloured by group">
@@ -67,7 +67,6 @@ const you = computed(() => stars.value[stars.value.length - 1]);
               :cy="s.y"
               r="2.6"
               :fill="s.color"
-              :style="{ animationDelay: `${s.delay}s` }"
             />
           </g>
           <g v-if="you" class="hero__you" :transform="`translate(${you.x} ${you.y})`">
@@ -96,61 +95,25 @@ const you = computed(() => stars.value[stars.value.length - 1]);
   padding-top: 40px;
   padding-bottom: 60px;
 }
-.hero__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  color: var(--text-dim);
-  padding: 6px 14px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--panel);
-  margin: 0 0 26px;
-}
-.dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--pink);
-  box-shadow: 0 0 12px var(--pink);
-}
 .hero__title {
   font-size: clamp(38px, 6.4vw, 72px);
+  font-weight: 600;
   line-height: 1.02;
   letter-spacing: -0.035em;
   margin: 0 0 26px;
 }
-.hero__accent {
-  background: linear-gradient(100deg, var(--pink), var(--violet) 45%, var(--blue));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.hero__you-text {
+  color: var(--pink);
 }
 .formula {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  gap: 4px 10px;
   font-family: var(--font-mono);
   font-size: 13px;
-  margin-bottom: 24px;
-}
-.formula__item {
-  padding: 4px 10px;
-  border-radius: 8px;
-  border: 1px solid var(--line);
-  background: var(--panel);
-}
-.formula__item--a {
-  color: var(--pink);
-}
-.formula__item--b {
-  color: var(--blue);
-}
-.formula__item--c {
-  color: var(--green);
+  color: var(--text-dim);
+  margin: 0 0 24px;
 }
 .formula__arrow {
   color: var(--text-faint);
@@ -170,11 +133,16 @@ const you = computed(() => stars.value[stars.value.length - 1]);
   flex-wrap: wrap;
   gap: 12px;
 }
+.hero__origin {
+  font-size: 12.5px;
+  color: var(--text-dim);
+  margin: 28px 0 0;
+}
 .hero__map {
   margin: 0;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: radial-gradient(circle at 50% 45%, rgba(201, 155, 255, 0.07), transparent 70%), var(--panel);
+  background: var(--panel);
   padding: 14px;
 }
 .hero__map svg {
@@ -184,11 +152,11 @@ const you = computed(() => stars.value[stars.value.length - 1]);
 }
 .hero__stars circle {
   opacity: 0.75;
-  animation: twinkle 5.5s ease-in-out infinite;
 }
 .hero__pulse {
   stroke-width: 1.5;
   animation: pulse 2.4s var(--ease) infinite;
+  transform-box: fill-box;
   transform-origin: center;
 }
 .hero__map figcaption {
@@ -198,15 +166,6 @@ const you = computed(() => stars.value[stars.value.length - 1]);
 }
 .you {
   color: var(--pink);
-}
-@keyframes twinkle {
-  0%,
-  100% {
-    opacity: 0.75;
-  }
-  50% {
-    opacity: 0.3;
-  }
 }
 @keyframes pulse {
   0% {
