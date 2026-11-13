@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import LineIcon from './LineIcon.vue';
 import { computed, nextTick, ref } from 'vue';
 import ChoiceField from './ChoiceField.vue';
 import RangeField from './RangeField.vue';
@@ -68,7 +69,7 @@ const isCategorical = (field: string): field is Categorical => field in ATTRIBUT
             <p class="meta">Step {{ current + 1 }} of {{ STEPS.length }}</p>
             <div class="quiz__tools">
               <button type="button" class="btn btn--small" @click="randomize">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3" /><circle cx="9" cy="9" r="1" fill="currentColor" /><circle cx="15" cy="15" r="1" fill="currentColor" /><circle cx="15" cy="9" r="1" fill="currentColor" /><circle cx="9" cy="15" r="1" fill="currentColor" /></svg>
+                <LineIcon name="dice" />
                 Random answers
               </button>
               <button type="button" class="btn btn--small" @click="reset">Reset</button>
@@ -124,16 +125,16 @@ const isCategorical = (field: string): field is Categorical => field in ATTRIBUT
 
           <div class="quiz__nav">
             <button type="button" class="btn" :disabled="current === 0" @click="current--">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>
+              <LineIcon name="arrow-left" />
               Back
             </button>
             <button v-if="!isLast" type="button" class="btn btn--primary" @click="current++">
               Next
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              <LineIcon name="arrow-right" />
             </button>
             <button v-else type="button" class="btn btn--primary" @click="finish">
               {{ submitted ? 'Update my results' : 'Show my results' }}
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              <LineIcon name="arrow-right" />
             </button>
           </div>
         </div>

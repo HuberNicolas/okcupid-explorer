@@ -1,6 +1,7 @@
 import { computed, reactive, ref, shallowRef, watch } from 'vue';
 import { profiles, valueCounts } from '../data/profiles';
 import { analyze, CATEGORICAL, prepare, type Analysis, type Answers, type Categorical, type Settings } from '../engine';
+import type { WorkerRequest, WorkerResponse } from '../engine/analysis.worker';
 import { DEFAULT_CHARTS, ETHNICITY_VALUES, LANGUAGE_VALUES, MAX_CHARTS } from '../content/attributes';
 
 export type Selection = { type: 'person'; index: number } | { type: 'group'; indices: number[] } | null;
@@ -75,15 +76,61 @@ const selection = shallowRef<Selection>(null);
 const filter = shallowRef<Filter | null>(null);
 const analysis = shallowRef<Analysis>(analyze(prepared, answers, settings));
 
+function applyAnalysis(next: Analysis) {
+  analysis.value = next;
+  if (selection.value?.type === 'group') selection.value = null;
+}
+
+// The analysis takes about 100 ms, so it runs in a worker. At most one request is in flight;
+// changes made meanwhile (for example while dragging the threshold) are merged into the next one.
+let worker: Worker | undefined;
+try {
+  worker = new Worker(new URL('../engine/analysis.worker.ts', import.meta.url), { type: 'module' });
+  worker.postMessage({ type: 'init', prepared } satisfies WorkerRequest);
+} catch {
+  worker = undefined; // No worker support (tests, very old browsers): compute on the main thread
+}
+
+let latestId = 0;
+let busy = false;
+let pending = false;
+
+function request() {
+  if (!worker) return;
+  if (busy) {
+    pending = true;
+    return;
+  }
+  busy = true;
+  pending = false;
+  // Plain copies: reactive proxies cannot be sent to a worker
+  const { answers: a, settings: s } = JSON.parse(JSON.stringify({ answers, settings })) as { answers: Answers; settings: Settings };
+  worker.postMessage({ type: 'analyze', id: ++latestId, answers: a, settings: s } satisfies WorkerRequest);
+}
+
+if (worker) {
+  worker.onmessage = ({ data }: MessageEvent<WorkerResponse>) => {
+    busy = false;
+    // Show every finished result, so the map follows a drag; then compute the newest state
+    if (data.id === latestId) applyAnalysis(data.analysis);
+    if (pending) request();
+  };
+  worker.onerror = () => {
+    // Fall back to the main thread if the worker fails to load
+    worker?.terminate();
+    worker = undefined;
+    busy = false;
+    applyAnalysis(analyze(prepared, answers, settings));
+  };
+}
+
 let frame = 0;
 watch(
   [answers, settings],
   () => {
+    if (worker) return request();
     cancelAnimationFrame(frame);
-    frame = requestAnimationFrame(() => {
-      analysis.value = analyze(prepared, answers, settings);
-      if (selection.value?.type === 'group') selection.value = null;
-    });
+    frame = requestAnimationFrame(() => applyAnalysis(analyze(prepared, answers, settings)));
   },
   { deep: true },
 );

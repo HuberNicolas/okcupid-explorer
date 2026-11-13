@@ -358,8 +358,8 @@
       "**Do** set everything in Space Grotesk and give measured numbers tabular figures (The Readout Rule).",
       "**Do** answer touch with light: lift, soft glow, white fill, thumb halo, eased with `cubic-bezier(0.22, 1, 0.36, 1)` over 0.22s.",
       "**Do** build new containers as see-through panels with a 1px hairline border and 14px radius.",
-      "**Do** stop all animation under `prefers-reduced-motion`.",
-      "**Do** draw icons as inline line SVGs (24px grid, 2px stroke, round caps) at 16px; no emoji or text glyphs as icons.",
+      "**Do** stop all animation under `prefers-reduced-motion`, including the ECharts canvas (`animation: false`), which CSS cannot reach.",
+      "**Do** draw icons with the `LineIcon` component (24px grid, 2px stroke, round caps; 16px, 14px in chips and segments); no emoji or text glyphs as icons. The GitHub mark is the one exception.",
       "**Do** theme browser surfaces from the palette: thin scrollbars in Line Strong, white caret and accent colour, green focus ring."
     ],
     "donts": [

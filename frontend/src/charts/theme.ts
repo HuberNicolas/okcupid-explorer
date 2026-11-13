@@ -1,4 +1,5 @@
 // Chart colours and shared ECharts options. Plain data, so importing it does not load ECharts.
+// The colour values mirror the tokens in styles/main.css; theme.test.ts fails if the two drift apart.
 
 /** Colours of the four k-means groups, and of the user */
 export const GROUP_COLORS = ['#5cf0b0', '#6eb5ff', '#c99bff', '#ffc06e'];
@@ -12,10 +13,27 @@ export const COLORS = {
   line: 'rgba(255, 255, 255, 0.08)',
   lineStrong: 'rgba(255, 255, 255, 0.16)',
   tooltip: 'rgba(13, 13, 20, 0.96)',
+  /** Background bars (all profiles) and the highlighted one when it filters the map */
+  bar: 'rgba(255, 255, 255, 0.12)',
+  barActive: 'rgba(255, 255, 255, 0.35)',
+  /** Column highlight under the axis pointer */
+  hover: 'rgba(255, 255, 255, 0.03)',
 };
 
+/** Your matches in the distribution charts, and women and men in the age chart */
+export const MATCH_COLOR = GROUP_COLORS[1];
+export const SEX_COLORS = { f: GROUP_COLORS[2], m: GROUP_COLORS[1] };
+/** An area selected with the brush on the map */
+export const SELECTION_COLOR = GROUP_COLORS[2];
+
+/** A #rrggbb colour with transparency, for the canvas (which cannot read CSS color-mix) */
+export function alpha(hex: string, opacity: number): string {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${n >> 16}, ${(n >> 8) & 255}, ${n & 255}, ${opacity})`;
+}
+
 /** The one typeface of the app, also used inside the charts */
-export const SANS = "'Space Grotesk', system-ui, sans-serif";
+export const SANS = "'Space Grotesk Variable', system-ui, sans-serif";
 
 export const baseOption = {
   backgroundColor: 'transparent',

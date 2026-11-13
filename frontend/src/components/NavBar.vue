@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import LineIcon from './LineIcon.vue';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { REPOSITORY } from '../links';
 
@@ -18,7 +19,7 @@ const links = [
   <header class="nav" :class="{ 'nav--scrolled': scrolled }">
     <div class="container nav__inner">
       <a href="#top" class="nav__logo" aria-label="Project Eros, back to top">
-        <span class="nav__heart" aria-hidden="true">♥</span>Project Eros
+        <LineIcon name="heart" class="nav__heart" />Project Eros
       </a>
       <nav class="nav__links" aria-label="Sections">
         <a v-for="link in links" :key="link.href" :href="link.href">{{ link.label }}</a>
@@ -42,7 +43,7 @@ const links = [
   border-bottom: 1px solid transparent;
 }
 .nav--scrolled {
-  background: rgba(8, 8, 12, 0.72);
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
   backdrop-filter: blur(14px);
   border-bottom-color: var(--line);
 }
@@ -60,6 +61,8 @@ const links = [
   gap: 8px;
 }
 .nav__heart {
+  width: 16px;
+  height: 16px;
   color: var(--pink);
 }
 .nav__links {
@@ -70,6 +73,8 @@ const links = [
   color: var(--text-dim);
 }
 .nav__links a {
+  /* Vertical padding makes each link a 44px touch target without changing the look */
+  padding: 12px 0;
   transition: color var(--dur) var(--ease);
 }
 .nav__links a:hover {
@@ -80,8 +85,13 @@ const links = [
   height: 19px;
   display: block;
 }
+/* On phones all sections stay reachable; the GitHub link moves to the hero button and the footer */
 @media (max-width: 560px) {
-  .nav__links a:not(.nav__gh):not(:first-child) {
+  .nav__links {
+    gap: 14px;
+    font-size: 13.5px;
+  }
+  .nav__gh {
     display: none;
   }
 }

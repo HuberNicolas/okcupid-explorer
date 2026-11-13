@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import LineIcon from './LineIcon.vue';
 import { computed, shallowRef } from 'vue';
 import type { ECharts } from 'echarts/core';
 import EChart from './EChart.vue';
-import { axisStyle, baseOption, COLORS, GROUP_COLORS, SANS, YOU_COLOR } from '../charts/theme';
+import { alpha, axisStyle, baseOption, COLORS, GROUP_COLORS, SANS, SELECTION_COLOR, YOU_COLOR } from '../charts/theme';
 import { useExplorer } from '../composables/useExplorer';
 import { ATTRIBUTES, valueLabel } from '../content/attributes';
 import { GROUPS } from '../engine';
@@ -77,7 +78,7 @@ const option = computed(() => {
       brushMode: 'single',
       throttleType: 'debounce',
       throttleDelay: 250,
-      brushStyle: { color: 'rgba(201,155,255,0.08)', borderColor: 'rgba(201,155,255,0.6)', borderWidth: 1 },
+      brushStyle: { color: alpha(SELECTION_COLOR, 0.08), borderColor: alpha(SELECTION_COLOR, 0.6), borderWidth: 1 },
       outOfBrush: { colorAlpha: 0.15 },
     },
     series: [
@@ -94,6 +95,13 @@ const option = computed(() => {
       },
     ],
   };
+});
+
+const label = computed(() => {
+  const { group, match } = analysis.value;
+  const youGroup = group[group.length - 1] + 1;
+  const matches = match.slice(0, -1).filter(Boolean).length;
+  return `Map of ${profiles.length} profiles in ${GROUPS} groups. You are in group ${youGroup}; ${matches} profiles pass your threshold of ${percent(settings.threshold)}. Use "Closest to you" in the panel to open a person with the keyboard.`;
 });
 
 function onReady(instance: ECharts) {
@@ -138,14 +146,15 @@ function toggleBrush() {
       </div>
       <div class="map__tools">
         <button v-if="filter" type="button" class="chip" aria-pressed="true" @click="filter = null">
-          only {{ ATTRIBUTES[filter.key].label.toLowerCase() }}: {{ valueLabel(filter.value) }} ×
+          only {{ ATTRIBUTES[filter.key].label.toLowerCase() }}: {{ valueLabel(filter.value) }}
+          <LineIcon name="close" />
         </button>
         <button type="button" class="chip" :aria-pressed="brushing" data-accent="violet" @click="toggleBrush">
-          ⬚ {{ brushing ? 'Selecting… drag on the map' : 'Select an area' }}
+          <LineIcon name="select" />{{ brushing ? 'Selecting… drag on the map' : 'Select an area' }}
         </button>
       </div>
     </div>
-    <EChart :option="option" height="440px" @ready="onReady" @click="onClick" @brush="onBrush" />
+    <EChart :option="option" :label="label" height="440px" @ready="onReady" @click="onClick" @brush="onBrush" />
   </div>
 </template>
 

@@ -12,8 +12,9 @@ const { submitted } = useExplorer();
 </script>
 
 <template>
+  <a class="skip-link" href="#main">Skip to content</a>
   <NavBar />
-  <main>
+  <main id="main" tabindex="-1">
     <HeroSection />
     <QuestionnaireSection />
     <ResultsSection v-if="submitted" />

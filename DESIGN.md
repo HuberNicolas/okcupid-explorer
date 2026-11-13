@@ -154,7 +154,7 @@ A night palette: deep ink neutrals, and five luminous pastels that each mean som
 
 ## Typography
 
-**Font:** Space Grotesk (with system-ui, -apple-system, sans-serif), the only typeface, also inside the charts
+**Font:** Space Grotesk, the variable version from `@fontsource-variable/space-grotesk` (with system-ui, -apple-system, sans-serif). It is the only typeface, self-hosted (no request to a font service), and also used inside the charts.
 
 **Character:** Space Grotesk is warm but engineered, with tight tracking at large sizes and distinctive figures (the 1 and the 4) that give the key numbers their own voice.
 
@@ -225,18 +225,21 @@ A pill track (3px inset, hairline border) of buttons; the pressed one fills with
 - **Content:** an optional Meta line, a 15–20px semibold title, a 13px Dim hint, then content.
 
 ### Inputs / Fields
-- **Range slider:** 4px pill track filled with the accent (white by default, pink for your threshold) up to the value and Line Strong after it; an 18px ink thumb with a 2px accent ring and the thumb halo.
+- **Range slider:** a 28px tall input, so it is easy to grab by touch, drawing a 4px pill track filled with the accent (white by default, pink for your threshold) up to the value and Line Strong after it; an 18px ink thumb with a 2px accent ring and the thumb halo.
 - **Choice fields:** rows of chips.
 - **Focus:** the global green outline.
 
 ### Navigation
-Fixed, 68px, transparent at the top; after scrolling it gains 72% ink with a 14px backdrop blur and a hairline bottom border. The logo is a pink heart and "Project Eros" at 15px, weight 600; links are 14px in Dim, Paper White on hover. Below 560px only the first link and the GitHub icon remain.
+Fixed, 68px, transparent at the top; after scrolling it gains 72% ink with a 14px backdrop blur and a hairline bottom border. The logo is a pink heart and "Project Eros" at 15px, weight 600; links are 14px in Dim, Paper White on hover. Links carry 12px vertical padding, so each is a 44px touch target. Below 560px all three section links stay (13.5px, 14px apart) and the GitHub icon moves out; the hero button and the footer link to the source. A skip link ("Skip to content", a solid white pill) appears top left on the first Tab.
 
 ### Key-figure strip
 Four cells in one bordered, rounded block, divided by hairlines. Each cell has a value with tabular figures and a 12.5px Dim label below. Your match count is pink, your group and your closest match take the colour of their group, the share of everyone stays Paper White. Cells that act as buttons brighten to Panel Strong on hover.
 
 ### Observatory map (signature)
-The PCA scatter: every profile a dot in its group colour, profiles below the threshold dimmed, the visitor a pink heart drawn on top. Axes and grid in hairlines, axis labels at 11px, a dark, nearly opaque tooltip. In the hero the same map appears as a static SVG figure; the only motion is a ring pulsing out from your dot. A short caption follows ("842 profiles · ● you").
+The PCA scatter: every profile a dot in its group colour, profiles below the threshold dimmed, the visitor a pink heart drawn on top. Axes and grid in hairlines, axis labels at 11px, a dark, nearly opaque tooltip. In the hero the same map appears as a static SVG figure; the only motion is a ring pulsing out from your dot. A short caption follows ("842 profiles · ● you"). Every chart is a `role="img"` with a label that states its finding ("You are in group 3; 217 profiles pass your threshold"). Clicking a bar filters the map; for the keyboard each chart has a row of filter chips that appears when one of them gets focus.
+
+### Detail panel
+The panel beside the map shows your group, a brushed area or one person. In group view a "Closest to you" list of five people (full-width rows, their score in their group colour) opens a person, also by keyboard. In person view, a radar chart and a real table of your answers and theirs (`th` per question, "You" and "Them" columns; same answers in Paper White at weight 500, with "(same)" for screen readers). Close buttons are 32px circles with the close icon.
 
 ## Do's and Don'ts
 
@@ -246,8 +249,8 @@ The PCA scatter: every profile a dot in its group colour, profiles below the thr
 - **Do** set everything in Space Grotesk and give measured numbers tabular figures (The Readout Rule).
 - **Do** answer touch with light: lift, soft glow, white fill, thumb halo, eased with `cubic-bezier(0.22, 1, 0.36, 1)` over 0.22s.
 - **Do** build new containers as see-through panels with a 1px hairline border and 14px radius.
-- **Do** stop all animation under `prefers-reduced-motion`.
-- **Do** draw icons as inline line SVGs (24px grid, 2px stroke, round caps) at 16px; no emoji or text glyphs as icons.
+- **Do** stop all animation under `prefers-reduced-motion`, including the ECharts canvas (`animation: false`), which CSS cannot reach.
+- **Do** draw icons with the `LineIcon` component (24px grid, 2px stroke, round caps; 16px, 14px in chips and segments); no emoji or text glyphs as icons. The GitHub mark is the one exception.
 - **Do** theme browser surfaces from the palette: thin scrollbars in Line Strong, white caret and accent colour, green focus ring.
 
 ### Don't:

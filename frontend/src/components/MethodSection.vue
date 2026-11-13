@@ -87,7 +87,7 @@ const steps = [
   font-variant-numeric: tabular-nums;
   font-size: 13px;
   color: var(--text-dim);
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 6px 10px;

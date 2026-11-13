@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import LineIcon from './LineIcon.vue';
 import { ORIGINAL, PORTFOLIO, REPOSITORY } from '../links';
 
 const team = [
@@ -13,7 +14,7 @@ const team = [
   <footer class="footer">
     <div class="container footer__inner">
       <div>
-        <p class="footer__logo"><span aria-hidden="true">♥</span> Project Eros</p>
+        <p class="footer__logo"><LineIcon name="heart" class="footer__heart" /> Project Eros</p>
         <p class="footer__text">
           Built in 2022 by group nvwd for <em>Interactive Visual Data Analysis</em> at the University of Zurich:
           <template v-for="(member, i) in team" :key="member.name">
@@ -44,10 +45,16 @@ const team = [
   flex-wrap: wrap;
 }
 .footer__logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 14px;
+  font-weight: 600;
   margin: 0 0 10px;
 }
-.footer__logo span {
+.footer__heart {
+  width: 14px;
+  height: 14px;
   color: var(--pink);
 }
 .footer__text {
@@ -66,9 +73,12 @@ const team = [
 .footer__links {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   font-size: 13px;
   color: var(--text-dim);
+}
+.footer__links a {
+  padding: 4px 0;
 }
 .footer__links a:hover {
   color: var(--text);

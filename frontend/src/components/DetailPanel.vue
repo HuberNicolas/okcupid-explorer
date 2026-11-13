@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import LineIcon from './LineIcon.vue';
 import { computed } from 'vue';
 import EChart from './EChart.vue';
-import { baseOption, COLORS, GROUP_ACCENTS, GROUP_COLORS, YOU_COLOR } from '../charts/theme';
+import { alpha, baseOption, COLORS, GROUP_ACCENTS, GROUP_COLORS, YOU_COLOR } from '../charts/theme';
 import { useExplorer } from '../composables/useExplorer';
 import { ATTRIBUTES, valueLabel } from '../content/attributes';
 import { GROUPS } from '../engine';
@@ -65,13 +66,13 @@ const radarOption = computed(() => {
             name: 'Them',
             value: keys.map((key) => scalePosition(key, row[key])),
             itemStyle: { color: GROUP_COLORS[analysis.value.group[person.value!]] },
-            areaStyle: { color: 'rgba(110,181,255,0.14)' },
+            areaStyle: { color: alpha(GROUP_COLORS[analysis.value.group[person.value!]], 0.14) },
           },
           {
             name: 'You',
             value: keys.map((key) => scalePosition(key, answers.categorical[key])),
             itemStyle: { color: YOU_COLOR },
-            areaStyle: { color: 'rgba(255,143,199,0.18)' },
+            areaStyle: { color: alpha(YOU_COLOR, 0.18) },
             lineStyle: { width: 2 },
           },
         ],
@@ -81,6 +82,19 @@ const radarOption = computed(() => {
 });
 
 const comparison = computed(() => (personRow.value ? compare(answers, personRow.value) : []));
+
+/** The five people in the panel closest to you (or most opposite, in that mode); a keyboard path to people */
+const closest = computed(() => {
+  const { score } = analysis.value;
+  return [...members.value].sort((a, b) => score[b] - score[a]).slice(0, 5);
+});
+const describe = (i: number) =>
+  `${profiles[i].age}, ${valueLabel(profiles[i].sex).toLowerCase()}, ${valueLabel(profiles[i].job).toLowerCase()}`;
+
+const radarLabel = computed(
+  () =>
+    `Radar chart comparing your answers with this person's on ${radarKeys.value.map((k) => ATTRIBUTES[k].label.toLowerCase()).join(', ')}.`,
+);
 const sameCount = computed(() => comparison.value.filter((c) => c.same).length);
 </script>
 
@@ -97,20 +111,36 @@ const sameCount = computed(() => comparison.value.filter((c) => c.same).length);
             {{ personRow.age }}, {{ valueLabel(personRow.sex).toLowerCase() }}, {{ valueLabel(personRow.job).toLowerCase() }}
           </h3>
         </div>
-        <button type="button" class="detail__close" aria-label="Close" @click="selection = null">×</button>
+        <button type="button" class="detail__close" aria-label="Close" @click="selection = null"><LineIcon name="close" /></button>
       </div>
       <div class="detail__score">
         <span class="detail__big num">{{ percent(analysis.score[person]) }}</span>
         <span class="dim">{{ settings.mode === 'similar' ? 'similar to you' : 'opposite of you' }} · {{ sameCount }} of {{ comparison.length }} answers alike</span>
       </div>
-      <EChart :option="radarOption" height="280px" />
-      <ul class="detail__compare">
-        <li class="detail__compare-head"><span></span><span>you</span><span>them</span></li>
-        <li><span>Height</span><span>{{ heightLabel(answers.height) }}</span><span>{{ heightLabel(Number(personRow.height)) }}</span></li>
-        <li v-for="c in comparison" :key="c.key" :class="{ same: c.same }">
-          <span>{{ c.label }}</span><span>{{ c.you }}</span><span>{{ c.them }}</span>
-        </li>
-      </ul>
+      <EChart :option="radarOption" height="280px" :label="radarLabel" />
+      <div class="detail__compare" tabindex="0" role="region" aria-label="Your answers and theirs">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col"><span class="sr-only">Question</span></th>
+              <th scope="col">You</th>
+              <th scope="col">Them</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Height</th>
+              <td>{{ heightLabel(answers.height) }}</td>
+              <td>{{ heightLabel(Number(personRow.height)) }}</td>
+            </tr>
+            <tr v-for="c in comparison" :key="c.key" :class="{ same: c.same }">
+              <th scope="row">{{ c.label }}</th>
+              <td>{{ c.you }}</td>
+              <td>{{ c.them }}<span v-if="c.same" class="sr-only"> (same)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </template>
 
     <!-- A group: the brushed area, or your own group -->
@@ -125,7 +155,9 @@ const sameCount = computed(() => comparison.value.filter((c) => c.same).length);
             <span class="dim">· {{ percent(groupStats.matchShare) }} pass your threshold</span>
           </h3>
         </div>
-        <button v-if="selection" type="button" class="detail__close" aria-label="Clear selection" @click="selection = null">×</button>
+        <button v-if="selection" type="button" class="detail__close" aria-label="Clear selection" @click="selection = null">
+          <LineIcon name="close" />
+        </button>
       </div>
 
       <div class="detail__facts">
@@ -143,6 +175,16 @@ const sameCount = computed(() => comparison.value.filter((c) => c.same).length);
           :title="`Group ${g + 1}: ${n}`"
         ></span>
       </div>
+
+      <p id="closest-label" class="detail__label">{{ settings.mode === 'similar' ? 'Closest to you' : 'Most opposite to you' }}</p>
+      <ul class="detail__people" aria-labelledby="closest-label">
+        <li v-for="i in closest" :key="i">
+          <button type="button" @click="selection = { type: 'person', index: i }">
+            <span>{{ describe(i) }}</span>
+            <span class="num" :style="{ color: GROUP_COLORS[analysis.group[i]] }">{{ percent(analysis.score[i]) }}</span>
+          </button>
+        </li>
+      </ul>
 
       <p class="detail__label">What stands out</p>
       <ul class="detail__standouts">
@@ -185,16 +227,20 @@ const sameCount = computed(() => comparison.value.filter((c) => c.same).length);
   font-weight: 400;
 }
 .detail__close {
-  width: 30px;
-  height: 30px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
   flex: none;
   border-radius: 50%;
   border: 1px solid var(--line);
   background: var(--panel);
   color: var(--text-dim);
   cursor: pointer;
-  font-size: 18px;
-  line-height: 1;
+}
+.detail__close svg {
+  width: 15px;
+  height: 15px;
 }
 .detail__close:hover {
   color: var(--text);
@@ -213,32 +259,67 @@ const sameCount = computed(() => comparison.value.filter((c) => c.same).length);
   color: var(--pink);
 }
 .detail__compare {
-  list-style: none;
   margin: 8px 0 0;
-  padding: 0;
-  font-size: 12.5px;
   max-height: 260px;
   overflow-y: auto;
+  border-radius: 4px;
 }
-.detail__compare li {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 8px;
-  padding: 6px 0;
+.detail__compare table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 12.5px;
+}
+.detail__compare th,
+.detail__compare td {
+  padding: 6px 8px 6px 0;
   border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+  font-weight: 400;
   color: var(--text-dim);
 }
-.detail__compare li span:first-child {
+.detail__compare tbody th {
   color: var(--text-faint);
 }
-.detail__compare li.same span:not(:first-child) {
-  color: var(--text);
-  font-weight: 500;
-}
-.detail__compare-head {
+.detail__compare thead th {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
+  color: var(--text-faint);
+}
+.detail__compare tr.same td {
+  color: var(--text);
+  font-weight: 500;
+}
+.detail__people {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+}
+.detail__people button {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 40px;
+  padding: 8px 10px;
+  margin: 0 -10px;
+  width: calc(100% + 20px);
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 6px;
+  background: transparent;
+  font-size: 13.5px;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease);
+}
+.detail__people button:hover {
+  background: var(--panel-strong);
+}
+.detail__people .num {
+  font-weight: 600;
+  white-space: nowrap;
 }
 .detail__facts {
   display: grid;

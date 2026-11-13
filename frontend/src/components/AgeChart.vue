@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import EChart from './EChart.vue';
-import { axisStyle, baseOption, COLORS, SANS, YOU_COLOR } from '../charts/theme';
+import { alpha, axisStyle, baseOption, COLORS, SANS, SEX_COLORS, YOU_COLOR } from '../charts/theme';
 import { useExplorer } from '../composables/useExplorer';
 import { useMediaQuery } from '../composables/useMediaQuery';
 
@@ -9,6 +9,11 @@ const { analysis, profiles, answers } = useExplorer();
 
 // On narrow screens the legend wraps to two lines; the plot then moves down to clear the "you" label
 const narrow = useMediaQuery('(max-width: 480px)');
+
+const label = computed(() => {
+  const matches = analysis.value.match.slice(0, -1).filter(Boolean).length;
+  return `Bar chart of age, from 17 to 66: all profiles, and your ${matches} matches split into women and men. Your age, ${answers.age}, is marked.`;
+});
 
 const option = computed(() => {
   const ages = Array.from({ length: 50 }, (_, i) => 17 + i);
@@ -19,19 +24,19 @@ const option = computed(() => {
     ...baseOption,
     grid: { left: 8, right: 12, top: narrow.value ? 60 : 36, bottom: 4, outerBoundsMode: 'same', outerBoundsContain: 'axisLabel' },
     legend: { top: 0, right: 0, icon: 'circle', itemWidth: 9, textStyle: { color: COLORS.dim, fontSize: 11.5 } },
-    tooltip: { ...baseOption.tooltip, trigger: 'axis', axisPointer: { type: 'shadow', shadowStyle: { color: 'rgba(255,255,255,0.03)' } } },
+    tooltip: { ...baseOption.tooltip, trigger: 'axis', axisPointer: { type: 'shadow', shadowStyle: { color: COLORS.hover } } },
     xAxis: { ...axisStyle, type: 'category', data: ages, axisLabel: { ...axisStyle.axisLabel, interval: 4 } },
     yAxis: { ...axisStyle, type: 'value' },
     series: [
-      { name: 'Women', type: 'bar', stack: 'all', data: count('f', false), itemStyle: { color: 'rgba(201,155,255,0.25)' } },
-      { name: 'Men', type: 'bar', stack: 'all', data: count('m', false), itemStyle: { color: 'rgba(110,181,255,0.25)' } },
-      { name: 'Matching women', type: 'bar', stack: 'matches', barGap: '-100%', data: count('f', true), itemStyle: { color: '#c99bff' } },
+      { name: 'Women', type: 'bar', stack: 'all', data: count('f', false), itemStyle: { color: alpha(SEX_COLORS.f, 0.25) } },
+      { name: 'Men', type: 'bar', stack: 'all', data: count('m', false), itemStyle: { color: alpha(SEX_COLORS.m, 0.25) } },
+      { name: 'Matching women', type: 'bar', stack: 'matches', barGap: '-100%', data: count('f', true), itemStyle: { color: SEX_COLORS.f } },
       {
         name: 'Matching men',
         type: 'bar',
         stack: 'matches',
         data: count('m', true),
-        itemStyle: { color: '#6eb5ff' },
+        itemStyle: { color: SEX_COLORS.m },
         markLine: {
           symbol: 'none',
           silent: true,
@@ -49,7 +54,7 @@ const option = computed(() => {
   <div class="age panel">
     <p class="age__title">Age</p>
     <p class="panel__hint">All profiles in the background, your matches in front.</p>
-    <EChart :option="option" height="240px" />
+    <EChart :option="option" :label="label" height="240px" />
   </div>
 </template>
 

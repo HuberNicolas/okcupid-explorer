@@ -31,7 +31,8 @@ Open tasks. See also [Known issues](README.md#known-issues).
 
 - [ ] Offer a one-hot encoding as an alternative, so that job and zodiac sign no longer dominate the map
 - [ ] Share results with a link (answers in the URL)
-- [ ] Keyboard access for the map (select people without a mouse)
+- [x] Keyboard access to people and filters (the "Closest to you" list and filter chips that appear on focus)
+- [ ] Keyboard access for selecting an area on the map (the brush is mouse and touch only)
 - [ ] Re-run the notebooks with the current libraries; replace `pandas_profiling` with `ydata-profiling` once it
       supports pandas 3, or drop the profiling cells
 - [ ] Remove the unused debug routes of the reference API (`/api/dev/...`, `/template-example`)

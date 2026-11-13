@@ -2,7 +2,10 @@
 import { onBeforeUnmount, onMounted, shallowRef, useTemplateRef, watch } from 'vue';
 import type { ECharts, EChartsCoreOption } from 'echarts/core';
 
-const props = defineProps<{ option: EChartsCoreOption; height?: string }>();
+import { useMediaQuery } from '../composables/useMediaQuery';
+
+/** `label` is the chart's text alternative: what a screen reader announces instead of the canvas */
+const props = defineProps<{ option: EChartsCoreOption; label: string; height?: string }>();
 const emit = defineEmits<{
   click: [params: Record<string, unknown>];
   brush: [params: Record<string, unknown>];
@@ -13,6 +16,10 @@ const el = useTemplateRef<HTMLDivElement>('el');
 const chart = shallowRef<ECharts>();
 let resizeObserver: ResizeObserver | undefined;
 
+// ECharts animates on its canvas, which the CSS reduced-motion rule cannot reach
+const reduceMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
+const withMotion = (option: EChartsCoreOption) => (reduceMotion.value ? { ...option, animation: false } : option);
+
 let unmounted = false;
 
 onMounted(async () => {
@@ -20,7 +27,7 @@ onMounted(async () => {
   const { echarts } = await import('../charts/echarts');
   if (unmounted || !el.value) return;
   chart.value = echarts.init(el.value, undefined, { renderer: 'canvas' });
-  chart.value.setOption(props.option);
+  chart.value.setOption(withMotion(props.option));
   chart.value.on('click', (params) => emit('click', params as unknown as Record<string, unknown>));
   chart.value.on('brushSelected', (params) => emit('brush', params as unknown as Record<string, unknown>));
   resizeObserver = new ResizeObserver(() => chart.value?.resize());
@@ -28,9 +35,8 @@ onMounted(async () => {
   emit('ready', chart.value);
 });
 
-watch(
-  () => props.option,
-  (option) => chart.value?.setOption(option, { notMerge: false, lazyUpdate: true }),
+watch([() => props.option, reduceMotion], ([option]) =>
+  chart.value?.setOption(withMotion(option), { notMerge: false, lazyUpdate: true }),
 );
 
 onBeforeUnmount(() => {
@@ -43,7 +49,7 @@ defineExpose({ chart });
 </script>
 
 <template>
-  <div ref="el" class="echart" :style="{ height: height ?? '320px' }"></div>
+  <div ref="el" class="echart" role="img" :aria-label="label" :style="{ height: height ?? '320px' }"></div>
 </template>
 
 <style scoped>

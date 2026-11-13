@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import LineIcon from './LineIcon.vue';
 import { computed } from 'vue';
 import AgeChart from './AgeChart.vue';
 import AttributeChart from './AttributeChart.vue';
@@ -52,8 +53,8 @@ function showBest() {
         <div class="controls__item">
           <span class="controls__label">mode</span>
           <div class="segmented" role="group" aria-label="Mode">
-            <button type="button" :aria-pressed="settings.mode === 'similar'" @click="settings.mode = 'similar'">♥ similar to me</button>
-            <button type="button" :aria-pressed="settings.mode === 'opposite'" @click="settings.mode = 'opposite'">⇄ opposites attract</button>
+            <button type="button" :aria-pressed="settings.mode === 'similar'" @click="settings.mode = 'similar'"><LineIcon name="heart" />similar to me</button>
+            <button type="button" :aria-pressed="settings.mode === 'opposite'" @click="settings.mode = 'opposite'"><LineIcon name="swap" />opposites attract</button>
           </div>
         </div>
         <label class="controls__item controls__item--grow">
@@ -61,7 +62,7 @@ function showBest() {
           <input v-model.number="settings.threshold" type="range" min="0" max="1" step="0.01" :style="{ '--fill': fill }" />
         </label>
         <a href="#explore" class="btn btn--small">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4Z" /><path d="m13 7 4 4" /></svg>
+          <LineIcon name="edit" />
           Edit answers
         </a>
       </div>
@@ -97,7 +98,8 @@ function showBest() {
             </p>
           </div>
           <button v-if="filter" type="button" class="chip" aria-pressed="true" @click="filter = null">
-            {{ ATTRIBUTES[filter.key].label }}: {{ valueLabel(filter.value) }} ×
+            {{ ATTRIBUTES[filter.key].label }}: {{ valueLabel(filter.value) }}
+            <LineIcon name="close" />
           </button>
         </div>
         <div class="dist__picker">

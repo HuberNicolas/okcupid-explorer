@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import LineIcon from './LineIcon.vue';
 import { computed } from 'vue';
 import { GROUP_COLORS, YOU_COLOR } from '../charts/theme';
 import { useExplorer } from '../composables/useExplorer';
@@ -47,9 +48,7 @@ const you = computed(() => stars.value[stars.value.length - 1]);
         <div class="hero__cta">
           <a class="btn btn--primary" href="#explore">
             {{ submitted ? 'Back to your results' : 'Take the questionnaire' }}
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
+            <LineIcon name="arrow-right" />
           </a>
           <a class="btn" :href="REPOSITORY" target="_blank" rel="noopener">Source on GitHub</a>
         </div>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import EChart from './EChart.vue';
-import { axisStyle, baseOption, COLORS, YOU_COLOR } from '../charts/theme';
+import { axisStyle, baseOption, COLORS, MATCH_COLOR, YOU_COLOR } from '../charts/theme';
 import { useExplorer } from '../composables/useExplorer';
 import { useMediaQuery } from '../composables/useMediaQuery';
 import { ATTRIBUTES, attributeValues, valueLabel } from '../content/attributes';
@@ -18,6 +18,13 @@ const narrow = useMediaQuery('(max-width: 640px)');
 const horizontal = computed(() => wide.value && narrow.value);
 const height = computed(() => (horizontal.value ? `${values.value.length * 22 + 40}px` : '210px'));
 
+const name = computed(() => ATTRIBUTES[props.attribute].label);
+const label = computed(
+  () =>
+    `Bar chart of ${name.value.toLowerCase()}: the share of each answer among all profiles and among your matches. Your answer: ${valueLabel(answers.categorical[props.attribute])}.`,
+);
+const activeValue = computed(() => (filter.value?.key === props.attribute ? filter.value.value : undefined));
+
 const option = computed(() => {
   const key = props.attribute;
   const { match } = analysis.value;
@@ -25,7 +32,7 @@ const option = computed(() => {
   const share = (rows: typeof profiles, value: string | number) =>
     rows.length ? rows.filter((row) => row[key] === value).length / rows.length : 0;
   const yours = answers.categorical[key];
-  const active = filter.value?.key === key ? filter.value.value : undefined;
+  const active = activeValue.value;
 
   return {
     ...baseOption,
@@ -34,7 +41,7 @@ const option = computed(() => {
     tooltip: {
       ...baseOption.tooltip,
       trigger: 'axis',
-      axisPointer: { type: 'shadow', shadowStyle: { color: 'rgba(255,255,255,0.03)' } },
+      axisPointer: { type: 'shadow', shadowStyle: { color: COLORS.hover } },
       valueFormatter: (v: number) => percent(v, 1),
     },
     [horizontal.value ? 'yAxis' : 'xAxis']: {
@@ -63,7 +70,7 @@ const option = computed(() => {
         barGap: '10%',
         data: values.value.map((v) => ({
           value: share(profiles, v),
-          itemStyle: { color: active === v ? 'rgba(255,255,255,0.35)' : 'rgba(255,255,255,0.12)', borderRadius: horizontal.value ? [0, 4, 4, 0] : [4, 4, 0, 0] },
+          itemStyle: { color: active === v ? COLORS.barActive : COLORS.bar, borderRadius: horizontal.value ? [0, 4, 4, 0] : [4, 4, 0, 0] },
         })),
       },
       {
@@ -72,7 +79,7 @@ const option = computed(() => {
         data: values.value.map((v) => ({
           value: share(matches, v),
           itemStyle: {
-            color: v === yours ? YOU_COLOR : '#6eb5ff',
+            color: v === yours ? YOU_COLOR : MATCH_COLOR,
             opacity: active === undefined || active === v ? 1 : 0.35,
             borderRadius: horizontal.value ? [0, 4, 4, 0] : [4, 4, 0, 0],
           },
@@ -82,17 +89,32 @@ const option = computed(() => {
   };
 });
 
+function toggleFilter(value: string | number) {
+  filter.value = activeValue.value === value ? null : { key: props.attribute, value };
+}
+
 function onClick(params: Record<string, unknown>) {
-  const value = values.value[params.dataIndex as number];
-  const current = filter.value;
-  filter.value = current?.key === props.attribute && current.value === value ? null : { key: props.attribute, value };
+  toggleFilter(values.value[params.dataIndex as number]);
 }
 </script>
 
 <template>
   <div class="attr panel" :class="{ 'attr--wide': wide }">
-    <p class="attr__title">{{ ATTRIBUTES[attribute].label }}</p>
-    <EChart :key="String(horizontal)" :option="option" :height="height" @click="onClick" />
+    <p class="attr__title">{{ name }}</p>
+    <EChart :key="String(horizontal)" :option="option" :label="label" :height="height" @click="onClick" />
+    <!-- Keyboard path to the bar filter: hidden until one of the buttons has focus -->
+    <div class="attr__keys" role="group" :aria-label="`Filter the map by ${name.toLowerCase()}`">
+      <button
+        v-for="v in values"
+        :key="String(v)"
+        type="button"
+        class="chip"
+        :aria-pressed="activeValue === v"
+        @click="toggleFilter(v)"
+      >
+        {{ valueLabel(v) }}
+      </button>
+    </div>
   </div>
 </template>
 
@@ -102,6 +124,20 @@ function onClick(params: Record<string, unknown>) {
 }
 .attr--wide {
   grid-column: 1 / -1;
+}
+.attr__keys:not(:focus-within) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.attr__keys:focus-within {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0 6px;
 }
 .attr__title {
   margin: 0;
